@@ -1,12 +1,13 @@
-import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component } from '@angular/core';
+import { Socials } from './components/socials/socials';
+import { PromptComposer } from './components/prompt-composer/prompt-composer';
+import { Fluid } from 'primeng/fluid';
+import { Brand } from './components/brand/brand';
 
 @Component({
   selector: 'app-root',
-  // imports: [RouterOutlet],
   templateUrl: './app.html',
-  styleUrl: './app.css'
+  styleUrl: './app.css',
+  imports: [Socials, PromptComposer, Fluid, Brand],
 })
-export class App {
-  protected readonly title = signal('Coding Buro');
-}
+export class App {}

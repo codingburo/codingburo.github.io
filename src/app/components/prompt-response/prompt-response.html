@@ -1,0 +1,17 @@
+<div class="p-5 rounded-xl overflow-scroll pb-20">
+<div class="gap-10">
+      <div
+        class="my-10 gap-5"
+        *ngFor="let response of responses; let i = index"
+      >
+        <div
+          class="text-slate-900 rounded-full bg-gray-200 px-2 py-5 my-5 text-right whitespace-pre-wrap"
+        >
+          {{ response.prompt }}
+        </div>
+        <p class="text-slate-900 mb-5 whitespace-pre-wrap">
+          {{ response.response }}
+        </p>
+      </div>
+    </div>
+    </div>

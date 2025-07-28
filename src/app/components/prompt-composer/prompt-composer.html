@@ -1,0 +1,57 @@
+<p-fluid>
+  
+    <app-prompt-response [responses]="responses" />
+  
+  <div
+    class="p-5 rounded-xl border border-stone-200 shadow fixed bottom-5 bg-stone-100"
+  > 
+    <textarea
+      placeholder="Ask AI anything"
+      [(ngModel)]="prompt"
+      variant="filled"
+      rows="1"
+      pTextarea
+      autoResize="true"
+      autofocus
+    ></textarea>
+
+    <div class="flex flex-row justify-between">
+      <div class="py-2">
+        <p-selectbutton
+          [options]="promptOptions"
+          [(ngModel)]="selectedAction"
+          [multiple]="false"
+          optionLabel="name"
+          optionValue="value"
+        />
+      </div>
+      <div class="flex flex-row items-center bg-stone-100 rounded-full">
+        <p-button
+          icon="pi pi-paperclip"
+          aria-label="Attach file"
+          [rounded]="true"
+          [text]="true"
+          severity="secondary"
+          [outlined]="false"
+        />
+        <p-button
+          icon="pi pi-microphone"
+          aria-label="Prompt Coding Buro"
+          [rounded]="true"
+          [text]="true"
+          severity="secondary"
+          [outlined]="false"
+        /><p-button
+          aria-label="Prompt Coding Buro"
+          icon="pi pi-play"
+          [text]="true"
+          severity="success"
+          [rounded]="true"
+          [disabled]="prompt === ''"
+          (onClick)="getPrompt()"
+          loading="{{ isLoading }}"
+        />
+      </div>
+    </div>
+  </div>
+</p-fluid>
