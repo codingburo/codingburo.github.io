@@ -1,4 +1,4 @@
-<div class="card flex justify-center bg-lime-100">
+<div class="card flex justify-center">
   <p-drawer #drawerRef [(visible)]="visible">
     <ng-template #headless>
       <div class="flex flex-col h-full">
@@ -26,5 +26,6 @@
       </div>
     </ng-template>
   </p-drawer>
-  <p-button (click)="visible = true" icon="pi pi-bars" class="dark:bg-slate-950"  aria-label="Show Sidebar"/>
+  <!-- <p-button (click)="visible = true" icon="pi pi-bars" class="dark:bg-slate-950"  aria-label="Show Sidebar"/> -->
+  <i class="pi pi-bars hover:cursor-pointer" style="font-size: 1.5rem" (click)="visible = true"></i>
 </div>

@@ -5,7 +5,7 @@
     </div>
     <app-home-card [isVisible]="responseData.length < 1" class="w-full md:max-w-4xl"/>
     <div class="flex flex-col w-full items-center fixed bottom-10">
-      <app-prompt-composer (responseData)="handleResponsesData($event)" class="w-full md:max-w-4xl px-5"/>
+      <app-prompt-composer (responseData)="handleResponsesData($event)" class="w-full md:max-w-4xl p-2 min-w-fit "/>
     </div>
   </div>
 </p-fluid>
