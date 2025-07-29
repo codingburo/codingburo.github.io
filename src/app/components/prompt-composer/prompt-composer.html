@@ -1,5 +1,5 @@
-<p-fluid class="flex flex-col w-full md:max-w-4xl p-2">
-  <div class="flex flex-col w-full p-5 rounded-xl border border-green-200 shadow bg-neutral-100">
+<p-fluid class="flex flex-col w-full">
+  <div class="p-5 rounded-xl border border-green-100 shadow ">
     <textarea
       class="border border-stone-50 shadow"
       placeholder="Ask AI anything"
@@ -42,7 +42,6 @@
           aria-label="Prompt Coding Buro"
           icon="pi pi-arrow-circle-up"
           [text]="true"
-          severity="contrast"
           [disabled]="prompt === ''"
           (onClick)="getPrompt()"
           loading="{{ isLoading }}"

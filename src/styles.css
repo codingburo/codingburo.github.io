@@ -4,7 +4,7 @@
 @import "primeicons/primeicons.css";
 
 body{
-    @apply text-slate-950 overflow-hidden;
+    @apply p-0;
 }
 
 :host {
