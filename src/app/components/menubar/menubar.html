@@ -1,21 +1,41 @@
-<p-menubar [model]="items" >
-    <ng-template #start>
-        <svg width="33" height="35" viewBox="0 0 33 35" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="..." fill="var(--primary-color)" />
-        </svg>
-    </ng-template>
-    <ng-template #item let-item let-root="root">
-        <a pRipple class="flex items-center p-menubar-item-link">
-            <span>{{ item.label }}</span>
-            <p-badge *ngIf="item.badge" [ngClass]="{ 'ml-auto': !root, 'ml-2': root }" [value]="item.badge" />
-            <span *ngIf="item.shortcut" class="ml-auto border border-surface rounded bg-emphasis text-muted-color text-xs p-1">{{ item.shortcut }}</span>
-            <i *ngIf="item.items" [ngClass]="['ml-auto pi', root ? 'pi-angle-down' : 'pi-angle-right']"></i>
-        </a>
-    </ng-template>
-    <ng-template #end>
-        <div class="flex items-center gap-2">
-            <input type="text" pInputText placeholder="Search" class="w-36 border rounded px-1 border-sky-200" />
-            <p-avatar image="/images/sba.jpg" shape="circle" />
-        </div>
-    </ng-template>
+<p-menubar [model]="items">
+  <ng-template #start>
+    <div class="flex flex-row gap-2 items-center">
+      <app-sidebar />
+      <app-brand />
+    </div>
+  </ng-template>
+
+  <ng-template #item let-item let-root="root">
+    <a pRipple class="flex items-center p-menubar-item-link">
+      <span>{{ item.label }}</span>
+      <p-badge
+        *ngIf="item.badge"
+        [ngClass]="{ 'ml-auto': !root, 'ml-2': root }"
+        [value]="item.badge"
+      />
+      <span
+        *ngIf="item.shortcut"
+        class="ml-auto border border-surface rounded bg-emphasis text-muted-color text-xs p-1"
+        >{{ item.shortcut }}</span
+      >
+      <i
+        *ngIf="item.items"
+        [ngClass]="['ml-auto pi', root ? 'pi-angle-down' : 'pi-angle-right']"
+      ></i>
+    </a>
+  </ng-template>
+  <ng-template #end>
+    <div class="flex items-center gap-2">
+      <span class="text-center mx-2 font-semibold text-blue-600">AI Driven Innovation</span>
+      <a
+        pRipple
+        class="flex items-center p-menubar-item-link"
+        href="{{ sbaweb_link }}"
+        target="_blank"
+      >
+        <p-avatar image="/images/sba.jpg" shape="circle" />
+      </a>
+    </div>
+  </ng-template>
 </p-menubar>

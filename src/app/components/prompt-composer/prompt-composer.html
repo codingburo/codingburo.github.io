@@ -1,11 +1,7 @@
 <p-fluid>
-  
-    <app-prompt-response [responses]="responses" />
-  
-  <div
-    class="p-5 rounded-xl border border-stone-200 shadow fixed bottom-5 bg-stone-100"
-  > 
+  <div class="p-5 rounded-xl border border-green-200 shadow bg-neutral-100">
     <textarea
+      class="border border-stone-50 shadow"
       placeholder="Ask AI anything"
       [(ngModel)]="prompt"
       variant="filled"
@@ -13,6 +9,7 @@
       pTextarea
       autoResize="true"
       autofocus
+      (keydown.enter)="prompt !== '' ? getPrompt() : null"
     ></textarea>
 
     <div class="flex flex-row justify-between">
@@ -25,7 +22,7 @@
           optionValue="value"
         />
       </div>
-      <div class="flex flex-row items-center bg-stone-100 rounded-full">
+      <div class="flex flex-row items-center rounded-full">
         <p-button
           icon="pi pi-paperclip"
           aria-label="Attach file"
@@ -43,10 +40,9 @@
           [outlined]="false"
         /><p-button
           aria-label="Prompt Coding Buro"
-          icon="pi pi-play"
+          icon="pi pi-arrow-circle-up"
           [text]="true"
-          severity="success"
-          [rounded]="true"
+          severity="contrast"
           [disabled]="prompt === ''"
           (onClick)="getPrompt()"
           loading="{{ isLoading }}"

@@ -1,11 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { TextareaModule } from 'primeng/textarea';
 import { FormsModule } from '@angular/forms';
 import { FluidModule } from 'primeng/fluid';
 import { ButtonModule } from 'primeng/button';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { Weather } from '../../services/weather';
-import { PromptResponse } from '../prompt-response/prompt-response';
 
 @Component({
   selector: 'app-prompt-composer',
@@ -15,7 +14,6 @@ import { PromptResponse } from '../prompt-response/prompt-response';
     FluidModule,
     ButtonModule,
     SelectButtonModule,
-    PromptResponse,
   ],
   templateUrl: './prompt-composer.html',
   styleUrl: './prompt-composer.css',
@@ -25,6 +23,7 @@ export class PromptComposer {
   prompt!: string;
   isLoading: boolean = false;
   prompts: string[] = [];
+  @Output() responseData = new EventEmitter<PromptResponses[]>();
   responses: PromptResponses[] = [];
   selectedAction: string = 'weather';
   promptOptions: any[] = [
@@ -64,6 +63,7 @@ export class PromptComposer {
         this.responses.push({ prompt: this.prompt, response: response });
         this.isLoading = false;
         this.prompt = '';
+        this.responseData.emit(this.responses);
       });
   }
 }
