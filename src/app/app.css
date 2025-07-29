@@ -37,8 +37,6 @@
     -moz-osx-font-smoothing: grayscale;
   }
 
-  
-
   p {
     margin: 0;
     color: var(--gray-700);

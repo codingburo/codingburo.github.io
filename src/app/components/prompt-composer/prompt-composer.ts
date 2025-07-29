@@ -28,9 +28,9 @@ export class PromptComposer {
   selectedAction: string = 'weather';
   promptOptions: any[] = [
     { name: 'Get Weather Updates', value: 'weather' },
-    { name: 'Create Image', value: 'image' },
-    { name: 'Write an Email', value: 'email' },
-    { name: 'Research a Topic', value: 'research' },
+    // { name: 'Create Image', value: 'image' },
+    // { name: 'Write an Email', value: 'email' },
+    // { name: 'Research a Topic', value: 'research' },
   ];
 
   getPrompt() {

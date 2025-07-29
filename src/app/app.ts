@@ -1,13 +1,12 @@
 import { Component } from '@angular/core';
-import { Socials } from './components/socials/socials';
-import { PromptComposer } from './components/prompt-composer/prompt-composer';
 import { Fluid } from 'primeng/fluid';
-import { Brand } from './components/brand/brand';
+import { Header } from './components/header/header';
+import { ChatComponent } from './components/chat-component/chat-component';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.html',
   styleUrl: './app.css',
-  imports: [Socials, PromptComposer, Fluid, Brand],
+  imports: [Fluid, Header, ChatComponent],
 })
 export class App {}

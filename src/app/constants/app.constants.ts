@@ -1,6 +1,7 @@
 // src/app/constants/app.constants.ts
 export const APP_CONFIG = {
   API_BASE_URL: 'https://data.syedbaqirali.com',
+  SBAWEB_LINK: 'https://www.syedbaqirali.com',
   MAX_RETRIES: 3,
   TIMEOUT_MS: 5000,
   DEFAULT_LANGUAGE: 'en',
