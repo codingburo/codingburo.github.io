@@ -57,13 +57,13 @@ export class PromptComposer {
       return;
     }
     this.isLoading = true;
-    this.prompt = '';
+
     this.weatherService
       .getWeather(this.prompt)
       .subscribe((response: string) => {
         this.responses.push({ prompt: this.prompt, response: response });
         this.isLoading = false;
-
+        this.prompt = '';
         this.responseData.emit(this.responses);
       });
   }
