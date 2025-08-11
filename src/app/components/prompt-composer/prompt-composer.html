@@ -13,8 +13,8 @@
     ></textarea>
 
     <div class="flex flex-row justify-between">
-      <div class="py-2 max-w-sm overflow-x-scroll">
-        <p-selectbutton
+      <div class="py-2 max-w-sm">
+        <p-selectbutton class="text-nowrap w-fit min-w-fit"
           [options]="promptOptions"
           [(ngModel)]="selectedAction"
           [multiple]="false"

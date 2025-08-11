@@ -27,9 +27,9 @@ export class PromptComposer {
   responses: PromptResponses[] = [];
   selectedAction: string = 'weather';
   promptOptions: any[] = [
-    { name: 'Get Weather Updates', value: 'weather' },
-    // { name: 'Create Image', value: 'image' },
-    // { name: 'Write an Email', value: 'email' },
+    { name: 'Weather Updates', value: 'weather', enabled: true },
+    { name: 'Do Calculations', value: 'maths', enabled: false },
+    { name: 'Find Book', value: 'book', enabled: false },
     // { name: 'Research a Topic', value: 'research' },
   ];
 
@@ -41,10 +41,10 @@ export class PromptComposer {
       case 'weather':
         this.getWeather();
         break;
-      case 'image':
+      case 'maths':
         this.getWeather();
         break;
-      case 'email':
+      case 'book':
         this.getWeather();
         break;
       default:
