@@ -12,9 +12,9 @@
       (keydown.enter)="prompt !== '' ? getPrompt() : null"
     ></textarea>
 
-    <div class="flex flex-row justify-between">
+    <div class="flex flex-row justify-between md:items-baseline">
       <div class="py-2 max-w-sm">
-        <p-selectbutton class="text-nowrap w-fit min-w-fit"
+        <p-selectbutton class="text-nowrap w-fit min-w-fit text-ellipsis flex md:flex-row flex-col items-start"
           [options]="promptOptions"
           [(ngModel)]="selectedAction"
           [multiple]="false"
