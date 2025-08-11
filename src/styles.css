@@ -3,9 +3,7 @@
 @plugin "tailwindcss-primeui";
 @import "primeicons/primeicons.css";
 
-body{
-    @apply p-0;
-}
+
 
 :host {
     --bright-blue: oklch(51.01% 0.274 263.83);
@@ -45,6 +43,16 @@ body{
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
+
+  body{
+    @apply min-h-lvh h-lvh;
+    background-image: 
+    radial-gradient(circle at center, rgb(168, 250, 184), transparent), 
+    linear-gradient(to top left, rgb(255, 253, 207), transparent),
+    linear-gradient(to right, rgb(227, 248, 253), rgb(253, 210, 217));
+    background-repeat: no-repeat;
+    
+}
 
 
   .pill-group {
