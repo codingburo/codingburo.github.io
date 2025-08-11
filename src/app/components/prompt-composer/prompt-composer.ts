@@ -27,9 +27,9 @@ export class PromptComposer {
   responses: PromptResponses[] = [];
   selectedAction: string = 'weather';
   promptOptions: any[] = [
-    { name: 'Weather Updates', value: 'weather', enabled: true },
-    { name: 'Do Calculations', value: 'maths', enabled: false },
-    { name: 'Find Book', value: 'book', enabled: false },
+    { name: 'Weather', value: 'weather', enabled: true },
+    { name: 'Calculations', value: 'maths', enabled: false },
+    { name: 'Books', value: 'book', enabled: false },
     // { name: 'Research a Topic', value: 'research' },
   ];
 

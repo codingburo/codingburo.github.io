@@ -1,5 +1,5 @@
 <p-fluid class="flex flex-col w-full">
-  <div class="rounded-4xl shadow bg-stone-100 dark:bg-stone-950 p-5">
+  <div class="rounded-b-4xl shadow bg-green-950 dark:bg-neutral-950 p-5">
     <textarea
       class="shadow"
       placeholder="Ask AI anything"
@@ -14,7 +14,7 @@
 
     <div class="flex flex-row justify-between md:items-baseline">
       <div class="py-2 max-w-sm">
-        <p-selectbutton class="text-nowrap w-fit min-w-fit text-ellipsis flex md:flex-row flex-col items-start"
+        <p-selectbutton class="text-nowrap w-fit min-w-fit text-ellipsis items-start"
           [options]="promptOptions"
           [(ngModel)]="selectedAction"
           [multiple]="false"
