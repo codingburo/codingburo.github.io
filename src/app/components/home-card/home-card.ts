@@ -2,11 +2,10 @@ import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CardModule } from 'primeng/card';
 import { ButtonModule } from 'primeng/button';
-import { Brand } from "../brand/brand";
-import { Fluid } from "primeng/fluid";
+import { Brand } from '../brand/brand';
 @Component({
   selector: 'app-home-card',
-  imports: [CardModule, ButtonModule, Brand, CommonModule, Fluid],
+  imports: [CardModule, ButtonModule, Brand, CommonModule],
   templateUrl: './home-card.html',
   styleUrl: './home-card.css',
 })

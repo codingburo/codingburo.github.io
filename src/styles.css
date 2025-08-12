@@ -45,8 +45,8 @@
   }
 
   body{
-    @apply h-screen min-h-screen;
-    @apply bg-radial dark:from-neutral-950 dark:to-neutral-900 from-amber-100 to-amber-50;
+    @apply h-screen max-h-screen;
+    @apply bg-radial dark:from-purple-800 dark:via-purple-200 dark:to-amber-100 from-green-600 via-green-100 to-amber-100;
     /* @apply bg-gradient-to-tl from-purple-400 to-transparent; */
     /* background-image: 
     radial-gradient(circle at center, rgb(168, 250, 184), transparent), 

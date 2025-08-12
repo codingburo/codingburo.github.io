@@ -43,8 +43,7 @@
   }
 
   main {
-    width: 100%;
-    min-height: 100%;
+    @apply h-full w-full;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -52,6 +51,17 @@
     box-sizing: inherit;
     position: relative;
   }
+
+  .fixed-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: #f0f0f0; /* Example background */
+      z-index: 1000; /* Ensure it stays on top of other content */
+    }
+
+   
 
   .angular-logo {
     max-width: 9.2rem;

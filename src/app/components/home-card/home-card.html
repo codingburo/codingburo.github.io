@@ -1,13 +1,9 @@
-<p-fluid class="w-full flex" *ngIf="isVisible">
-    <p-card class="w-full md:max-w-4xl" [style]="{  overflow: 'hidden' }">
-        <ng-template #header>
-            <div class="bg-green-100 dark:bg-stone-950"><app-brand/></div>
-        </ng-template>
-        <ng-template #title> Welcome! </ng-template>
-        <ng-template #subtitle> AI Driven Innovation </ng-template>
-        <p class="font-light">
-            Try asking AI about Weather <span >(Currently only available for US states)</span> e.g. <span class="text-sky-800 dark:text-sky-300">"Weather in Texas", "Temp in NY"</span>
-        </p>
-        
-    </p-card>
-</p-fluid>
+@if (isVisible) {
+<p-card class="w-full">
+  <ng-template #header>
+    <div class="bg-emerald-100 dark:bg-stone-950"><app-brand /></div>
+  </ng-template>
+  <ng-template #title> Welcome! </ng-template>
+  <ng-template #subtitle> AI Driven Innovation </ng-template>
+</p-card>
+}

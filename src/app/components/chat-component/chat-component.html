@@ -1,9 +1,13 @@
-<p-fluid class="w-full flex flex-col items-center gap-2 h-full">
-  <div class="flex flex-col w-full md:max-w-4xl h-full py-1 md:justify-center justify-evenly gap-2">
-    <div class="flex flex-col gap-3 max-h-screen overflow-y-scroll w-full" *ngIf="responseData.length > 0">
-      <app-prompt-response [responses]="responseData" />
-    </div>
-    <app-home-card [isVisible]="responseData.length < 1" class="w-full md:max-w-4xl"/>
-      <app-prompt-composer (responseData)="handleResponsesData($event)" class="w-full md:max-w-4xl min-w-fit "/>
+<div class="flex flex-col gap-2 w-full h-full justify-center max-h-full overflow-y-clip">
+  <div class="w-full h-full max-h-full overflow-y-auto relative top-20 mb-20">
+    @if (responseData.length > 0) {
+    <app-prompt-response [responses]="responseData" class="min-h-fit"/>
+    } @if (responseData.length < 1) {
+    <app-home-card [isVisible]="responseData.length < 1" class="h-full flex items-center"/>
+    }
   </div>
-</p-fluid>
+  <app-prompt-composer
+    (responseData)="handleResponsesData($event)"
+    class="w-full self-center max-w-4xl p-1"
+  />
+</div>

@@ -1,11 +1,15 @@
-<div
-  class="flex flex-col p-1 gap-1 max-w-full border bg-stone-50 dark:bg-slate-950 border-slate-200 dark:border-slate-800 shadow rounded-t-xl my-2 h-it min-h-fit w-full min-w-full"
-  *ngFor="let response of responses; let i = index"
+@for (response of responses; track $index) {
+  <div
+  class="flex flex-col p-0.5 gap-1 m-0.5 shadow min-h-fit rounded-t-xl
+  border bg-stone-50 dark:bg-slate-950 border-slate-200 dark:border-slate-800 "
+  
 >
-  <div class="rounded-t-xl bg-stone-200 dark:bg-slate-800 whitespace-pre-wrap p-3">
-    <span class="font-semibold text-slate-500 dark:text-slate-500">You:</span> {{ response.prompt.trimEnd().toLocaleUpperCase() }}
+  <div class="rounded-t-xl bg-stone-200 dark:bg-slate-800 whitespace-pre-wrap p-2">
+    <span class="font-semibold text-slate-500 dark:text-slate-500">You:</span> {{ response.prompt.trimEnd() }}
   </div>
   <p class="text-slate-950 dark:text-stone-50 whitespace-pre-wrap p-3 ">
     {{ response.response }}
   </p>
 </div>
+}
+

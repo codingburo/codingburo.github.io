@@ -1,8 +1,8 @@
-<p-fluid class="flex flex-col w-full">
-  <div class="rounded-b-4xl shadow bg-green-950 dark:bg-neutral-950 p-5">
+<p-fluid class="w-full">
+  <div class="rounded-xl shadow bg-emerald-100 border border-emerald-300 dark:border-neutral-700 dark:bg-neutral-950 p-3 relative">
     <textarea
       class="shadow"
-      placeholder="Ask AI anything"
+      placeholder="Ask Cobu anything"
       [(ngModel)]="prompt"
       variant="filled"
       rows="1"
@@ -48,5 +48,11 @@
         />
       </div>
     </div>
+    <p class="text-neutral-500 dark:text-stone-100">
+    Try asking Cobu about Weather <span>(US states)</span> e.g.
+    <span class="text-sky-400 dark:text-sky-300 font-bold"
+      >"Weather in Texas", "Temp in NY"</span
+    >
+  </p>
   </div>
 </p-fluid>
