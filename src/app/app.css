@@ -47,7 +47,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 0.3rem;
+    padding: 0.2rem;
     box-sizing: inherit;
     position: relative;
   }
@@ -60,8 +60,6 @@
       background-color: #f0f0f0; /* Example background */
       z-index: 1000; /* Ensure it stays on top of other content */
     }
-
-   
 
   .angular-logo {
     max-width: 9.2rem;

@@ -46,7 +46,7 @@
 
   body{
     @apply h-screen max-h-screen;
-    @apply bg-radial dark:from-purple-800 dark:via-purple-200 dark:to-amber-100 from-green-600 via-green-100 to-amber-100;
+    @apply bg-radial dark:from-slate-950 dark:via-slate-900 dark:to-neutral-950 from-green-600 via-green-100 to-amber-100;
     /* @apply bg-gradient-to-tl from-purple-400 to-transparent; */
     /* background-image: 
     radial-gradient(circle at center, rgb(168, 250, 184), transparent), 
