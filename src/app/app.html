@@ -1,7 +1,12 @@
 <main
-  class="flex flex-col justify-start gap-2 bg-[url('/images/waves-orange.png')] dark:filter grayscale bg-no-repeat bg-center bg-cover">
-  <p-fluid class="w-full h-fit min-h-fit fixed top-0.5 px-0.5"><app-header /></p-fluid>
-  <p-fluid class="w-full h-full md:max-w-4/5">
-    <app-chat-component class="w-full" />
-  </p-fluid>
+  class="w-full h-full bg-[url('/images/waves-orange.png')] bg-no-repeat bg-center bg-cover"
+>
+  <div class="flex flex-col items-center gap-2 w-full h-full dark:backdrop-brightness-75">
+    <p-fluid class="w-full h-fit min-h-fit fixed top-0.5 px-0.5"
+      ><app-header
+    /></p-fluid>
+    <p-fluid class="w-full h-full md:max-w-4/5">
+      <app-chat-component class="w-full" />
+    </p-fluid>
+  </div>
 </main>
