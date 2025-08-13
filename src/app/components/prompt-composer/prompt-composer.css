@@ -2,3 +2,17 @@
     border:0;
 }
 
+/* styles.css or component.scss with ::ng-deep */
+.p-button.p-button-black {
+  background-color: black !important; /* Sets the background to black */
+  color: white !important; /* Sets the text color to white for contrast */
+  border-color: black !important; /* Sets the border color to black */
+}
+
+/* For hover/focus states, if desired */
+.p-button.p-button-black:hover,
+.p-button.p-button-black:focus {
+  background-color: #333 !important; /* Slightly lighter black on hover/focus */
+  border-color: #333 !important;
+}
+

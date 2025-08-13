@@ -1,33 +1,32 @@
 <p-menubar [model]="items">
   <ng-template #start>
-    <div class="flex flex-row gap-2 items-center">
       <app-sidebar />
       <app-brand class="ml-3"/>
-    </div>
   </ng-template>
 
   <ng-template #item let-item let-root="root">
     <a pRipple class="flex items-center p-menubar-item-link">
       <span>{{ item.label }}</span>
+      @if(item.badge){
       <p-badge
-        *ngIf="item.badge"
         [ngClass]="{ 'ml-auto': !root, 'ml-2': root }"
         [value]="item.badge"
-      />
+      />}
+      @if (item.shortcut) {
       <span
-        *ngIf="item.shortcut"
+        
         class="ml-auto border border-surface rounded bg-emphasis text-muted-color text-xs p-1"
         >{{ item.shortcut }}</span
-      >
+      >}
+      @if (item.items) {
       <i
-        *ngIf="item.items"
         [ngClass]="['ml-auto pi', root ? 'pi-angle-down' : 'pi-angle-right']"
-      ></i>
+      ></i>}
     </a>
   </ng-template>
   <ng-template #end>
     <div class="flex items-center gap-2">
-      <span class="text-center mx-2 text-lg text-green-600 font-semibold dark:text-green-400 md:flex hidden">AI Driven Innovation</span>
+      <div class="text-center mx-2 text-lg text-green-600 font-semibold dark:text-green-400 md:flex hidden">AI Driven Innovation</div> 
       <a
         pRipple
         class="flex items-center p-menubar-item-link"

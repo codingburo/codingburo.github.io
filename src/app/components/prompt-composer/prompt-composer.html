@@ -1,6 +1,6 @@
-<p-fluid class="w-full">
-  <div class="rounded-xl shadow bg-emerald-100 border border-emerald-300 dark:border-neutral-700 dark:bg-neutral-950 p-3 relative">
-    <textarea
+
+  <div class="rounded-4xl shadow-xl bg-stone-100 border-2 border-emerald-500 dark:border-emerald-500 dark:bg-neutral-950 p-4 relative">
+    <p-fluid class="w-full"> <textarea
       class="shadow"
       placeholder="Ask Cobu anything"
       [(ngModel)]="prompt"
@@ -10,7 +10,7 @@
       autoResize="true"
       autofocus
       (keydown.enter)="prompt !== '' ? getPrompt() : null"
-    ></textarea>
+    ></textarea></p-fluid>
 
     <div class="flex flex-row justify-between md:items-baseline">
       <div class="py-2 max-w-sm">
@@ -40,11 +40,11 @@
           [outlined]="false"
         /><p-button
           aria-label="Prompt Coding Buro"
-          icon="pi pi-arrow-circle-up"
-          [text]="true"
-          [disabled]="prompt === ''"
+          icon="pi pi-arrow-circle-up" text="true" severity="contrast"
+          [disabled]="prompt === '' || isLoading"
           (onClick)="getPrompt()"
           loading="{{ isLoading }}"
+          
         />
       </div>
     </div>
@@ -55,4 +55,4 @@
     >
   </p>
   </div>
-</p-fluid>
+

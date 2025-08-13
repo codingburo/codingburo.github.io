@@ -1,13 +1,13 @@
-<div class="flex flex-col gap-2 w-full h-full justify-center max-h-full overflow-y-clip">
-  <div class="w-full h-full max-h-full overflow-y-auto relative top-20 mb-20">
+    <div class="flex flex-col justify-between h-full space-y-2 p-1 ">
     @if (responseData.length > 0) {
-    <app-prompt-response [responses]="responseData" class="min-h-fit"/>
+    <app-prompt-response [responses]="responseData" />
     } @if (responseData.length < 1) {
-    <app-home-card [isVisible]="responseData.length < 1" class="h-full flex items-center"/>
+    <app-home-card [isVisible]="responseData.length < 1" class="flex flex-col justify-center max-w-4xl self-center h-full"/>
     }
-  </div>
+
   <app-prompt-composer
     (responseData)="handleResponsesData($event)"
-    class="w-full self-center max-w-4xl"
+    class="self-center md:max-w-4xl w-full"
   />
-</div>
+   </div>
+

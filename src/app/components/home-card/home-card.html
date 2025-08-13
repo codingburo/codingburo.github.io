@@ -1,9 +1,25 @@
 @if (isVisible) {
-<p-card class="w-full">
-  <ng-template #header>
-    <div class="bg-emerald-100 dark:bg-stone-950"><app-brand /></div>
-  </ng-template>
-  <ng-template #title> Welcome! </ng-template>
-  <ng-template #subtitle> AI Driven Innovation </ng-template>
+<p-card>
+  
+  <ng-template #title> AI Driven Innovation</ng-template>
+  <ng-template #subtitle> Welcome! </ng-template>
+  <div class="w-full flex flex-col items-center space-y-3">
+    <p class="max-w-4xl leading-[1.7] text-slate-500">
+      Talking to Cobu is simple, just type your request in plain language
+      <br /><span class="text-cyan-700 dark:text-cyan-200 font-semibold"
+        >For chat,</span
+      >
+      ask questions, share ideas, or request explanations, and Cobu will respond
+      conversationally. <br /><span
+        class="text-cyan-700 dark:text-cyan-200 font-semibold"
+        >For weather,</span
+      >
+      mention US city or State with a question like “What’s the weather in
+      California today?” or “Will it rain tomorrow in Arizona?”
+    </p>
+    <p class="text-rose-800 dark:text-rose-300 max-w-4xl w-full">
+      Use for demo only
+    </p>
+  </div>
 </p-card>
 }

@@ -1,19 +1,19 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { TextareaModule } from 'primeng/textarea';
 import { FormsModule } from '@angular/forms';
-import { FluidModule } from 'primeng/fluid';
 import { ButtonModule } from 'primeng/button';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { Weather } from '../../services/weather';
+import { Fluid } from 'primeng/fluid';
 
 @Component({
   selector: 'app-prompt-composer',
   imports: [
     TextareaModule,
     FormsModule,
-    FluidModule,
     ButtonModule,
     SelectButtonModule,
+    Fluid,
   ],
   templateUrl: './prompt-composer.html',
   styleUrl: './prompt-composer.css',
