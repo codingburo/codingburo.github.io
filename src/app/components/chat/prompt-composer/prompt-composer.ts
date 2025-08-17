@@ -1,8 +1,8 @@
 import { Component, EventEmitter, inject, Output } from '@angular/core';
-import { TextareaModule } from 'primeng/textarea';
+import { Textarea } from 'primeng/textarea';
 import { FormsModule } from '@angular/forms';
-import { ButtonModule } from 'primeng/button';
-import { SelectButtonModule } from 'primeng/selectbutton';
+import { Button } from 'primeng/button';
+import { SelectButton } from 'primeng/selectbutton';
 import { Fluid } from 'primeng/fluid';
 import { Weather } from '../../../services/weather';
 import { LoadingComponent } from '../../loading-component/loading-component';
@@ -12,10 +12,10 @@ import { AuthService } from '../../../services/auth-service';
 @Component({
   selector: 'app-prompt-composer',
   imports: [
-    TextareaModule,
+    Textarea,
     FormsModule,
-    ButtonModule,
-    SelectButtonModule,
+    Button,
+    SelectButton,
     Fluid,
     LoadingComponent,
   ],

@@ -1,10 +1,9 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AvatarModule } from 'primeng/avatar';
 
 @Component({
   selector: 'app-prompt-response',
-  imports: [CommonModule, AvatarModule],
+  imports: [CommonModule],
   templateUrl: './prompt-response.html',
   styleUrl: './prompt-response.css',
 })
