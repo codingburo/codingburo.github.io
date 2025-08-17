@@ -1,0 +1,84 @@
+import { Component, EventEmitter, inject, Output } from '@angular/core';
+import { TextareaModule } from 'primeng/textarea';
+import { FormsModule } from '@angular/forms';
+import { ButtonModule } from 'primeng/button';
+import { SelectButtonModule } from 'primeng/selectbutton';
+import { Fluid } from 'primeng/fluid';
+import { Weather } from '../../../services/weather';
+import { LoadingComponent } from '../../loading-component/loading-component';
+import { ChatdbService } from '../../../services/chatdb-service';
+import { AuthService } from '../../../services/auth-service';
+
+@Component({
+  selector: 'app-prompt-composer',
+  imports: [
+    TextareaModule,
+    FormsModule,
+    ButtonModule,
+    SelectButtonModule,
+    Fluid,
+    LoadingComponent,
+  ],
+  templateUrl: './prompt-composer.html',
+  styleUrl: './prompt-composer.css',
+})
+export class PromptComposer {
+  chatdbService = inject(ChatdbService);
+  authService = inject(AuthService);
+  constructor(private weatherService: Weather) {}
+  prompt!: string;
+  isLoading: boolean = false;
+  prompts: string[] = [];
+  @Output() responseData = new EventEmitter<PromptResponses[]>();
+  responses: PromptResponses[] = [];
+  selectedAction: string = 'weather';
+  promptOptions: any[] = [
+    { name: 'Weather', value: 'weather', enabled: true },
+    // { name: 'Calculations', value: 'maths', enabled: false },
+    { name: 'Books', value: 'book', enabled: false },
+    // { name: 'Research a Topic', value: 'research' },
+  ];
+
+  getPrompt() {
+    if (!this.prompt || !this.selectedAction) {
+      return;
+    }
+    switch (this.selectedAction) {
+      case 'weather':
+        this.getWeather();
+        break;
+      case 'maths':
+        this.getWeather();
+        break;
+      case 'book':
+        this.getWeather();
+        break;
+      default:
+        this.getWeather();
+    }
+  }
+
+  getWeather() {
+    if (!this.prompt) {
+      return;
+    }
+    this.isLoading = true;
+
+    this.weatherService
+      .getWeather(this.prompt)
+      .subscribe((response: string) => {
+        this.responses.push({ prompt: this.prompt, response: response });
+        const currentUser = this.authService.currentUserSignal();
+        if (currentUser?.email) {
+          this.chatdbService
+            .createChat(currentUser.email, this.prompt, response) // ← Use current user email
+            .then((docId) => {
+              console.log('Chat created with ID:', docId);
+            });
+        }
+        this.isLoading = false;
+        this.prompt = '';
+        this.responseData.emit(this.responses);
+      });
+  }
+}

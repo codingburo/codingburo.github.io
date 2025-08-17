@@ -1,0 +1,18 @@
+<div class="flex flex-col w-full h-full items-center">
+  <div class="md:max-w-5/6 w-full h-full">
+    <div class="flex flex-col justify-between h-full space-y-2 p-1 w-full">
+      @if (responseData.length > 0) {
+      <app-prompt-response [responses]="responseData" />
+      } @if (responseData.length < 1) {
+      <app-home-card
+        [isVisible]="responseData.length < 1"
+        class="flex flex-col justify-center self-center h-full w-full max-w-4xl"
+      />
+      }
+      <app-prompt-composer
+        (responseData)="handleResponsesData($event)"
+        class="self-center w-full py-2"
+      />
+    </div>
+  </div>
+</div>
