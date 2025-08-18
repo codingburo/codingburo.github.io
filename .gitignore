@@ -48,7 +48,7 @@ src/environments/environment.local.ts
 src/environments/environment.development.ts
 
 # Keep only production template
-!src/environments/environment.prod.ts
+!src/environments/environment.ts
 
 # Firebase config files
 firebase-config.json
