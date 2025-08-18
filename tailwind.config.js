@@ -6,7 +6,7 @@ module.exports = {
       keyframes: {
         bounceDot: {
           "0%, 100%": { transform: "translateY(0)" },
-          "50%": { transform: "translateY(-8px)" }, // Adjust bounce height
+          "50%": { transform: "translateY(-12px)" }, // Adjust bounce height
         },
       },
       animation: {

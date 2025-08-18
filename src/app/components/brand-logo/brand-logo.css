@@ -1,0 +1,9 @@
+@reference "tailwindcss";
+
+.brand-icon{
+    @apply  text-green-600 rounded-full bg-stone-50;
+}
+
+.brand-icon-bg{
+    @apply bg-gradient-to-br from-emerald-400 to-emerald-700 p-1 rounded-full;
+}

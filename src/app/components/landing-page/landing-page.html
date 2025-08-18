@@ -1,51 +1,77 @@
-
-<div class=" font-sans">
+<div class="font-sans">
   <!-- Header -->
-   {{myApiUrl}}
-<header class="text-stone-100 shadow md:p-6 p-3">
+  <header class="text-stone-100 shadow md:p-6 p-3">
     <div class="max-w-6xl mx-auto flex justify-between items-center">
-      <app-brand/>
-      <nav class="md:space-x-4 space-x-2">
-        <a href="#features" class="hover:text-amber-600 a-header" >Features</a>|
-        <a href="#tech" class="hover:text-amber-600 a-header" >Technology</a>
-        <a routerLink="/signup" class="p-button p-2 rounded-2xl">Get Started</a>
-      </nav>
+      <app-brand />
+      <div class="md:space-x-4 space-x-2">
+        <a routerLink="/signin" class="p-button-outline">Sign In</a>
+        <a routerLink="/signup" class="p-button">Get Started</a>
+      </div>
     </div>
   </header>
   <!-- Hero Section -->
-  <section class="text-center py-20 bg-gradient-to-r dark:from-emerald-800 to-emerald-900 from-emerald-500 text-stone-50 dark:text-stone-300">
-    <h2 class="text-4xl font-extrabold mb-4">Smart Chat + Weather Made Simple</h2>
-    <p class="text-lg mb-8 mx-auto">Talk naturally. Get answers instantly. Cobu blends LLM-powered conversation with real-time weather insights, giving you a seamless AI experience.</p>
-    <a routerLink="/signup" class="bg-white text-indigo-600 px-6 py-3 rounded-xl font-semibold shadow hover:bg-gray-200" style="color: green;">Try Cobu Today</a>
+  <section
+    class="text-center py-10 bg-gradient-to-r dark:from-emerald-800 to-emerald-900 from-emerald-500 text-stone-100 dark:text-stone-300 flex flex-col items-center justify-center gap-10"
+  >
+    <span class="gradient-text font-extrabold text-8xl">AI Driven Innovation</span>
+    <span class="flex flex-col text-3xl mx-auto max-w-md gap-5">
+      
+      <span>Talk naturally</span> 
+      <span>Get answers instantly</span> 
+      <span>LLM-powered conversation</span> 
+      <span>Real-time weather insights</span>
+      <span>Seamless AI experience</span>
+    </span>
+    <a
+      routerLink="/signup"
+      class="bg-white text-indigo-600 px-6 py-3 rounded-xl font-semibold shadow hover:bg-gray-200"
+      style="color: green"
+      >Try Cobu Today</a
+    >
   </section>
 
   <!-- Why Cobu -->
   <section id="features" class="max-w-6xl mx-auto py-16 px-6">
-    <h3 class="flex flex-row gap-2 items-center justify-center text-3xl font-bold text-center mb-12 dark:text-amber-300"><app-brand-logo/> Why Cobu?</h3>
+    <span class="flex flex-row gap-2 items-center justify-center">
+      <app-brand-logo /> <h3 class="text-3xl font-bold text-center dark:text-amber-300 gradient-text">Why Cobu?</h3></span>
     <div class="grid md:grid-cols-3 gap-10 text-center">
-      <div class="bg-white p-6 rounded-2xl shadow">
+      <div class="bg-white p-6 rounded-2xl shadow hover:shadow-2xl">
         <h4 class="text-xl font-semibold mb-3">Conversations Made Natural</h4>
-        <p>Ask questions in plain language—Cobu understands context and replies like a human assistant.</p>
+        <p>
+          Ask questions in plain language—Cobu understands context and replies
+          like a human assistant.
+        </p>
       </div>
-      <div class="bg-white p-6 rounded-2xl shadow">
+      <div class="bg-white p-6 rounded-2xl shadow hover:shadow-2xl">
         <h4 class="text-xl font-semibold mb-3">Weather at Your Fingertips</h4>
-        <p>Get accurate forecasts instantly. From quick checks to weekend plans, Cobu makes weather simple.</p>
+        <p>
+          Get accurate forecasts instantly. From quick checks to weekend plans,
+          Cobu makes weather simple.
+        </p>
       </div>
-      <div class="bg-white p-6 rounded-2xl shadow">
+      <div class="bg-white p-6 rounded-2xl shadow hover:shadow-2xl">
         <h4 class="text-xl font-semibold mb-3">Built on Modern Tech</h4>
-        <p>Powered by Angular 20, Spring AI, LLM integration, and chat history for context-aware answers.</p>
+        <p>
+          Powered by Angular 20, Spring AI, LLM integration, and chat history
+          for context-aware answers.
+        </p>
       </div>
     </div>
   </section>
 
   <!-- Key Features -->
   <section class="bg-gray-100 py-16">
-    <div class="flex flex-col items-center justify-center text-center max-w-6xl mx-auto px-6">
+    <div
+      class="flex flex-col items-center justify-center text-center max-w-6xl mx-auto px-6"
+    >
       <h3 class="text-3xl font-bold text-center mb-12">⚡ Key Features</h3>
       <ul class="md:max-w-fit grid md:grid-cols-1 gap-6 text-2xl">
         <li>🗨️ Natural Language Chat – No commands needed, just talk.</li>
         <li>🌦️ Simple Weather Updates – Clear, accurate forecasts.</li>
-        <li>🔄 Context Awareness – Remembers your conversation for smarter replies.</li>
+        <li>
+          🔄 Context Awareness – Remembers your conversation for smarter
+          replies.
+        </li>
         <li>⚙️ Modern Stack – Angular 20, Spring AI, and advanced LLMs.</li>
         <li>🚀 Future Potential – A POC today, scalable assistant tomorrow.</li>
       </ul>
@@ -53,21 +79,66 @@
   </section>
 
   <!-- What Cobu Demonstrates -->
-  <section id="tech" class="flex dark:text-stone-50 flex-col max-w-6xl mx-auto py-16 px-6 items-center justify-center text-center">
-    <h3 class="flex flex-col gap-4 items-center justify-center text-3xl font-bold mb-6 dark:text-amber-300"> <app-brand-logo/>What Cobu Demonstrates</h3>
-    <p class="md:max-w-xl w-full mx-auto text-lg">Cobu showcases the power of LLMs combined with practical utilities. By blending conversational AI and real-time weather, Cobu proves how enterprises can leverage Angular 20, Spring AI, and context-driven chat to enhance digital experiences and build the foundation for next-gen assistants.</p>
+  <section
+    id="tech"
+    class="flex dark:text-stone-50 flex-col max-w-6xl mx-auto py-16 px-6 items-center justify-center text-center"
+  >
+    <span class="flex gap-2 items-center justify-center p-5 shadow shadow-amber-200 rounded-full my-10 backdrop-brightness-75">
+      <app-brand-logo />
+      <div class="gradient-text text-4xl text-nowrap">What Cobu Demonstrates</div>
+    </span>
+    <span class="text-2xl mx-auto max-w-md text-emerald-800">
+      Cobu showcases the power of LLMs combined with practical utilities. By
+      blending conversational AI and real-time weather, Cobu proves how
+      enterprises can leverage Angular 20, Spring AI, and context-driven chat to
+      enhance digital experiences and build the foundation for next-gen
+      assistants.
+    </span>
   </section>
 
   <!-- CTA -->
-  <section id="get-started" class="text-center py-20 bg-emerald-900 text-stone-50">
-    <h3 class="flex items-center gap-2 justify-center text-3xl font-extrabold"><app-brand-logo/> <span>Try Cobu Today</span></h3>
-    <p class=" flex justify-center"><span class="text-4xl m-8 animate-fadein text-amber-300">Experience how simple and powerful AI-driven interactions can be.</span></p>
-    <a routerLink="/signup" class="bg-stone-200  px-8 py-3 rounded-xl font-bold shadow hover:bg-gray-200" style="color: green;">Get Started</a>
+  <section
+    id="get-started"
+    class="flex flex-col items-center justify-center py-20 bg-emerald-900 text-stone-50 gap-5"
+  >
+    
+      <span class="flex items-center justify-center gap-2">
+        <app-brand-logo /> 
+        <span class="text-4xl font-extrabold">Try Cobu Today</span>
+      </span>
+    <a
+      routerLink="/signup"
+      class="bg-stone-200 px-8 py-3 rounded-xl font-bold shadow hover:bg-gray-200 max-w-fit mx-auto mb-10"
+      style="color: green">Get Started</a>
+    
+      <span class="text-2xl mx-auto md:max-w-full max-w-sm text-center gradient-text"
+        >Experience how simple and powerful AI-driven interactions can be.</span>
+    
+    
   </section>
 
   <!-- Footer -->
   <footer class="dark:text-stone-400 text-center py-6">
-    <p class="flex flex-col items-center justify-center gap-2">&copy; {{ currentYear }} Coding Buro. <span class="flex items-center gap-2">Built with Angular, Spring AI, and LLMs <i class="pi pi-sparkles dark:text-amber-300 text-emerald-800"></i></span></p>
+    <div class="max-w-6xl mx-auto flex justify-center items-center py-2">
+      <div class="md:space-x-4 space-x-2">
+        <a href="#features" class="hover:text-amber-600 a-header">Features</a>
+        <a href="#tech" class="hover:text-amber-600 a-header">Technology</a>
+        <a routerLink="/signin" class="hover:text-amber-600 a-header">Sign In</a>
+        <a routerLink="/signup" class="hover:text-amber-600 a-header">Sign Up</a>
+      </div>
+    </div>
+    <p class="flex flex-col items-center justify-center gap-2">
+      &copy; {{ currentYear }} Coding Buro.
+      <span class="flex items-center gap-2"
+        >Built with Angular, Spring AI, and LLMs
+        <i
+          class="pi pi-sparkles dark:text-amber-300 text-emerald-800"
+        ></i></span
+      ><span
+        ><a href="www.syedbaqirali.com" target="_blank"
+          >www.syedbaqirali.com</a
+        ></span
+      >
+    </p>
   </footer>
 </div>
-

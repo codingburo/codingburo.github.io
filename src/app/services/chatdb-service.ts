@@ -1,8 +1,20 @@
 import { inject, Injectable, Injector, runInInjectionContext } from '@angular/core';
-import { Firestore, collection, collectionData, query, where,doc, docData, addDoc, serverTimestamp, orderBy, limit, getDocs, } from '@angular/fire/firestore';
+import {
+  Firestore,
+  collection,
+  collectionData,
+  query,
+  where,
+  doc,
+  docData,
+  addDoc,
+  serverTimestamp,
+  orderBy,
+  limit,
+  getDocs,
+  Timestamp,
+} from '@angular/fire/firestore';
 import { map, Observable } from 'rxjs';
-import { Timestamp } from 'firebase/firestore'; 
-
 
 @Injectable({
   providedIn: 'root',
@@ -19,7 +31,7 @@ export class ChatdbService {
     return runInInjectionContext(this.injector, () => {
       const chatCollection = collection(this.firestore, 'chat');
       const userChatsQuery = query(
-        chatCollection,
+        this.chatCollection,
         where('email', '==', userEmail) // Filter by user email
       );
       return collectionData(userChatsQuery, { idField: 'id' }) as Observable<

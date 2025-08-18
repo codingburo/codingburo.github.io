@@ -21,7 +21,7 @@ export class Header implements OnInit {
           urlTree.root.children['primary']?.segments
             .map((s) => s.path)
             .join('/') || '';
-        console.log('Path: ', path);
+        // console.log('Path: ', path);
 
         this.showMenuBar =
           path !== '' && path !== 'signup' && path !== 'signin';

@@ -48,6 +48,10 @@ a {
   @apply bg-transparent text-slate-900 border border-emerald-300 dark:border-emerald-800 dark:text-stone-300;  
 }
 
+.gradient-text{
+  @apply bg-gradient-to-r from-stone-100 via-orange-500 to-emerald-300 inline-block text-transparent bg-clip-text;
+}
+
 
 
 
