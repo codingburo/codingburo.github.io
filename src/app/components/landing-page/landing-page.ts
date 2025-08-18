@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { Brand } from "../brand/brand";
-import { BrandLogo } from "../brand-logo/brand-logo";
-import { environment } from '../../../environments/environment';
+import { BrandLogo } from '../brand-logo/brand-logo';
 
 @Component({
   selector: 'app-landing-page',
@@ -12,5 +11,4 @@ import { environment } from '../../../environments/environment';
 })
 export class LandingPage {
   currentYear = new Date().getFullYear();
-  myApiUrl = environment.firebase.apiKey;
 }
