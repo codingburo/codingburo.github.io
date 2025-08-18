@@ -1,0 +1,6 @@
+@import "../../../app.css";
+
+
+.p-button {
+  @apply bg-emerald-700 dark:bg-emerald-950 text-stone-50 dark:text-stone-300 dark:border-emerald-900;
+}

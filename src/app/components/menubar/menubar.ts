@@ -1,28 +1,28 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api';
-import { MenubarModule } from 'primeng/menubar';
-import { BadgeModule } from 'primeng/badge';
+import { Menubar } from 'primeng/menubar';
+import { Badge } from 'primeng/badge';
 import { CommonModule } from '@angular/common';
 import { SidebarComponent } from '../sidebar/sidebar';
-import { Avatar } from 'primeng/avatar';
-import { APP_CONFIG } from '../../constants/app.constants';
+
 import { Brand } from '../brand/brand';
+import { LinksComponent } from '../links-component/links-component';
 @Component({
   selector: 'app-menubar',
   imports: [
-    MenubarModule,
-    BadgeModule,
+    Menubar,
+    Badge,
     CommonModule,
     SidebarComponent,
-    Avatar,
+
     Brand,
+    LinksComponent,
   ],
   templateUrl: './menubar.html',
   styleUrl: './menubar.css',
 })
-export class Menubar implements OnInit {
+export class AppMenubar implements OnInit {
   items: MenuItem[] | undefined;
-  sbaweb_link = `${APP_CONFIG.SBAWEB_LINK}`;
 
   ngOnInit() {
     this.items = [];

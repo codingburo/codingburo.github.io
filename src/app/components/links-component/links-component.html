@@ -1,0 +1,13 @@
+@if (authService.currentUserSignal() == null) {
+<div class="flex text-center gap-2 items-center">
+  <a routerLink="/signin" class="font-semibold">Sign In</a>
+  <a routerLink="/signup" class="p-button hi-button" style="text-decoration-line: none;">Create an account</a>
+</div>
+} @if (authService.currentUserSignal()) {
+<div class="flex gap-2 items-center">
+  <a routerLink="/chat" class="font-semibold">Chat</a>|
+  <a (click)="logout()" href="javascript:void(0);">Sign Out</a>|
+  <span class="highlight text-ellipsis text-nowrap">{{ authService.currentUserSignal()?.username }}</span
+  >
+</div>
+}

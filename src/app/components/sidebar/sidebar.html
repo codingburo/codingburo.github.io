@@ -1,10 +1,11 @@
-<div class="card flex justify-center">
-  <p-drawer #drawerRef [(visible)]="visible">
+<div class="card flex justify-center h-full">
+  <p-drawer #drawerRef [(visible)]="visible" [fullScreen]="false">
     <ng-template #headless>
       <div class="flex flex-col h-full">
         <div class="flex items-center justify-between px-6 pt-4 shrink-0">
           <app-brand />
-          <span>
+          <span class="flex flex-row gap-2 items-center">
+            <!-- <div class="text-center text-2xl">Coding Buro</div> -->
             <p-button
               type="button"
               (click)="closeCallback($event)"
@@ -15,17 +16,14 @@
             ></p-button>
           </span>
         </div>
-        <div class="overflow-y-auto">
-          
-          <ul class="list-none p-4 m-0">
-            <li>
-              <app-socials />
-            </li>
-          </ul>
+        <div class="flex justify-center">
+          <app-socials class="relative bottom-2 w-full m-2"/>
         </div>
+        <app-chat-list-component (click)="closeCallback($event)"/>
       </div>
     </ng-template>
   </p-drawer>
   <!-- <p-button (click)="visible = true" icon="pi pi-bars" class="dark:bg-slate-950"  aria-label="Show Sidebar"/> -->
-  <i class="pi pi-bars hover:cursor-pointer hover:dark:bg-slate-800 hover:bg-stone-200 hover:rounded-full p-3" style="font-size: 1.5rem" (click)="visible = true"></i>
+  <i class="pi pi-bars links" style="font-size: 1.5rem" (click)="visible = true"></i>
+  
 </div>

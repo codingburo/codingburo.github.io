@@ -6,8 +6,6 @@
 
 
 :host {
-    
-
     font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
       Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
       "Segoe UI Symbol";
@@ -20,6 +18,38 @@
     
     @apply bg-radial dark:from-slate-950 dark:via-slate-900 dark:to-neutral-950 from-green-600 via-green-100 to-amber-100 h-dvh;
 }
+
+
+.bouncingDot{
+    @apply h-3 w-3 rounded-full bg-stone-700 dark:bg-amber-200 animate-bounce;
+}
+
+a {
+    @apply text-teal-800 dark:text-teal-400;
+    @apply hover:underline underline-offset-4;
+}
+.card-header{
+  @apply text-xl text-stone-700 dark:text-stone-300 font-semibold;
+}
+
+.highlight{
+    @apply text-stone-700 dark:text-stone-300 font-semibold;
+}
+
+.links{
+    @apply items-center justify-center hover:cursor-pointer hover:dark:bg-slate-800 hover:bg-stone-200 hover:rounded-full aspect-square p-3;
+}
+
+.p-button {
+  @apply bg-purple-700 dark:bg-emerald-950 text-stone-50 dark:text-stone-300 dark:border-emerald-900;
+}
+
+.hi-button {
+  @apply bg-transparent text-slate-900 border border-emerald-300 dark:border-emerald-800 dark:text-stone-300;  
+}
+
+
+
 
 
   

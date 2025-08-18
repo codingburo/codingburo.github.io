@@ -40,3 +40,18 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
+
+
+# Environment files with secrets
+src/environments/environment.ts
+src/environments/environment.local.ts
+src/environments/environment.dev.ts
+
+# Keep only production template
+!src/environments/environment.prod.ts
+
+# Firebase config files
+firebase-config.json
+.firebaserc
+firebase-debug.log
+firebase-debug.*.log

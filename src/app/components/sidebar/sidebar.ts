@@ -1,14 +1,13 @@
 import { Component, ViewChild } from '@angular/core';
-import { DrawerModule } from 'primeng/drawer';
-import { ButtonModule } from 'primeng/button';
-import { AvatarModule } from 'primeng/avatar';
-import { Brand } from "../brand/brand";
-import { Socials } from "../socials/socials";
+import { Button } from 'primeng/button';
+import { Brand } from '../brand/brand';
+import { Socials } from '../socials/socials';
 import { Drawer } from 'primeng/drawer';
+import { ChatListComponent } from '../chat/chat-list-component/chat-list-component';
 
 @Component({
   selector: 'app-sidebar',
-  imports: [DrawerModule, ButtonModule, AvatarModule, Brand, Socials],
+  imports: [Drawer, Button, Brand, Socials, ChatListComponent],
   templateUrl: './sidebar.html',
   styleUrl: './sidebar.css',
 })
