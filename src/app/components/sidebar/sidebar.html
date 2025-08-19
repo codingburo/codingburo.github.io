@@ -1,7 +1,7 @@
 <div class="card flex justify-center h-full">
   <p-drawer #drawerRef [(visible)]="visible" [fullScreen]="false">
     <ng-template #headless>
-      <div class="flex flex-col h-full">
+      <div class="flex flex-col h-full gap-10">
         <div class="flex items-center justify-between px-6 pt-4 shrink-0">
           <app-brand />
           <span class="flex flex-row gap-2 items-center">
@@ -16,10 +16,10 @@
             ></p-button>
           </span>
         </div>
-        <div class="flex justify-center">
-          <app-socials class="relative bottom-2 w-full m-2"/>
-        </div>
-        <app-chat-list-component (click)="closeCallback($event)"/>
+        
+        
+        <app-chat-list-component (click)="closeCallback($event)" class="h-full overflow-y-scroll"/>
+        <app-socials class="relative w-full"/>
       </div>
     </ng-template>
   </p-drawer>

@@ -1,4 +1,4 @@
-<div class="p-3 font-semibold dark:text-slate-400">Recent Chats with Cobu</div>
+<div class="px-4 text-stone-400 dark:text-slate-400">Chats</div>
 @for (chat of chatService.chatSignal(); track $index) {
 <div class="flex px-2">
   <a [routerLink]="['/chat', chat.id]" class="p-2 hover:bg-stone-200 dark:hover:bg-stone-800 
