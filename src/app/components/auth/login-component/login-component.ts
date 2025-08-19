@@ -1,7 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
-import { MessageModule } from 'primeng/message';
 import { MessageService } from 'primeng/api';
 import {
   ReactiveFormsModule,
@@ -12,7 +11,8 @@ import {
 
 import { AuthService } from '../../../services/auth-service';
 import { Router, RouterLink } from '@angular/router';
-import { Brand } from "../../brand/brand";
+import { Brand } from '../../brand/brand';
+import { Message } from 'primeng/message';
 
 @Component({
   selector: 'app-login-component',
@@ -20,9 +20,9 @@ import { Brand } from "../../brand/brand";
     ReactiveFormsModule,
     InputTextModule,
     ButtonModule,
-    MessageModule,
     RouterLink,
     Brand,
+    Message,
   ],
   templateUrl: './login-component.html',
   styleUrl: './login-component.css',

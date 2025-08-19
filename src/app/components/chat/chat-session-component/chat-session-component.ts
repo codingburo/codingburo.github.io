@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { switchMap, of, from, Subject, takeUntil } from 'rxjs';
 import { AuthService } from '../../../services/auth-service';
@@ -13,7 +13,7 @@ import { Button } from 'primeng/button';
   templateUrl: './chat-session-component.html',
   styleUrl: './chat-session-component.css',
 })
-export class ChatSessionComponent implements OnInit {
+export class ChatSessionComponent implements OnInit, OnDestroy {
   route = inject(ActivatedRoute);
   chatdbService = inject(ChatdbService);
   chatService = inject(ChatService);
@@ -131,5 +131,10 @@ export class ChatSessionComponent implements OnInit {
         });
     }
     return null;
+  }
+
+  ngOnDestroy() {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 }
