@@ -3,8 +3,8 @@ class="flex flex-col gap-2 p-5 md:m-10 m-2 bg-stone-100 dark:bg-stone-950 rounde
 
 >
 @for (response of responses; track $index) {
-  <div class="flex gap-2 items-center bg-white shadow-2xs p-5 bg-gradient-to-br from-stone-50 to-stone-200 rounded-xl dark:from-stone-950 dark:to-stone-800">
-    <span class="font-semibold text-slate-500 dark:text-slate-500 ">You:</span> <span>{{ response.prompt.trimEnd() }}</span>
+  <div class="flex gap-2 items-start bg-white shadow-2xs p-5 bg-gradient-to-br from-stone-50 to-stone-200 rounded-xl dark:from-stone-950 dark:to-stone-800 dark:text-stone-200">
+    <span class="font-semibold text-slate-500 dark:text-stone-500 ">You:</span> <span>{{ response.prompt.trimEnd() }}</span>
   </div>
   <div class="text-slate-950 dark:text-stone-50 whitespace-pre-wrap p-3">
     {{ response.response }}
