@@ -25,8 +25,7 @@
 }
 
 a {
-    @apply text-teal-800 dark:text-teal-400;
-    @apply hover:underline underline-offset-4;
+    @apply text-stone-800 dark:text-zinc-300;
 }
 .card-header{
   @apply text-xl text-stone-700 dark:text-stone-300 font-semibold;

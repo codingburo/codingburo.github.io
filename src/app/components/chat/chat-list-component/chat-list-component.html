@@ -1,6 +1,7 @@
-<div class="p-3 font-semibold bg-stone-200">Recent Chats with Cobu</div>
+<div class="p-3 font-semibold dark:text-slate-400">Recent Chats with Cobu</div>
 @for (chat of chatService.chatSignal(); track $index) {
-<div class="flex flex-col gap-2 p-2 bg-stone-100 dark:bg-stone-950 rounded-lg">
-  <a [routerLink]="['/chat', chat.id]" class="p-2 hover:bg-stone-200 dark:bg-stone-800 rounded-xl truncate" title={{chat.prompt}}>{{ chat.prompt }}</a>
+<div class="flex px-2">
+  <a [routerLink]="['/chat', chat.id]" class="p-2 hover:bg-stone-200 dark:hover:bg-stone-800 
+  rounded-xl truncate" title={{chat.prompt}}>{{ chat.prompt }}</a>
 </div>
 }
