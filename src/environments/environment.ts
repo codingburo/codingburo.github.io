@@ -2,12 +2,12 @@ export const environment = {
   production: true,
 
   firebase: {
-    apiKey: '${{ secrets.FIREBASE_API_KEY }}',
-    authDomain: '${{ secrets.FIREBASE_AUTH_DOMAIN }}',
-    projectId: '${{ secrets.FIREBASE_PROJECT_ID }}',
-    storageBucket: '${{ secrets.FIREBASE_STORAGE_BUCKET }}',
-    messagingSenderId: '${{ secrets.MESSAGING_SENDER_ID }}',
-    appId: '${{ secrets.FIREBASE_APP_ID }}',
-    measurementId: '${{ secrets.FIREBASE_MEASUREMENT_ID }}',
+    apiKey: 'PLACEHOLDER_API_KEY',
+    authDomain: 'PLACEHOLDER_AUTH_DOMAIN',
+    projectId: 'PLACEHOLDER_PROJECT_ID',
+    storageBucket: 'PLACEHOLDER_STORAGE_BUCKET',
+    messagingSenderId: 'PLACEHOLDER_MESSAGING_SENDER_ID',
+    appId: 'PLACEHOLDER_APP_ID',
+    measurementId: 'PLACEHOLDER_MEASUREMENT_ID',
   },
 };
