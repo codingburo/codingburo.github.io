@@ -131,8 +131,7 @@ export class ChatdbService {
       const userChatsQuery = query(
         chatCollection,
         where('email', '==', email),
-        orderBy('sessionId', 'asc'),
-        orderBy('create_at', 'asc') // Order by session, then by time
+        orderBy('create_at', 'desc') // Order by time desc
       );
 
       return collectionData(userChatsQuery, { idField: 'id' }).pipe(
