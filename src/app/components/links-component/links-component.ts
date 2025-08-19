@@ -19,7 +19,7 @@ export class LinksComponent  {
   logout() {
     this.authService.logout().subscribe({
       next: () => {
-        this.router.navigateByUrl('/signin');
+        this.router.navigateByUrl('/');
       },
       error: (err) => {
         console.log('Problem Logging Out');
