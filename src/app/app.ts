@@ -5,12 +5,13 @@ import { Fluid } from 'primeng/fluid';
 import { Toast } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { AuthService } from './services/auth-service';
+import { ConfirmDialog } from 'primeng/confirmdialog';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.html',
   styleUrl: './app.css',
-  imports: [Header, RouterOutlet, Fluid, Toast],
+  imports: [Header, RouterOutlet, Fluid, Toast, ConfirmDialog],
   providers: [MessageService],
 })
 export class App implements OnInit {

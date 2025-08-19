@@ -1,8 +1,37 @@
-@for (chat of chats; track $index) {
-<div class="flex flex-col gap-2 p-2 bg-stone-100 dark:bg-stone-950 rounded-lg">
-  <a [routerLink]="['/chat', chat.id]" class="p-2 hover:bg-stone-200 dark:bg-stone-800 rounded-xl">{{ chat.prompt }}</a>
-<p class="whitespace-pre-wrap">
+<div
+  class="flex flex-col gap-2 p-5 md:m-10 m-2 bg-stone-100 dark:bg-stone-950 rounded-lg min-h-fit"
+>
+  <div class="flex gap-2 items-center justify-end bg-white p-5">
+    <p-button
+      label="Delete All"
+      severity="danger"
+      icon="pi pi-trash"
+      (onClick)="confirmDeleteSession(chats && chats[0] ? chats[0].sessionId : 0)"
+    />
+  </div>
+  @for (chat of chats; track $index) {
+  <div class="flex flex-col gap-3">
+    <div
+      class="flex gap-2 items-center bg-white shadow-2xs p-5 bg-gradient-to-br from-stone-50 to-stone-200 rounded-xl dark:from-stone-950 dark:to-stone-800"
+    >
+      
+
+      <div
+        class="flex w-full justify-between text-lg font-semibold "
+        >{{ chat?.prompt }}
+  </div>
+      <p-button
+        severity="danger"
+        icon="pi pi-trash"
+        (onClick)="confirmDeleteChat(chat.id)"
+      />
+    </div>
+
+    <div class="flex flex-col gap-2">
+      <div class="whitespace-pre-wrap p-5">
         {{ chat?.response }}
-      </p>
+      </div>
+    </div>
+  </div>
+  }
 </div>
-}

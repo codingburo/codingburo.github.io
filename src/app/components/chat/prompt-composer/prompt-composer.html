@@ -34,6 +34,15 @@
     </div>
     <div class="flex flex-row items-center rounded-full">
       <p-button
+        icon="pi pi-pen-to-square"
+        aria-label="Attach file"
+        [rounded]="true"
+        [text]="true"
+        class="border border-cyan-700 shadow-2xl rounded-lg"
+        [outlined]="false" title="Start New Chat"
+        (onClick)="startNewChat()"
+      />
+      <p-button
         icon="pi pi-paperclip"
         aria-label="Attach file"
         [rounded]="true"

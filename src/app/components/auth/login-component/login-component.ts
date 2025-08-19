@@ -26,7 +26,6 @@ import { Brand } from "../../brand/brand";
   ],
   templateUrl: './login-component.html',
   styleUrl: './login-component.css',
-  providers: [MessageService],
 })
 export class LoginComponent implements OnInit {
   messageService = inject(MessageService);

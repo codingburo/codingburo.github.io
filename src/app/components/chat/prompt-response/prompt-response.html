@@ -1,16 +1,15 @@
-@for (response of responses; track $index) {
-  <div
-  class="flex flex-col p-0.5 gap-3 m-0.5 shadow min-h-fit rounded-xl text-lg
-  border bg-stone-50 dark:bg-slate-950 border-slate-200 dark:border-slate-800 w-full"
-  
+<div
+class="flex flex-col gap-2 p-5 md:m-10 m-2 bg-stone-100 dark:bg-stone-950 rounded-lg min-h-fit"
+
 >
-  <div class="rounded-t-xl bg-stone-200 dark:bg-slate-900 whitespace-pre-wrap p-2 dark:text-stone-200 w-full">
-    <span class="font-semibold text-slate-500 dark:text-slate-500 w-full">You:</span> {{ response.prompt.trimEnd() }}
+@for (response of responses; track $index) {
+  <div class="flex gap-2 items-center bg-white shadow-2xs p-5 bg-gradient-to-br from-stone-50 to-stone-200 rounded-xl dark:from-stone-950 dark:to-stone-800">
+    <span class="font-semibold text-slate-500 dark:text-slate-500 ">You:</span> <span>{{ response.prompt.trimEnd() }}</span>
   </div>
   <div class="text-slate-950 dark:text-stone-50 whitespace-pre-wrap p-3">
     {{ response.response }}
   </div>
-  <div class="flex w-full h-fit bg-stone-300 dark:bg-slate-800 justify-end items-center py-2 px-5 text-stone-100 rounded-b-xl">[Placeholder for Options...]</div>
-</div>
+  <!-- <div class="flex w-full h-fit bg-stone-300 dark:bg-slate-800 justify-end items-center py-2 px-5 text-stone-100 rounded-b-xl">[Placeholder for Options...]</div> -->
 }
+</div>
 

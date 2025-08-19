@@ -38,6 +38,7 @@ export class PromptComposer {
     { name: 'Books', value: 'book', enabled: false },
     // { name: 'Research a Topic', value: 'research' },
   ];
+  private currentSessionId: number | undefined = undefined;
 
   getPrompt() {
     if (!this.prompt || !this.selectedAction) {
@@ -71,14 +72,27 @@ export class PromptComposer {
         const currentUser = this.authService.currentUserSignal();
         if (currentUser?.email) {
           this.chatdbService
-            .createChat(currentUser.email, this.prompt, response) // ← Use current user email
-            .then((docId) => {
+            .createChat(
+              currentUser.email,
+              this.prompt,
+              response,
+              this.currentSessionId
+            ) // ← Use current user email
+            .then(({ docId, sessionId }) => {
               console.log('Chat created with ID:', docId);
+              this.currentSessionId = sessionId;
             });
         }
         this.isLoading = false;
         this.prompt = '';
         this.responseData.emit(this.responses);
       });
+  }
+
+  // Add method to start new chat
+  startNewChat() {
+    this.currentSessionId = undefined;
+    this.responses = [];
+    this.responseData.emit(this.responses);
   }
 }

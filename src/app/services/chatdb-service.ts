@@ -13,6 +13,7 @@ import {
   limit,
   getDocs,
   Timestamp,
+  deleteDoc,
 } from '@angular/fire/firestore';
 import { map, Observable } from 'rxjs';
 
@@ -22,16 +23,12 @@ import { map, Observable } from 'rxjs';
 export class ChatdbService {
   private injector = inject(Injector);
   firestore = inject(Firestore);
-  private chatCollection;
 
-  constructor() {
-    this.chatCollection = collection(this.firestore, 'chat'); // ← Move here
-  }
   getChat(userEmail: string): Observable<Chat[]> {
     return runInInjectionContext(this.injector, () => {
       const chatCollection = collection(this.firestore, 'chat');
       const userChatsQuery = query(
-        this.chatCollection,
+        chatCollection,
         where('email', '==', userEmail) // Filter by user email
       );
       return collectionData(userChatsQuery, { idField: 'id' }) as Observable<
@@ -58,12 +55,45 @@ export class ChatdbService {
     });
   }
 
+  getUserSessionsList(email: string): Observable<Chat[]> {
+    return runInInjectionContext(this.injector, () => {
+      const chatCollection = collection(this.firestore, 'chat');
+      const userChatsQuery = query(
+        chatCollection,
+        where('email', '==', email),
+        orderBy('create_at', 'asc')
+      );
+
+      return collectionData(userChatsQuery, { idField: 'id' }).pipe(
+        map((chats: any[]) => {
+          const processedChats = chats.map((chat) => ({
+            ...chat,
+            create_at: (chat.create_at as Timestamp).toDate(),
+          }));
+
+          // Group by sessionId and keep only the first chat from each session
+          const sessionMap = new Map<number, Chat>();
+          processedChats.forEach((chat) => {
+            if (!sessionMap.has(chat.sessionId)) {
+              sessionMap.set(chat.sessionId, chat);
+            }
+          });
+
+          // Return sessions sorted by create_at desc (newest first)
+          return Array.from(sessionMap.values()).sort(
+            (a, b) => b.create_at.getTime() - a.create_at.getTime()
+          );
+        })
+      ) as Observable<Chat[]>;
+    });
+  }
+
   async createChat(
     email: string,
     prompt: string,
     response: string,
     sessionId?: number
-  ): Promise<string> {
+  ): Promise<{ docId: string; sessionId: number }> {
     return runInInjectionContext(this.injector, async () => {
       let finalSessionId = sessionId;
 
@@ -81,7 +111,7 @@ export class ChatdbService {
       };
 
       const docRef = await addDoc(collection(this.firestore, 'chat'), chatData);
-      return docRef.id; // Return document ID
+      return { docId: docRef.id, sessionId: finalSessionId! };
     });
   }
 
@@ -142,6 +172,28 @@ export class ChatdbService {
           }))
         )
       ) as Observable<Chat[]>;
+    });
+  }
+
+  async deleteChat(chatId: string): Promise<void> {
+    return runInInjectionContext(this.injector, async () => {
+      const chatDoc = doc(this.firestore, 'chat', chatId);
+      await deleteDoc(chatDoc);
+    });
+  }
+
+  async deleteSession(email: string, sessionId: number): Promise<void> {
+    return runInInjectionContext(this.injector, async () => {
+      const chatCollection = collection(this.firestore, 'chat');
+      const sessionQuery = query(
+        chatCollection,
+        where('email', '==', email),
+        where('sessionId', '==', sessionId)
+      );
+
+      const snapshot = await getDocs(sessionQuery);
+      const deletePromises = snapshot.docs.map((doc) => deleteDoc(doc.ref));
+      await Promise.all(deletePromises);
     });
   }
 }

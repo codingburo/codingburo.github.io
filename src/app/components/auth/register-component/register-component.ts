@@ -26,9 +26,8 @@ import { Brand } from "../../brand/brand";
     Toast,
     MessageModule,
     RouterLink,
-    Brand
-],
-  providers: [MessageService],
+    Brand,
+  ],
 })
 export class RegisterComponent {
   messageService = inject(MessageService);
