@@ -31,5 +31,5 @@ jobs:
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT }}'
-          projectId: 'sba-ai'
+          projectId: 'sba-ai-469409'
           channelId: live
