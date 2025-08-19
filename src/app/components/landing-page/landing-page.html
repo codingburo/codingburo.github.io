@@ -11,7 +11,7 @@
   </header>
   <!-- Hero Section -->
   <section
-    class="text-center py-10 bg-gradient-to-b dark:from-stone-950 dark:via-stone-800 dark:to-stone-950 from-emerald-950 to-stone-50 flex flex-col items-center justify-center gap-10 dark:text-stone-100"
+    class="text-center py-10 flex flex-col items-center justify-center gap-10 dark:text-stone-100"
   >
     <span class="gradient-text font-extrabold text-6xl">AI Driven Innovation</span>
     
@@ -77,10 +77,10 @@
   <!-- Key Features -->
   <section class="backdrop-blur-3xl py-20 bg-stone-50">
     <div class="flex flex-col items-center justify-center text-center max-w-6xl mx-auto px-6">
-  <h3 class="text-3xl font-bold text-center mb-12 flex items-center gap-3">
+  <div class="text-3xl font-bold text-center p-5 md:min-w-md justify-center flex items-center gap-3 shadow shadow-amber-300 rounded-full my-10 backdrop-blur-lg">
     <i class="pi pi-bolt text-yellow-500"></i>
-    Key Features
-  </h3>
+    <span>Key Features</span>
+  </div>
   <ul class="md:max-w-fit grid md:grid-cols-1 gap-6 text-xl list-none">
     <li class="flex flex-col gap-2">
       <div class="flex items-center gap-3 text-2xl font-semibold">
@@ -127,12 +127,12 @@
     id="tech"
     class="flex dark:text-stone-50 flex-col max-w-6xl mx-auto py-16 px-6 items-center justify-center text-center"
   >
-    <span class="flex gap-2 items-center justify-center p-5 shadow shadow-amber-200 rounded-full my-10 backdrop-blur-lg bg-emerald-800">
+    <span class="flex gap-2 items-center justify-center p-5 shadow shadow-amber-300 rounded-full my-10 backdrop-blur-lg ">
       <app-brand-logo />
       <div class="gradient-text text-4xl text-nowrap">What Cobu Demonstrates</div>
     </span>
-    <span class="text-2xl mx-auto max-w-md text-emerald-800">
-      <ul class="text-xl mx-auto max-w-2xl text-emerald-800 list-none space-y-4">
+    <span class="text-2xl mx-auto max-w-md">
+      <ul class="text-xl mx-auto max-w-2xl list-none space-y-4">
   <li class="flex items-center gap-3">
     <i class="pi pi-sparkles text-purple-600"></i>
     <span>Shows how AI can make everyday tasks easier</span>
@@ -157,46 +157,46 @@
   <!-- CTA -->
   <section
     id="get-started"
-    class="flex flex-col items-center justify-center py-20 bg-emerald-900 text-stone-50 gap-5"
+    class="flex flex-col items-center justify-center py-20 gap-10"
   >
     
       <span class="flex items-center justify-center gap-2">
         <app-brand-logo /> 
-        <span class="text-4xl font-extrabold">Try Cobu Today</span>
+        <span class="text-4xl font-extrabold dark:text-stone-50">Try Cobu Today</span>
       </span>
     <a
       routerLink="/signup"
-      class="bg-stone-200 px-8 py-3 rounded-xl font-bold shadow hover:bg-gray-200 max-w-fit mx-auto mb-10"
+      class="bg-stone-200 px-8 py-3 rounded-xl font-bold shadow hover:bg-gray-200 max-w-fit mx-auto"
       style="color: green">Get Started</a>
     
-      <span class="text-2xl mx-auto md:max-w-full max-w-sm text-center gradient-text"
+      <span class="text-2xl mx-auto md:max-w-full max-w-sm text-center gradient-text2"
         >Experience how simple and powerful AI-driven interactions can be.</span>
     
     
   </section>
 
   <!-- Footer -->
-  <footer class="dark:text-stone-400 text-center py-6">
+  <footer class="dark:text-stone-400 text-center py-6 bg-emerald-950 text-stone-200">
     <div class="max-w-6xl mx-auto flex justify-center items-center py-2">
       <div class="md:space-x-4 space-x-2">
-        <a href="#features" class="hover:text-amber-600 a-header">Features</a>
-        <a href="#tech" class="hover:text-amber-600 a-header">Technology</a>
-        <a routerLink="/signin" class="hover:text-amber-600 a-header">Sign In</a>
-        <a routerLink="/signup" class="hover:text-amber-600 a-header">Sign Up</a>
+        <a href="#features" class="hover:text-amber-600 a-footer-links">Features</a>
+        <a href="#tech" class="hover:text-amber-600 a-footer-links">Technology</a>
+        <a routerLink="/signin" class="hover:text-amber-600 a-footer-links">Sign In</a>
+        <a routerLink="/signup" class="hover:text-amber-600 a-footer-links">Sign Up</a>
       </div>
     </div>
-    <p class="flex flex-col items-center justify-center gap-2">
+    <div class="flex flex-col items-center justify-center gap-2 a-footer">
       &copy; {{ currentYear }} Coding Buro.
       <span class="flex items-center gap-2"
         >Built with Angular, Spring AI, and LLMs
         <i
-          class="pi pi-sparkles dark:text-amber-300 text-amber-600"
+          class="pi pi-sparkles text-amber-300"
         ></i></span
       ><span
-        ><a href="https://www.syedbaqirali.com" target="_blank" class="p-ripple"
+        ><a href="https://www.syedbaqirali.com" target="_blank" class="p-ripple a-footer"
           >www.syedbaqirali.com</a
         ></span
       >
-    </p>
+    </div>
   </footer>
 </div>

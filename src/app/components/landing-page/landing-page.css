@@ -2,6 +2,13 @@
 .a-header{
 @apply text-emerald-950 dark:text-amber-400;
 }
+.a-footer{
+@apply text-stone-200 dark:text-stone-50;
+}
+
+.a-footer-links{
+@apply text-amber-300;
+}
 
 
 .p-button{

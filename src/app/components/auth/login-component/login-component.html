@@ -55,5 +55,10 @@
     </button>
   </form>
   <div class="flex justify-end p-2 gap-1  text-stone-500">Don't have an account?<a routerLink="/signup">Create an account</a>here</div>
+  <button pButton type="button" (click)="signInWithGoogle()" class="p-button-outlined">
+  <i class="pi pi-google"></i>
+  <span pButtonLabel>Sign in with Google</span>
+</button>
   </div>
+  
 </div>

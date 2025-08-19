@@ -22,8 +22,8 @@ import { Brand } from "../../brand/brand";
     ButtonModule,
     MessageModule,
     RouterLink,
-    Brand
-],
+    Brand,
+  ],
   templateUrl: './login-component.html',
   styleUrl: './login-component.css',
   providers: [MessageService],
@@ -48,7 +48,6 @@ export class LoginComponent implements OnInit {
     if (isAuth) {
       this.router.navigateByUrl('/chat');
     }
-    
   }
 
   onSubmit() {
@@ -78,5 +77,13 @@ export class LoginComponent implements OnInit {
   isInvalid(controlName: string) {
     const control = this.exampleForm.get(controlName);
     return control?.invalid && (control.touched || this.formSubmitted);
+  }
+  signInWithGoogle() {
+    try {
+      this.authService.signInWithGoogle();
+      this.router.navigate(['/chat']);
+    } catch (error) {
+      this.errorMessage = 'Google sign-in failed';
+    }
   }
 }

@@ -5,10 +5,17 @@ import {
   runInInjectionContext,
   Injector,
 } from '@angular/core';
-import { Auth, createUserWithEmailAndPassword, updateProfile, signInWithEmailAndPassword, signOut, user } from '@angular/fire/auth';
+import {
+  Auth,
+  createUserWithEmailAndPassword,
+  updateProfile,
+  signInWithEmailAndPassword,
+  signOut,
+  user,
+  GoogleAuthProvider,
+  signInWithPopup,
+} from '@angular/fire/auth';
 import { Observable, from } from 'rxjs';
-
-
 
 @Injectable({
   providedIn: 'root',
@@ -45,13 +52,13 @@ export class AuthService {
 
   login(email: string, password: string): Observable<void> {
     return runInInjectionContext(this.injector, () => {
-    const promise = signInWithEmailAndPassword(
-      this.firebaseAuth,
-      email,
-      password
-    ).then(() => {});
-    return from(promise);
-  });
+      const promise = signInWithEmailAndPassword(
+        this.firebaseAuth,
+        email,
+        password
+      ).then(() => {});
+      return from(promise);
+    });
   }
 
   logout(): Observable<void> {
@@ -59,5 +66,18 @@ export class AuthService {
     return runInInjectionContext(this.injector, () => {
       return from(signOut(this.firebaseAuth));
     });
+  }
+
+  signInWithGoogle(): Observable<void> {
+    try {
+      const provider = new GoogleAuthProvider();
+      const promise = signInWithPopup(this.firebaseAuth, provider).then(
+        () => {}
+      );
+      return from(promise);
+    } catch (error) {
+      console.error('Google sign-in error:', error);
+      throw error;
+    }
   }
 }

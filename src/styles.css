@@ -14,9 +14,13 @@
     -moz-osx-font-smoothing: grayscale;
   }
 
-  body{
+  /* body{
     
     @apply bg-radial dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 from-emerald-900 via-amber-50 to-emerald-100 h-dvh;
+} */
+  body{
+    
+    @apply h-dvh;
 }
 
 
@@ -48,7 +52,10 @@ a {
 }
 
 .gradient-text{
-  @apply bg-gradient-to-r from-stone-100 via-orange-500 to-emerald-300 inline-block text-transparent bg-clip-text;
+  @apply bg-gradient-to-r from-stone-800 via-amber-700 to-emerald-800 inline-block text-transparent bg-clip-text;
+}
+.gradient-text2{
+  @apply bg-gradient-to-r from-stone-500 via-sky-300 to-emerald-800 inline-block text-transparent bg-clip-text;
 }
 
 

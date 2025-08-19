@@ -1,10 +1,10 @@
-<div class="mb-4 py-4 px-1 flex items-start justify-center w-full h-full">
-  <p-card class="w-full md:max-w-4xl h-fit">
+<div class=" flex items-start justify-center w-full h-fit md:p-8 p-2">
+  <p-card class="w-full h-fit m-2 border border-stone-300 dark:border-stone-700 shadow-lg">
     
-    <div class="flex flex-col gap-3 py-2">
+    <div class="flex flex-col gap-3">
       <span
-        class="flex justify-between text-lg font-semibold rounded-lg shadow-2xs p-2 py-5
-        bg-gradient-to-br from-emerald-200 to-emerald-100
+        class="flex justify-between text-lg font-semibold shadow-2xs p-5
+        bg-gradient-to-br from-stone-50 to-stone-200 rounded-xl
         dark:from-stone-950 dark:to-stone-800"
         >{{ chat?.prompt }}
     <a routerLink="/chat" class="font-semibold flex items-center justify-end"
@@ -12,9 +12,9 @@
       ></a>
     </span>
         
-      <p class="whitespace-pre-wrap">
+      <div class="whitespace-pre-wrap p-5">
         {{ chat?.response }}
-      </p>
+      </div>
     </div>
   </p-card>
 </div>

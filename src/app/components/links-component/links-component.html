@@ -4,10 +4,10 @@
   <a routerLink="/signup" class="p-button hi-button" style="text-decoration-line: none;">Create an account</a>
 </div>
 } @if (authService.currentUserSignal()) {
-<div class="flex gap-2 items-center">
-  <a routerLink="/chat" class="font-semibold">Chat</a>|
-  <a (click)="logout()" href="javascript:void(0);">Sign Out</a>|
+<div class="flex gap-3 items-center">
+  <a routerLink="/chat" class="font-semibold">Chat</a>
   <span class="highlight text-ellipsis text-nowrap">{{ authService.currentUserSignal()?.username }}</span
-  >
+    >
+    <a (click)="logout()" href="javascript:void(0);"><i class="pi pi-sign-out text-amber-700 dark:text-amber-300"></i></a>
 </div>
 }
