@@ -5,7 +5,7 @@
 </div>
 } @if (authService.currentUserSignal()) {
 <div class="flex gap-3 items-center">
-  <a routerLink="/chat" class="font-semibold">Chat</a>
+  <a routerLink="/chat" class="font-semibold "><span class="a_span">Chat</span></a>
   <span class="highlight text-ellipsis text-nowrap">{{ authService.currentUserSignal()?.username }}</span
     >
     <a (click)="logout()" href="javascript:void(0);"><i class="pi pi-sign-out text-amber-700 dark:text-amber-300"></i></a>

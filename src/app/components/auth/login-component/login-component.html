@@ -2,10 +2,10 @@
   class="card flex flex-col justify-center items-center h-full p-2 rounded-full"
 >
   <div
-    class="flex flex-col w-full gap-5 min-h-1/2 md:max-w-2xl bg-stone-200 dark:bg-zinc-800 p-5 rounded-xl"
+    class="flex flex-col w-full gap-5 min-h-1/2 md:max-w-2xl bg-stone-50 dark:bg-zinc-900 shadow-xl border border-stone-200 dark:border-zinc-700 p-5 rounded-xl"
   >
     <app-brand
-      class="shadow shadow-amber-200 rounded-xl backdrop-brightness-90"
+      class="shadow-xs bg-stone-100 dark:bg-zinc-800 rounded-xl hover:shadow"
     />
     <div class="card-header">Sign In</div>
     @if (errorMessage) {
@@ -53,27 +53,30 @@
         >
         }
       </div>
-      <div class="flex gap-2 items-center justify-end text-rose-800 dark:text-amber-400">
-  <p-checkbox 
-    formControlName="resendEmail" 
-    binary="true"
-    inputId="resendEmail"
-  />
-  <label for="resendEmail">Resend verification email</label>
-</div>
+
       <button pButton type="submit">
         <span pButtonLabel>Sign In</span>
       </button>
+      <div
+        class="flex gap-2 items-center justify-end text-cyan-700 dark:text-amber-400"
+      >
+        <p-checkbox
+          formControlName="resendEmail"
+          binary="true"
+          inputId="resendEmail"
+        />
+        <label for="resendEmail">Resend verification email</label>
+      </div>
     </form>
     <div class="flex flex-col gap-1">
-    <div class="flex justify-end gap-1 text-stone-500">
-      Don't have an account?<a routerLink="/signup">Create an account</a>here
+      <div class="flex justify-end gap-1 text-stone-500">
+        Don't have an account?<a routerLink="/signup" ><span class="a_span">Create an account</span></a>
+      </div>
+      <div class="flex justify-end gap-1 text-stone-500">
+        Forgot Password?<a routerLink="/reset-password"><span class="a_span">Reset password</span></a>
+      </div>
     </div>
-    <div class="flex justify-end gap-1 text-stone-500">
-      Forgot Password?<a routerLink="/reset-password">Reset</a>here
-    </div>
-    </div>
-    
+
     <button
       type="button"
       (click)="signInWithGoogle()"
@@ -98,6 +101,15 @@
         />
       </svg>
       Sign in with Google
+    </button>
+
+    <button
+      type="button"
+      (click)="signInWithGithub()"
+      class="google-signin-btn dark:google-signin-btn-dark"
+    >
+      <i class="pi pi-github"></i>
+      Sign in with Github
     </button>
   </div>
 </div>

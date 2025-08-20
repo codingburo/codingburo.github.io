@@ -28,9 +28,9 @@
     @apply h-3 w-3 rounded-full bg-stone-700 dark:bg-amber-200 animate-bounce;
 }
 
-a {
+/* a {
     @apply text-stone-800 dark:text-zinc-300;
-}
+} */
 .card-header{
   @apply text-xl text-stone-700 dark:text-stone-300 font-semibold;
 }
@@ -43,19 +43,27 @@ a {
     @apply items-center justify-center hover:cursor-pointer hover:dark:bg-slate-800 hover:bg-stone-200 hover:rounded-full aspect-square p-3;
 }
 
-.p-button {
+/* .p-button {
   @apply bg-purple-700 dark:bg-emerald-950 text-stone-50 dark:text-stone-300 dark:border-emerald-900;
-}
+} */
 
 .hi-button {
   @apply bg-transparent text-slate-900 border border-emerald-300 dark:border-emerald-800 dark:text-stone-300;  
 }
 
 .gradient-text{
-  @apply bg-gradient-to-r from-stone-800 via-amber-700 to-emerald-800 inline-block text-transparent bg-clip-text;
+  @apply bg-gradient-to-r dark:from-stone-400 from-emerald-800 via-sky-600 to-emerald-600 inline-block text-transparent bg-clip-text;
 }
 .gradient-text2{
-  @apply bg-gradient-to-r from-stone-500 via-sky-300 to-emerald-800 inline-block text-transparent bg-clip-text;
+  @apply bg-gradient-to-r dark:from-stone-300 from-stone-500 via-sky-500 to-emerald-800 dark:to-emerald-500 inline-block text-transparent bg-clip-text;
+}
+
+.a_span{
+  @apply text-blue-400 dark:hover:text-yellow-500 hover:text-yellow-500 dark:text-blue-400;
+}
+
+.a_span_buttons{
+  @apply text-stone-900 dark:text-stone-200 hover:text-stone-700 dark:hover:text-amber-200;
 }
 
 

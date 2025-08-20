@@ -106,4 +106,13 @@ export class LoginComponent implements OnInit {
       this.errorMessage = 'Google sign-in failed';
     }
   }
+
+  signInWithGithub() {
+    try {
+      this.authService.signInWithGithub();
+      this.router.navigate(['/chat']);
+    } catch (error) {
+      this.errorMessage = 'Github sign-in failed';
+    }
+  }
 }

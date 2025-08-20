@@ -16,6 +16,7 @@ import {
   signInWithPopup,
   sendEmailVerification,
   sendPasswordResetEmail,
+  GithubAuthProvider,
 } from '@angular/fire/auth';
 import { Observable, from } from 'rxjs';
 
@@ -99,6 +100,19 @@ export class AuthService {
       return from(promise);
     } catch (error) {
       console.error('Google sign-in error:', error);
+      throw error;
+    }
+  }
+
+  signInWithGithub(): Observable<void> {
+    try {
+      const provider = new GithubAuthProvider();
+      const promise = signInWithPopup(this.firebaseAuth, provider).then(
+        () => {}
+      );
+      return from(promise);
+    } catch (error) {
+      console.error('Github sign-in error:', error);
       throw error;
     }
   }

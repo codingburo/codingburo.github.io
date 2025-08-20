@@ -1,11 +1,11 @@
 <div class="font-sans">
   <!-- Header -->
-  <header class="text-stone-100 md:p-6 p-3 m-2 backdrop-blur-sm shadow-2xl rounded-4xl">
+  <header class="text-stone-100 md:p-6 p-3 m-2 backdrop-blur-xs shadow-xl rounded-xl dark:shadow-stone-900">
     <div class="max-w-6xl mx-auto flex justify-between items-center">
       <app-brand />
       <div class="md:space-x-4 space-x-2">
-        <a routerLink="/signin" class="p-button-outline">Sign In</a>
-        <a routerLink="/signup" class="p-button">Get Started</a>
+        <a routerLink="/signin" class="p-button-outline"><span class="a_span_buttons">Sign In</span></a>
+        <a routerLink="/signup" class="p-button_landing"><span class="a_span_buttons">Get Started</span></a>
       </div>
     </div>
   </header>
@@ -75,7 +75,7 @@
   </section>
 
   <!-- Key Features -->
-  <section class="backdrop-blur-3xl py-20 bg-stone-50">
+  <section class="backdrop-blur-3xl py-20 opacity-80 bg-stone-50 dark:bg-stone-900 dark:text-stone-50">
     <div class="flex flex-col items-center justify-center text-center max-w-6xl mx-auto px-6">
   <div class="text-3xl font-bold text-center p-5 md:min-w-md justify-center flex items-center gap-3 shadow shadow-amber-300 rounded-full my-10 backdrop-blur-lg">
     <i class="pi pi-bolt text-yellow-500"></i>
@@ -87,35 +87,35 @@
         <i class="pi pi-comments text-emerald-600"></i>
         <span>Natural Language Chat</span>
       </div>
-      <span class="text-lg text-gray-600">No commands needed, just talk.</span>
+      <span class="text-lg text-gray-600 dark:text-gray-400">No commands needed, just talk.</span>
     </li>
     <li class="flex flex-col gap-2">
       <div class="flex items-center gap-3 text-2xl font-semibold">
         <i class="pi pi-cloud text-blue-500"></i>
         <span>Simple Weather Updates</span>
       </div>
-      <span class="text-lg text-gray-600">Clear, accurate forecasts.</span>
+      <span class="text-lg text-gray-600 dark:text-gray-400">Clear, accurate forecasts.</span>
     </li>
     <li class="flex flex-col gap-2">
       <div class="flex items-center gap-3 text-2xl font-semibold">
         <i class="pi pi-refresh text-purple-600"></i>
         <span>Context Awareness</span>
       </div>
-      <span class="text-lg text-gray-600">Remembers your conversation for smarter replies.</span>
+      <span class="text-lg text-gray-600 dark:text-gray-400">Remembers your conversation for smarter replies.</span>
     </li>
     <li class="flex flex-col gap-2">
       <div class="flex items-center gap-3 text-2xl font-semibold">
-        <i class="pi pi-cog text-gray-600"></i>
+        <i class="pi pi-cog text-gray-600 dark:text-gray-400"></i>
         <span>Modern Stack</span>
       </div>
-      <span class="text-lg text-gray-600">Angular 20, Spring AI, and advanced LLMs.</span>
+      <span class="text-lg text-gray-600 dark:text-gray-400">Angular 20, Spring AI, and advanced LLMs.</span>
     </li>
     <li class="flex flex-col gap-2">
       <div class="flex items-center gap-3 text-2xl font-semibold">
-        <i class="pi pi-rocket text-red-500"></i>
+        <i class="pi pi-sparkles text-yellow-500"></i>
         <span>Future Potential</span>
       </div>
-      <span class="text-lg text-gray-600">A POC today, scalable assistant tomorrow.</span>
+      <span class="text-lg text-gray-600 dark:text-gray-400">A POC today, scalable assistant tomorrow.</span>
     </li>
   </ul>
 </div>
@@ -176,7 +176,7 @@
   </section>
 
   <!-- Footer -->
-  <footer class="dark:text-stone-400 text-center py-6 bg-emerald-950 text-stone-200">
+  <footer class="dark:text-stone-400 text-center py-6 bg-stone-900 text-stone-200">
     <div class="max-w-6xl mx-auto flex justify-center items-center py-2">
       <div class="md:space-x-4 space-x-2">
         <a href="#features" class="hover:text-amber-600 a-footer-links">Features</a>

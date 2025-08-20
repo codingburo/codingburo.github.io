@@ -1,8 +1,12 @@
 <p-toast />
 
 <div class="card flex flex-col justify-center items-center h-full p-2">
-  <div class="flex flex-col w-full gap-5 min-h-1/2 md:max-w-2xl bg-stone-200 dark:bg-zinc-800 p-5 rounded-xl">
-    <app-brand class="shadow shadow-amber-200 rounded-xl backdrop-brightness-90"/>
+    <div
+    class="flex flex-col w-full gap-5 min-h-1/2 md:max-w-2xl bg-stone-50 dark:bg-zinc-900 shadow-xl border border-stone-200 dark:border-zinc-700 p-5 rounded-xl"
+  >
+    <app-brand
+      class="shadow-xs bg-stone-100 dark:bg-zinc-800 rounded-xl hover:shadow"
+    />
     <div class="card-header">Create an account</div>
     @if (errorMessage) {
 <div class="text-red-600 dark:text-red-400">{{ errorMessage }}</div>
@@ -69,6 +73,6 @@
       <span pButtonLabel>Create account</span>
     </button>
   </form>
-  <div class="flex justify-end p-2 text-stone-500 gap-2">Already have an account?<a routerLink="/signin">Sign In</a>here</div>
+  <div class="flex justify-end p-2 text-stone-500 gap-2">Already have an account?<a routerLink="/signin"><span class="a_span">Sign In</span></a></div>
   </div>
 </div>
