@@ -98,21 +98,38 @@ export class LoginComponent implements OnInit {
     const control = this.exampleForm.get(controlName);
     return control?.invalid && (control.touched || this.formSubmitted);
   }
+
   signInWithGoogle() {
-    try {
-      this.authService.signInWithGoogle();
-      this.router.navigate(['/chat']);
-    } catch (error) {
-      this.errorMessage = 'Google sign-in failed';
-    }
+    this.authService.signInWithGoogle().subscribe({
+      next: () => {
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Success',
+          detail: 'Successfully signed in with Google',
+          life: 3000,
+        });
+        this.router.navigate(['/chat']);
+      },
+      error: (error) => {
+        this.errorMessage = 'Google sign-in failed';
+      },
+    });
   }
 
   signInWithGithub() {
-    try {
-      this.authService.signInWithGithub();
-      this.router.navigate(['/chat']);
-    } catch (error) {
-      this.errorMessage = 'Github sign-in failed';
-    }
+    this.authService.signInWithGithub().subscribe({
+      next: () => {
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Success',
+          detail: 'Successfully signed in with GitHub',
+          life: 3000,
+        });
+        this.router.navigate(['/chat']);
+      },
+      error: (error) => {
+        this.errorMessage = 'GitHub sign-in failed';
+      },
+    });
   }
 }
