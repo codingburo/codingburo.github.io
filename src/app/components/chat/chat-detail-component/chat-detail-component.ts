@@ -27,7 +27,7 @@ export class ChatDetailComponent implements OnInit {
           const chatId = params.get('id');
           if (chatId) {
             const currentUser = this.authService.currentUserSignal();
-            if (currentUser?.email) {
+            if (currentUser?.uid) {
               return this.chatdbService.getChatById(chatId); // Returns Observable<Chat | null>
             }
           }

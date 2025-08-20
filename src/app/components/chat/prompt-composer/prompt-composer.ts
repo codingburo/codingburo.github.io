@@ -78,11 +78,11 @@ export class PromptComposer {
       .subscribe((response: string) => {
         this.responses.push({ prompt: this.prompt, response: response });
         const currentUser = this.authService.currentUserSignal();
-        if (currentUser?.email) {
+        if (currentUser?.uid) {
           runInInjectionContext(this.injector, () => {
             this.chatdbService
               .createChat(
-                currentUser.email,
+                currentUser.uid,
                 this.prompt,
                 response,
                 this.currentSessionId

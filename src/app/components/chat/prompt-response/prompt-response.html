@@ -1,12 +1,12 @@
 <div
-class="flex flex-col gap-2 p-5 md:m-10 m-2 bg-stone-100 dark:bg-stone-950 rounded-lg min-h-fit"
+class="flex flex-col gap-2 p-5 md:m-0 m-2 bg-stone-100 dark:bg-zinc-400 border border-stone-300 rounded-2xl min-h-fit"
 
 >
 @for (response of responses; track $index) {
-  <div class="flex gap-2 items-start bg-white shadow-2xs p-5 bg-gradient-to-br from-stone-50 to-stone-200 rounded-xl dark:from-stone-950 dark:to-stone-800 dark:text-stone-200">
+  <div class="flex gap-2 items-start bg-white shadow-2xs p-5 bg-gradient-to-br from-stone-50 to-stone-200 rounded-xl dark:from-zinc-300 dark:to-zinc-400 dark:text-stone-950 text-lg border border-stone-300">
     <span class="font-semibold text-slate-500 dark:text-stone-500 ">You:</span> <span>{{ response.prompt.trimEnd() }}</span>
   </div>
-  <div class="text-slate-950 dark:text-stone-50 whitespace-pre-wrap p-3">
+  <div class="text-slate-950 dark:text-stone-950 whitespace-pre-wrap p-3 text-lg">
     {{ response.response }}
   </div>
   <!-- <div class="flex w-full h-fit bg-stone-300 dark:bg-slate-800 justify-end items-center py-2 px-5 text-stone-100 rounded-b-xl">[Placeholder for Options...]</div> -->

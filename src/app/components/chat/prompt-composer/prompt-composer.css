@@ -1,5 +1,6 @@
+@reference "tailwindcss";
 .p-textarea{
-    border:0;
+    @apply focus:border focus:dark:border-amber-200
 }
 
 

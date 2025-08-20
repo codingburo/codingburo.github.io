@@ -18,10 +18,9 @@ export class ChatListComponent implements OnInit {
   authService = inject(AuthService);
   ngOnInit(): void {
     this.authService.user$.subscribe((user) => {
-      if (user?.email) {
-        
+      if (user?.uid) {
         this.chatdbService
-          .getUserSessionsList(user.email)
+          .getUserSessionsList(user.uid)
           .subscribe((chat: Chat[]) => {
             this.chatService.chatSignal.set(chat);
           });

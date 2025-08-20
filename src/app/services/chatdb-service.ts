@@ -24,12 +24,12 @@ export class ChatdbService {
   private injector = inject(Injector);
   firestore = inject(Firestore);
 
-  getChat(userEmail: string): Observable<Chat[]> {
+  getChat(uid: string): Observable<Chat[]> {
     return runInInjectionContext(this.injector, () => {
       const chatCollection = collection(this.firestore, 'chat');
       const userChatsQuery = query(
         chatCollection,
-        where('email', '==', userEmail) // Filter by user email
+        where('uid', '==', uid) // Filter by user email
       );
       return collectionData(userChatsQuery, { idField: 'id' }) as Observable<
         Chat[]
@@ -55,12 +55,12 @@ export class ChatdbService {
     });
   }
 
-  getUserSessionsList(email: string): Observable<Chat[]> {
+  getUserSessionsList(uid: string): Observable<Chat[]> {
     return runInInjectionContext(this.injector, () => {
       const chatCollection = collection(this.firestore, 'chat');
       const userChatsQuery = query(
         chatCollection,
-        where('email', '==', email),
+        where('uid', '==', uid),
         orderBy('create_at', 'asc')
       );
 
@@ -91,7 +91,7 @@ export class ChatdbService {
   }
 
   async createChat(
-    email: string,
+    uid: string,
     prompt: string,
     response: string,
     sessionId?: number
@@ -101,12 +101,12 @@ export class ChatdbService {
 
       // Auto-generate sessionId if not provided
       if (!sessionId) {
-        finalSessionId = await this.getNextSessionId(email);
+        finalSessionId = await this.getNextSessionId(uid);
       }
 
       const chatData = {
         sessionId: finalSessionId,
-        email: email,
+        uid: uid,
         prompt: prompt,
         response: response,
         create_at: serverTimestamp(), // Server-side timestamp
@@ -117,33 +117,31 @@ export class ChatdbService {
     });
   }
 
-  private async getNextSessionId(email: string): Promise<number> {
-    
-      const chatCollection = collection(this.firestore, 'chat');
-      const q = query(
-        chatCollection,
-        where('email', '==', email),
-        orderBy('sessionId', 'desc'),
-        limit(1)
-      );
+  private async getNextSessionId(uid: string): Promise<number> {
+    const chatCollection = collection(this.firestore, 'chat');
+    const q = query(
+      chatCollection,
+      where('uid', '==', uid),
+      orderBy('sessionId', 'desc'),
+      limit(1)
+    );
 
-      const snapshot = await getDocs(q);
+    const snapshot = await getDocs(q);
 
-      if (snapshot.empty) {
-        return 1; // First session for this email
-      }
+    if (snapshot.empty) {
+      return 1; // First session for this email
+    }
 
-      const lastChat = snapshot.docs[0].data();
-      return (lastChat['sessionId'] || 0) + 1;
-    
+    const lastChat = snapshot.docs[0].data();
+    return (lastChat['sessionId'] || 0) + 1;
   }
 
-  getChatsByUserSession(email: string, sessionId: number): Observable<Chat[]> {
+  getChatsByUserSession(uid: string, sessionId: number): Observable<Chat[]> {
     return runInInjectionContext(this.injector, () => {
       const chatCollection = collection(this.firestore, 'chat');
       const sessionChatsQuery = query(
         chatCollection,
-        where('email', '==', email),
+        where('uid', '==', uid),
         where('sessionId', '==', sessionId),
         orderBy('create_at', 'asc') // Ascending order by creation time
       );
@@ -159,12 +157,12 @@ export class ChatdbService {
     });
   }
 
-  getAllUserSessions(email: string): Observable<Chat[]> {
+  getAllUserSessions(uid: string): Observable<Chat[]> {
     return runInInjectionContext(this.injector, () => {
       const chatCollection = collection(this.firestore, 'chat');
       const userChatsQuery = query(
         chatCollection,
-        where('email', '==', email),
+        where('uid', '==', uid),
         orderBy('create_at', 'desc') // Order by time desc
       );
 
@@ -186,12 +184,12 @@ export class ChatdbService {
     });
   }
 
-  async deleteSession(email: string, sessionId: number): Promise<void> {
+  async deleteSession(uid: string, sessionId: number): Promise<void> {
     return runInInjectionContext(this.injector, async () => {
       const chatCollection = collection(this.firestore, 'chat');
       const sessionQuery = query(
         chatCollection,
-        where('email', '==', email),
+        where('uid', '==', uid),
         where('sessionId', '==', sessionId)
       );
 

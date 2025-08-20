@@ -18,7 +18,9 @@ export class App implements OnInit {
   ngOnInit(): void {
     this.authService.user$.subscribe((user) => {
       if (user) {
+        // console.log('User: ', user);
         this.authService.currentUserSignal.set({
+          uid: user.uid,
           email: user?.email!,
           username: user?.displayName!,
         });

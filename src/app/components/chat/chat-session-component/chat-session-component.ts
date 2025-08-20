@@ -32,9 +32,9 @@ export class ChatSessionComponent implements OnInit, OnDestroy {
           const chatId = params.get('id');
           if (chatId) {
             const currentUser = this.authService.currentUserSignal();
-            if (currentUser?.email) {
+            if (currentUser?.uid) {
               return this.chatdbService.getChatsByUserSession(
-                currentUser?.email,
+                currentUser?.uid,
                 Number(chatId)
               );
             }
@@ -77,13 +77,11 @@ export class ChatSessionComponent implements OnInit, OnDestroy {
       return null;
     }
     const currentUser = this.authService.currentUserSignal();
-    if (currentUser?.email) {
-      return from(
-        this.chatdbService.deleteSession(currentUser.email, sessionId)
-      )
+    if (currentUser?.uid) {
+      return from(this.chatdbService.deleteSession(currentUser.uid, sessionId))
         .pipe(
           switchMap(() =>
-            this.chatdbService.getUserSessionsList(currentUser.email)
+            this.chatdbService.getUserSessionsList(currentUser.uid)
           ),
           takeUntil(this.destroy$)
         )
@@ -102,14 +100,14 @@ export class ChatSessionComponent implements OnInit, OnDestroy {
 
   deleteChat(chatId: string) {
     const currentUser = this.authService.currentUserSignal();
-    if (currentUser?.email) {
+    if (currentUser?.uid) {
       return from(this.chatdbService.deleteChat(chatId))
         .pipe(
           switchMap(() => {
             const sessionId = this.chats?.[0]?.sessionId;
             if (sessionId) {
               return this.chatdbService.getChatsByUserSession(
-                currentUser.email,
+                currentUser.uid,
                 sessionId
               );
             }
