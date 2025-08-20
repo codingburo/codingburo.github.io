@@ -132,4 +132,21 @@ export class LoginComponent implements OnInit {
       },
     });
   }
+
+  signInWithX() {
+    this.authService.signInWithX().subscribe({
+      next: () => {
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Success',
+          detail: 'Successfully signed in with X',
+          life: 3000,
+        });
+        this.router.navigate(['/chat']);
+      },
+      error: (error) => {
+        this.errorMessage = 'X sign-in failed';
+      },
+    });
+  }
 }

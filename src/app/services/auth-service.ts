@@ -17,6 +17,7 @@ import {
   sendEmailVerification,
   sendPasswordResetEmail,
   GithubAuthProvider,
+  TwitterAuthProvider,
 } from '@angular/fire/auth';
 import { Observable, from } from 'rxjs';
 
@@ -113,6 +114,19 @@ export class AuthService {
       return from(promise);
     } catch (error) {
       console.error('Github sign-in error:', error);
+      throw error;
+    }
+  }
+
+  signInWithX(): Observable<void> {
+    try {
+      const provider = new TwitterAuthProvider();
+      const promise = signInWithPopup(this.firebaseAuth, provider).then(
+        () => {}
+      );
+      return from(promise);
+    } catch (error) {
+      console.error('X sign-in error:', error);
       throw error;
     }
   }
