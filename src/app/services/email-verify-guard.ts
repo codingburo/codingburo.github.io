@@ -13,12 +13,22 @@ export class EmailVerifyGuard implements CanActivate {
   canActivate(): Observable<boolean | UrlTree> {
     return this.authService.user$.pipe(
       map((user) => {
-        if (user?.emailVerified) {
-          return true;
+        if (user) {
+          // Allow access if email is verified OR if it's a social sign-in
+          const isSocialSignIn = user.providerData.some(
+            (provider) =>
+              provider.providerId === 'google.com' ||
+              provider.providerId === 'github.com' ||
+              provider.providerId === 'twitter.com'
+          );
+
+          if (user.emailVerified || isSocialSignIn) {
+            return true;
+          }
         }
         return this.router.createUrlTree(['/verify-email']);
       }),
-      take(1) // Complete after first emission
+      take(1)
     );
   }
 }
