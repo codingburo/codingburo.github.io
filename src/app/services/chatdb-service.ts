@@ -68,7 +68,9 @@ export class ChatdbService {
         map((chats: any[]) => {
           const processedChats = chats.map((chat) => ({
             ...chat,
-            create_at: (chat.create_at as Timestamp).toDate(),
+            create_at: chat.create_at
+              ? (chat.create_at as Timestamp).toDate()
+              : new Date(),
           }));
 
           // Group by sessionId and keep only the first chat from each session
@@ -116,22 +118,24 @@ export class ChatdbService {
   }
 
   private async getNextSessionId(email: string): Promise<number> {
-    const chatCollection = collection(this.firestore, 'chat');
-    const q = query(
-      chatCollection,
-      where('email', '==', email),
-      orderBy('sessionId', 'desc'),
-      limit(1)
-    );
+    
+      const chatCollection = collection(this.firestore, 'chat');
+      const q = query(
+        chatCollection,
+        where('email', '==', email),
+        orderBy('sessionId', 'desc'),
+        limit(1)
+      );
 
-    const snapshot = await getDocs(q);
+      const snapshot = await getDocs(q);
 
-    if (snapshot.empty) {
-      return 1; // First session for this email
-    }
+      if (snapshot.empty) {
+        return 1; // First session for this email
+      }
 
-    const lastChat = snapshot.docs[0].data();
-    return (lastChat['sessionId'] || 0) + 1;
+      const lastChat = snapshot.docs[0].data();
+      return (lastChat['sessionId'] || 0) + 1;
+    
   }
 
   getChatsByUserSession(email: string, sessionId: number): Observable<Chat[]> {
@@ -192,7 +196,9 @@ export class ChatdbService {
       );
 
       const snapshot = await getDocs(sessionQuery);
-      const deletePromises = snapshot.docs.map((doc) => deleteDoc(doc.ref));
+      const deletePromises = snapshot.docs.map((docSnapshot) =>
+        deleteDoc(docSnapshot.ref)
+      );
       await Promise.all(deletePromises);
     });
   }

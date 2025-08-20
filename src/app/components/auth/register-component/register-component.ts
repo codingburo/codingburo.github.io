@@ -53,6 +53,11 @@ export class RegisterComponent {
         .register(rawForm.email, rawForm.password, rawForm.username)
         .subscribe({
           next: () => {
+            this.messageService.add({
+              severity: 'success',
+              summary: 'Success',
+              detail: 'Verification email sent! Please check your inbox.',
+            });
             this.router.navigateByUrl('/signin');
           },
           error: (err) => {
@@ -60,12 +65,6 @@ export class RegisterComponent {
           },
         });
 
-      this.messageService.add({
-        severity: 'success',
-        summary: 'Success',
-        detail: 'User Successfully Signed Up',
-        life: 3000,
-      });
       this.exampleForm.reset();
       this.formSubmitted = false;
     }

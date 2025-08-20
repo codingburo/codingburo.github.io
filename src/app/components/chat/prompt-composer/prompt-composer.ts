@@ -1,4 +1,11 @@
-import { Component, EventEmitter, inject, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  inject,
+  Injector,
+  Output,
+  runInInjectionContext,
+} from '@angular/core';
 import { Textarea } from 'primeng/textarea';
 import { FormsModule } from '@angular/forms';
 import { Button } from 'primeng/button';
@@ -25,6 +32,7 @@ import { AuthService } from '../../../services/auth-service';
 export class PromptComposer {
   chatdbService = inject(ChatdbService);
   authService = inject(AuthService);
+  private injector = inject(Injector);
   constructor(private weatherService: Weather) {}
   prompt!: string;
   isLoading: boolean = false;
@@ -71,17 +79,18 @@ export class PromptComposer {
         this.responses.push({ prompt: this.prompt, response: response });
         const currentUser = this.authService.currentUserSignal();
         if (currentUser?.email) {
-          this.chatdbService
-            .createChat(
-              currentUser.email,
-              this.prompt,
-              response,
-              this.currentSessionId
-            ) // ← Use current user email
-            .then(({ docId, sessionId }) => {
-              console.log('Chat created with ID:', docId);
-              this.currentSessionId = sessionId;
-            });
+          runInInjectionContext(this.injector, () => {
+            this.chatdbService
+              .createChat(
+                currentUser.email,
+                this.prompt,
+                response,
+                this.currentSessionId
+              ) // ← Use current user email
+              .then(({ docId, sessionId }) => {
+                this.currentSessionId = sessionId;
+              });
+          });
         }
         this.isLoading = false;
         this.prompt = '';

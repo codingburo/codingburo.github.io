@@ -1,11 +1,12 @@
 <p-toast />
-@if (errorMessage) {
-<div class="text-red-600 dark:text-red-400">{{ errorMessage }}</div>
-}
+
 <div class="card flex flex-col justify-center items-center h-full p-2">
   <div class="flex flex-col w-full gap-5 min-h-1/2 md:max-w-2xl bg-stone-200 dark:bg-zinc-800 p-5 rounded-xl">
     <app-brand class="shadow shadow-amber-200 rounded-xl backdrop-brightness-90"/>
     <div class="card-header">Create an account</div>
+    @if (errorMessage) {
+<div class="text-red-600 dark:text-red-400">{{ errorMessage }}</div>
+}
   <form
     [formGroup]="exampleForm"
     (ngSubmit)="onSubmit()"
