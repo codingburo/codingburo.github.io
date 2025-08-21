@@ -92,11 +92,16 @@ export class AuthService {
     });
   }
 
-  signInWithGoogle(): Observable<void> {
+  signInWithGoogle(): Observable<{ isNewUser: boolean }> {
     try {
       const provider = new GoogleAuthProvider();
       const promise = signInWithPopup(this.firebaseAuth, provider).then(
-        () => {}
+        (result) => {
+          const isNewUser =
+            result.user.metadata.creationTime ===
+            result.user.metadata.lastSignInTime;
+          return { isNewUser };
+        }
       );
       return from(promise);
     } catch (error) {
@@ -105,11 +110,16 @@ export class AuthService {
     }
   }
 
-  signInWithGithub(): Observable<void> {
+  signInWithGithub(): Observable<{ isNewUser: boolean }> {
     try {
       const provider = new GithubAuthProvider();
       const promise = signInWithPopup(this.firebaseAuth, provider).then(
-        () => {}
+        (result) => {
+          const isNewUser =
+            result.user.metadata.creationTime ===
+            result.user.metadata.lastSignInTime;
+          return { isNewUser };
+        }
       );
       return from(promise);
     } catch (error) {
@@ -118,11 +128,16 @@ export class AuthService {
     }
   }
 
-  signInWithX(): Observable<void> {
+  signInWithX(): Observable<{ isNewUser: boolean }> {
     try {
       const provider = new TwitterAuthProvider();
       const promise = signInWithPopup(this.firebaseAuth, provider).then(
-        () => {}
+        (result) => {
+          const isNewUser =
+            result.user.metadata.creationTime ===
+            result.user.metadata.lastSignInTime;
+          return { isNewUser };
+        }
       );
       return from(promise);
     } catch (error) {

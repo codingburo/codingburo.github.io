@@ -18,6 +18,7 @@ import { Brand } from "../../brand/brand";
 @Component({
   selector: 'app-register-component',
   templateUrl: './register-component.html',
+  styleUrl: './register-component.css',
   standalone: true,
   imports: [
     ReactiveFormsModule,
@@ -73,5 +74,68 @@ export class RegisterComponent {
   isInvalid(controlName: string) {
     const control = this.exampleForm.get(controlName);
     return control?.invalid && (control.touched || this.formSubmitted);
+  }
+
+  signUpWithGoogle() {
+    this.authService.signInWithGoogle().subscribe({
+      next: (result) => {
+        const message = result.isNewUser
+          ? 'Successfully signed up with Google'
+          : 'Successfully signed in with Google - account already exists';
+
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Success',
+          detail: message,
+          life: 3000,
+        });
+        this.router.navigate(['/chat']);
+      },
+      error: (error) => {
+        this.errorMessage = 'Google sign-up failed';
+      },
+    });
+  }
+
+  signUpWithGithub() {
+    this.authService.signInWithGithub().subscribe({
+      next: (result) => {
+        const message = result.isNewUser
+          ? 'Successfully signed up with GitHub'
+          : 'Successfully signed in with GitHub - account already exists';
+
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Success',
+          detail: message,
+          life: 3000,
+        });
+        this.router.navigate(['/chat']);
+      },
+      error: (error) => {
+        this.errorMessage = 'GitHub sign-up failed';
+      },
+    });
+  }
+
+  signUpWithX() {
+    this.authService.signInWithX().subscribe({
+      next: (result) => {
+        const message = result.isNewUser
+          ? 'Successfully signed up with X'
+          : 'Successfully signed in with X - account already exists';
+
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Success',
+          detail: message,
+          life: 3000,
+        });
+        this.router.navigate(['/chat']);
+      },
+      error: (error) => {
+        this.errorMessage = 'X sign-up failed';
+      },
+    });
   }
 }
