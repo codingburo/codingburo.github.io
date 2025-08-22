@@ -11,7 +11,8 @@ import Aura from '@primeuix/themes/aura';
 import { routes } from './app.routes';
 import {
   provideHttpClient,
-  withInterceptorsFromDi,
+  withInterceptors,
+  // withInterceptorsFromDi,
 } from '@angular/common/http';
 import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
 import { provideAuth, getAuth } from '@angular/fire/auth';
@@ -19,10 +20,13 @@ import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { environment } from '../environments/environment';
 import { ConfirmationService, MessageService } from 'primeng/api';
 
+import { authInterceptor } from './interceptors/auth.interceptor';
+
 export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
-    provideHttpClient(withInterceptorsFromDi()),
+    // provideHttpClient(withInterceptorsFromDi()),
+    provideHttpClient(withInterceptors([authInterceptor])),
 
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),

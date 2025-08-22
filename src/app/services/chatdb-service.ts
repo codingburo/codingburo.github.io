@@ -117,7 +117,7 @@ export class ChatdbService {
     });
   }
 
-  private async getNextSessionId(uid: string): Promise<number> {
+  async getNextSessionId(uid: string): Promise<number> {
     const chatCollection = collection(this.firestore, 'chat');
     const q = query(
       chatCollection,
