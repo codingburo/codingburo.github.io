@@ -87,7 +87,7 @@
         "deploy": {
           "builder": "angular-cli-ghpages:deploy",
           "options": {
-            "baseHref": "https://codingburo.github.io/"
+            "baseHref": "https://sba-ai.web.app/"
           }
         }
       }

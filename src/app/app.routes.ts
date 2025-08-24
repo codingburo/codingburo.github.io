@@ -13,20 +13,36 @@ export const routes: Routes = [
   {
     path: '',
     component: LandingPage,
-    title: 'Cobu - Your AI Brainstorm Buddy',
+    title: 'Cobu - Your AI Brainstorm Buddy | Smart AI Chat Assistant',
+    data: {
+      description:
+        'Start brainstorming with Cobu, your intelligent AI assistant for creative ideas and productive conversations.',
+      keywords:
+        'AI chat, brainstorm, creative assistant, artificial intelligence',
+    },
   },
   {
     path: 'chat/:sessionId',
     component: ChatComponent,
-    title: 'Cobu - Your AI Brainstorm Buddy',
+    title: 'AI Driven Brainstorming Session | Cobu',
     canActivate: [AuthGuardService, EmailVerifyGuard],
+    data: {
+      description:
+        'Continue your AI conversation with Cobu in this chat session.',
+      keywords: 'AI chat session, conversation, brainstorm',
+    },
   },
 
   {
-    path: 'chat',
+    path: 'chat/:sessionId',
     component: ChatComponent,
-    title: 'Cobu - Your AI Brainstorm Buddy',
+    title: 'Start Your AI Driven Brainstorming Session | Cobu',
     canActivate: [AuthGuardService, EmailVerifyGuard],
+    data: {
+      description:
+        'Continue your AI conversation with Cobu in this chat session.',
+      keywords: 'AI chat session, conversation, brainstorm',
+    },
   },
   // {
   //   path: 'chat/:id', // ← Add route with ID parameter
