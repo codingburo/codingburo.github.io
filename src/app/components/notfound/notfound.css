@@ -1,0 +1,26 @@
+/* Add subtle animation to the 404 number */
+h1 {
+  animation: pulse 2s ease-in-out infinite alternate;
+}
+
+@keyframes pulse {
+  from {
+    opacity: 0.2;
+  }
+  to {
+    opacity: 0.4;
+  }
+}
+
+/* Hover effects for buttons */
+button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Dark mode adjustments */
+@media (prefers-color-scheme: dark) {
+  .bg-orange-100 {
+    background-color: rgba(251, 146, 60, 0.1);
+  }
+}
