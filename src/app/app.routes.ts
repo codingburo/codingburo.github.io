@@ -22,7 +22,7 @@ export const routes: Routes = [
     },
   },
   {
-    path: 'chat/:sessionId',
+    path: 'chat',
     component: ChatComponent,
     title: 'AI Driven Brainstorming Session | Cobu',
     canActivate: [AuthGuardService, EmailVerifyGuard],
