@@ -14,13 +14,10 @@
     -moz-osx-font-smoothing: grayscale;
   }
 
-  /* body{
-    
-    @apply bg-radial dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 from-emerald-900 via-amber-50 to-emerald-100 h-dvh;
-} */
+
   body{
     
-    @apply h-dvh;
+    @apply h-dvh bg-stone-100 dark:bg-neutral-800;
 }
 
 
@@ -43,10 +40,6 @@
     @apply items-center justify-center hover:cursor-pointer hover:dark:bg-slate-800 hover:bg-stone-200 hover:rounded-full aspect-square p-3;
 }
 
-/* .p-button {
-  @apply bg-purple-700 dark:bg-emerald-950 text-stone-50 dark:text-stone-300 dark:border-emerald-900;
-} */
-
 .hi-button {
   @apply bg-transparent text-slate-900 border border-emerald-300 dark:border-emerald-800 dark:text-stone-300;  
 }
@@ -54,8 +47,11 @@
 .gradient-text{
   @apply bg-gradient-to-r dark:from-stone-400 from-emerald-800 via-sky-600 to-emerald-600 inline-block text-transparent bg-clip-text;
 }
-.gradient-text2{
+.gradient-text3{
   @apply bg-gradient-to-r dark:from-stone-300 from-stone-500 via-sky-500 to-emerald-800 dark:to-emerald-500 inline-block text-transparent bg-clip-text;
+}
+.gradient-text2{
+  @apply bg-gradient-to-r dark:from-stone-300 from-stone-500 via-stone-700 to-stone-500 dark:to-stone-300 inline-block text-transparent bg-clip-text;
 }
 
 .a_span{
@@ -65,9 +61,3 @@
 .a_span_buttons{
   @apply text-stone-900 dark:text-stone-200 hover:text-stone-700 dark:hover:text-amber-200;
 }
-
-
-
-
-
-  

@@ -1,7 +1,11 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { catchError, Observable, throwError } from 'rxjs';
-import { APP_CONFIG } from '../constants/app.constants';
+import {
+  APP_CONFIG,
+  DEFAULT_PROVIDER,
+  Provider,
+} from '../constants/app.constants';
 import { Auth } from '@angular/fire/auth';
 @Injectable({
   providedIn: 'root',
@@ -17,9 +21,13 @@ export class Weather {
   //   });
   // }
 
-  getWeather(message: string): Observable<string> {
+  getWeather(
+    message: string,
+    provider: Provider = DEFAULT_PROVIDER
+  ): Observable<string> {
     return this.http
       .get(`${this.baseUrl}/weather?state=` + message, {
+        params: { provider },
         responseType: 'text',
       })
       .pipe(catchError(this.handleError));
@@ -41,12 +49,17 @@ export class Weather {
     return throwError(() => ({ status: error.status, message: errorMessage }));
   }
 
-  getChat(prompt: string, sessionId: number): Observable<string> {
+  getChat(
+    prompt: string,
+    sessionId: number,
+    provider: Provider = DEFAULT_PROVIDER
+  ): Observable<string> {
     return this.http
-      .get(`${this.baseUrl}/chat`, {
+      .get(`${this.baseUrl}/api/v2/chat`, {
         params: {
           prompt: prompt,
           sessionId: sessionId.toString(),
+          provider: provider,
         },
         responseType: 'text',
       })

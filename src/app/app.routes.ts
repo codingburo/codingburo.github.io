@@ -4,34 +4,42 @@ import { RegisterComponent } from './components/auth/register-component/register
 import { LoginComponent } from './components/auth/login-component/login-component';
 import { Notfound } from './components/notfound/notfound';
 import { AuthGuardService } from './services/auth-guard-service';
-import { ChatDetailComponent } from './components/chat/chat-detail-component/chat-detail-component';
-import { ChatSessionComponent } from './components/chat/chat-session-component/chat-session-component';
 import { LandingPage } from './components/landing-page/landing-page';
 import { ResetPassword } from './components/auth/reset-password/reset-password';
 import { EmailVerifyGuard } from './services/email-verify-guard';
 import { VerifyEmail } from './components/auth/verify-email/verify-email';
 
 export const routes: Routes = [
-  { path: '', component: LandingPage, title: 'Cobu - Smart Chat + Weather' },
+  {
+    path: '',
+    component: LandingPage,
+    title: 'Cobu - Your AI Brainstorm Buddy',
+  },
+  {
+    path: 'chat/:sessionId',
+    component: ChatComponent,
+    title: 'Cobu - Your AI Brainstorm Buddy',
+    canActivate: [AuthGuardService, EmailVerifyGuard],
+  },
 
   {
     path: 'chat',
     component: ChatComponent,
-    title: 'Chat with Cobu',
+    title: 'Cobu - Your AI Brainstorm Buddy',
     canActivate: [AuthGuardService, EmailVerifyGuard],
   },
-  {
-    path: 'chat/:id', // ← Add route with ID parameter
-    component: ChatDetailComponent, // ← Your detail component
-    title: 'Chat Detail',
-    canActivate: [AuthGuardService],
-  },
-  {
-    path: 'chats/:id',
-    component: ChatSessionComponent,
-    title: 'User Chat',
-    canActivate: [AuthGuardService],
-  },
+  // {
+  //   path: 'chat/:id', // ← Add route with ID parameter
+  //   component: ChatDetailComponent, // ← Your detail component
+  //   title: 'Chat Detail',
+  //   canActivate: [AuthGuardService],
+  // },
+  // {
+  //   path: 'chats/:id',
+  //   component: ChatSessionComponent,
+  //   title: 'User Chat',
+  //   canActivate: [AuthGuardService],
+  // },
   { path: 'signup', component: RegisterComponent, title: 'Sign Up' },
   { path: 'reset-password', component: ResetPassword, title: 'Reset Password' },
   { path: 'verify-email', component: VerifyEmail, title: 'Verify Email' },

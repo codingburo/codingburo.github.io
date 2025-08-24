@@ -7,10 +7,10 @@
 >
   
 
-  <p-fluid class="w-full">
-    <textarea
-      class="shadow"
-      placeholder="Ask Cobu anything"
+  
+    <div class="flex items-center gap-2 w-full"><textarea
+      class="shadow w-full"
+      placeholder="Ask Cobu anything - using {{selectedProvider}}"
       [(ngModel)]="prompt"
       variant="filled"
       rows="1"
@@ -19,7 +19,8 @@
       autofocus="true"
       (keydown.enter)="prompt !== '' ? getPrompt() : null"
     ></textarea>
-  </p-fluid>
+    <p-select [options]="providerOptions" [(ngModel)]="selectedProvider" optionLabel="label" optionValue="value" placeholder="Select Provider" class="w-fit" /></div>
+  
 
   <div class="flex flex-row justify-between md:items-baseline">
     <div class="py-2 max-w-sm">
@@ -32,6 +33,7 @@
         optionValue="value"
       />
     </div>
+    
     <div class="flex flex-row items-center rounded-full">
       <p-button
         icon="pi pi-pen-to-square"

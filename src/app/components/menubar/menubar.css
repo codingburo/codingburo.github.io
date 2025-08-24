@@ -1,0 +1,4 @@
+@reference "tailwindcss";
+.p-menubar{
+   @apply border-0 
+}

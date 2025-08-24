@@ -94,6 +94,7 @@ export class ChatdbService {
     uid: string,
     prompt: string,
     response: string,
+    provider: string,
     sessionId?: number
   ): Promise<{ docId: string; sessionId: number }> {
     return runInInjectionContext(this.injector, async () => {
@@ -110,6 +111,7 @@ export class ChatdbService {
         prompt: prompt,
         response: response,
         create_at: serverTimestamp(), // Server-side timestamp
+        provider: provider,
       };
 
       const docRef = await addDoc(collection(this.firestore, 'chat'), chatData);

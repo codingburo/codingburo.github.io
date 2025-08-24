@@ -1,11 +1,17 @@
 <div class="font-sans">
   <!-- Header -->
-  <header class="text-stone-100 md:p-6 p-3 m-2 backdrop-blur-xs shadow-xl rounded-xl dark:shadow-stone-900">
+  <header
+    class="text-stone-100 md:p-6 p-3 backdrop-blur-xs shadow-xl dark:shadow-stone-900"
+  >
     <div class="max-w-6xl mx-auto flex justify-between items-center">
       <app-brand />
       <div class="md:space-x-4 space-x-2">
-        <a routerLink="/signin" class="p-button-outline"><span class="a_span_buttons">Sign In</span></a>
-        <a routerLink="/signup" class="p-button_landing"><span class="a_span_buttons">Get Started</span></a>
+        <a routerLink="/signin" class="p-button-outline"
+          ><span class="a_span_buttons">Sign In</span></a
+        >
+        <a routerLink="/signup" class="p-button_landing"
+          ><span class="a_span_buttons">Start Free</span></a
+        >
       </div>
     </div>
   </header>
@@ -13,113 +19,151 @@
   <section
     class="text-center py-10 flex flex-col items-center justify-center gap-10 dark:text-stone-100"
   >
-    <span class="gradient-text font-extrabold text-6xl">AI Driven Innovation</span>
-    
+    <div
+      class="bg-green-500 text-white px-4 py-2 rounded-full font-bold text-lg shadow-2xl border-b-8 border-amber-400"
+    >
+      🎉 FREE to Join - No Credit Card Required
+    </div>
+    <span class="gradient-text font-extrabold text-6xl h-fit min-h-24"
+      >Your Brainstorming Buddy</span
+    >
+
     <ul class="flex flex-col text-3xl mx-auto max-w-md gap-5 list-none">
-  <li class="flex items-center gap-3">
-    <i class="pi pi-comments text-emerald-600"></i>
-    <span>Talk naturally</span>
-  </li>
-  <li class="flex items-center gap-3">
-    <i class="pi pi-bolt text-yellow-500"></i>
-    <span>Get answers instantly</span>
-  </li>
-  <li class="flex items-center gap-3">
-    <i class="pi pi-sparkles text-purple-600"></i>
-    <span>LLM-powered conversation</span>
-  </li>
-  <li class="flex items-center gap-3">
-    <i class="pi pi-cloud text-blue-500"></i>
-    <span>Real-time weather insights</span>
-  </li>
-  <li class="flex items-center gap-3">
-    <i class="pi pi-check-circle text-green-600"></i>
-    <span>Seamless AI experience</span>
-  </li>
-</ul>
+      <li class="flex items-center gap-3">
+        <i class="pi pi-comments text-emerald-600"></i>
+        <span>Talk naturally</span>
+      </li>
+      <li class="flex items-center gap-3">
+        <i class="pi pi-cog text-blue-500"></i>
+        <span>Choose your AI: OpenAI or Anthropic</span>
+      </li>
+      <li class="flex items-center gap-3">
+        <i class="pi pi-search text-orange-500"></i>
+        <span>Web search enabled</span>
+      </li>
+      <li class="flex items-center gap-3">
+        <i class="pi pi-lightbulb text-yellow-500"></i>
+        <span>Perfect for brainstorming</span>
+      </li>
+      <li class="flex items-center gap-3">
+        <i class="pi pi-bolt text-purple-600"></i>
+        <span>Get answers instantly</span>
+      </li>
+    </ul>
     <a
       routerLink="/signup"
-      class="bg-white text-indigo-600 px-6 py-3 rounded-xl font-semibold shadow hover:bg-gray-200"
+      class="bg-stone-100 text-indigo-600 px-6 py-3 rounded-xl font-semibold shadow-lg hover:bg-gray-200 border border-stone-200"
       style="color: green"
-      >Try Cobu Today</a
+      >Try Cobu for free 🎉</a
     >
   </section>
 
   <!-- Why Cobu -->
   <section id="features" class="max-w-6xl mx-auto py-16 px-6">
     <span class="flex flex-row gap-2 items-center justify-center">
-      <app-brand-logo /> <h3 class="text-3xl font-bold text-center dark:text-amber-300 gradient-text">Why Cobu?</h3></span>
+      <app-brand-logo />
+      <h3
+        class="text-3xl font-bold text-center dark:text-amber-300 gradient-text"
+      >
+        Why Cobu?
+      </h3></span
+    >
     <div class="grid md:grid-cols-3 gap-10 text-center">
-      <div class="bg-white dark:bg-stone-200 p-6 rounded-2xl shadow hover:shadow-2xl">
-        <h4 class="text-xl font-semibold mb-3">Conversations Made Natural</h4>
+      <div
+        class="bg-white dark:bg-stone-200 p-6 rounded-2xl shadow hover:shadow-2xl"
+      >
+        <h4 class="text-xl font-semibold mb-3">Choose Your AI Provider</h4>
         <p>
-          Ask questions in plain language. Cobu understands context and replies
-          like a human assistant.
+          Switch between OpenAI and Anthropic models. Pick the AI that works
+          best for your specific needs and preferences.
         </p>
       </div>
-      <div class="bg-white dark:bg-stone-200 p-6 rounded-2xl shadow hover:shadow-2xl">
-        <h4 class="text-xl font-semibold mb-3">Weather at Your Fingertips</h4>
+      <div
+        class="bg-white dark:bg-stone-200 p-6 rounded-2xl shadow hover:shadow-2xl"
+      >
+        <h4 class="text-xl font-semibold mb-3">Web Search Integration</h4>
         <p>
-          Get accurate forecasts instantly. From quick checks to weekend plans,
-          Cobu makes weather simple.
+          Get real-time information from the web. Ask about current events,
+          latest news, or any topic requiring up-to-date data.
         </p>
       </div>
-      <div class="bg-white dark:bg-stone-200 p-6 rounded-2xl shadow hover:shadow-2xl">
-        <h4 class="text-xl font-semibold mb-3">Built on Modern Tech</h4>
+      <div
+        class="bg-white dark:bg-stone-200 p-6 rounded-2xl shadow hover:shadow-2xl"
+      >
+        <h4 class="text-xl font-semibold mb-3">Brainstorming Partner</h4>
         <p>
-          Powered by Angular 20, Spring AI, LLM integration, and chat history
-          for context-aware answers.
+          Generate ideas, explore concepts, and think through problems. Perfect
+          for creative sessions and strategic planning.
         </p>
       </div>
     </div>
   </section>
 
   <!-- Key Features -->
-  <section class="backdrop-blur-3xl py-20 opacity-80 bg-stone-50 dark:bg-stone-900 dark:text-stone-50">
-    <div class="flex flex-col items-center justify-center text-center max-w-6xl mx-auto px-6">
-  <div class="text-3xl font-bold text-center p-5 md:min-w-md justify-center flex items-center gap-3 shadow shadow-amber-300 rounded-full my-10 backdrop-blur-lg">
-    <i class="pi pi-bolt text-yellow-500"></i>
-    <span>Key Features</span>
-  </div>
-  <ul class="md:max-w-fit grid md:grid-cols-1 gap-6 text-xl list-none text-start">
-    <li class="flex flex-col gap-2">
-      <div class="flex items-center gap-3 text-2xl font-semibold">
-        <i class="pi pi-comments text-emerald-600"></i>
-        <span>Natural Language Chat</span>
+  <section
+    class="backdrop-blur-3xl py-20 opacity-80 bg-stone-50 dark:bg-stone-900 dark:text-stone-50"
+  >
+    <div
+      class="flex flex-col items-center justify-center text-center max-w-6xl mx-auto px-6"
+    >
+      <div
+        class="text-3xl font-bold text-center p-5 md:min-w-md justify-center flex items-center gap-3 shadow shadow-amber-300 rounded-full my-10 backdrop-blur-lg"
+      >
+        <i class="pi pi-bolt text-yellow-500"></i>
+        <span>Key Features</span>
       </div>
-      <span class="text-lg text-gray-600 dark:text-gray-400">No commands needed, just talk.</span>
-    </li>
-    <li class="flex flex-col gap-2">
-      <div class="flex items-center gap-3 text-2xl font-semibold">
-        <i class="pi pi-cloud text-blue-500"></i>
-        <span>Simple Weather Updates</span>
-      </div>
-      <span class="text-lg text-gray-600 dark:text-gray-400">Clear, accurate forecasts.</span>
-    </li>
-    <li class="flex flex-col gap-2">
-      <div class="flex items-center gap-3 text-2xl font-semibold">
-        <i class="pi pi-refresh text-purple-600 dark:text-purple-400"></i>
-        <span>Context Awareness</span>
-      </div>
-      <span class="text-lg text-gray-600 dark:text-gray-400">Remembers your conversation for smarter replies.</span>
-    </li>
-    <li class="flex flex-col gap-2">
-      <div class="flex items-center gap-3 text-2xl font-semibold">
-        <i class="pi pi-cog text-lime-600 dark:text-lime-400"></i>
-        <span>Modern Stack</span>
-      </div>
-      <span class="text-lg text-gray-600 dark:text-gray-400">Angular 20, Spring AI, and advanced LLMs.</span>
-    </li>
-    <li class="flex flex-col gap-2">
-      <div class="flex items-center gap-3 text-2xl font-semibold">
-        <i class="pi pi-sparkles text-yellow-500"></i>
-        <span>Future Potential</span>
-      </div>
-      <span class="text-lg text-gray-600 dark:text-gray-400">A POC today, scalable assistant tomorrow.</span>
-    </li>
-  </ul>
-</div>
-
+      <ul
+        class="md:max-w-fit grid md:grid-cols-1 gap-6 text-xl list-none text-start"
+      >
+        <li class="flex flex-col gap-2">
+          <div class="flex items-center gap-3 text-2xl font-semibold">
+            <i class="pi pi-cog text-blue-500"></i>
+            <span>Multiple AI Providers</span>
+          </div>
+          <span class="text-lg text-gray-600 dark:text-gray-400"
+            >Choose between OpenAI and Anthropic models for optimal
+            results.</span
+          >
+        </li>
+        <li class="flex flex-col gap-2">
+          <div class="flex items-center gap-3 text-2xl font-semibold">
+            <i class="pi pi-search text-orange-500"></i>
+            <span>Real-time Web Search</span>
+          </div>
+          <span class="text-lg text-gray-600 dark:text-gray-400"
+            >Access current information and latest updates from the web.</span
+          >
+        </li>
+        <li class="flex flex-col gap-2">
+          <div class="flex items-center gap-3 text-2xl font-semibold">
+            <i class="pi pi-lightbulb text-yellow-500"></i>
+            <span>Brainstorming & Ideation</span>
+          </div>
+          <span class="text-lg text-gray-600 dark:text-gray-400"
+            >Generate creative ideas and explore new concepts
+            collaboratively.</span
+          >
+        </li>
+        <li class="flex flex-col gap-2">
+          <div class="flex items-center gap-3 text-2xl font-semibold">
+            <i class="pi pi-comments text-emerald-600"></i>
+            <span>Natural Conversations</span>
+          </div>
+          <span class="text-lg text-gray-600 dark:text-gray-400"
+            >No commands needed, just talk naturally.</span
+          >
+        </li>
+        <li class="flex flex-col gap-2">
+          <div class="flex items-center gap-3 text-2xl font-semibold">
+            <i class="pi pi-refresh text-purple-600 dark:text-purple-400"></i>
+            <span>Context Awareness</span>
+          </div>
+          <span class="text-lg text-gray-600 dark:text-gray-400"
+            >Remembers your conversation for smarter replies.</span
+          >
+        </li>
+      </ul>
+    </div>
   </section>
 
   <!-- What Cobu Demonstrates -->
@@ -127,30 +171,37 @@
     id="tech"
     class="flex dark:text-stone-50 flex-col max-w-6xl mx-auto py-16 px-6 items-center justify-center text-center"
   >
-    <span class="flex gap-2 items-center justify-center p-5 shadow shadow-amber-300 rounded-full my-10 backdrop-blur-lg ">
+    <span
+      class="flex gap-2 items-center justify-center p-5 shadow shadow-amber-300 rounded-full my-10 backdrop-blur-lg"
+    >
       <app-brand-logo />
-      <div class="gradient-text text-4xl text-nowrap">What Cobu Demonstrates</div>
+      <div class="gradient-text text-4xl text-nowrap">
+        What Cobu Demonstrates
+      </div>
     </span>
     <span class="text-2xl mx-auto max-w-md">
       <ul class="text-xl mx-auto max-w-2xl list-none space-y-4">
-  <li class="flex items-center gap-3">
-    <i class="pi pi-sparkles text-purple-600"></i>
-    <span>Shows how AI can make everyday tasks easier</span>
-  </li>
-  <li class="flex items-center gap-3">
-    <i class="pi pi-comments text-amber-600"></i>
-    <span>Combines smart conversation with useful weather info</span>
-  </li>
-  <li class="flex items-center gap-3">
-    <i class="pi pi-cog text-gray-600"></i>
-    <span>Built with Angular 20 and Spring AI</span>
-  </li>
-  <li class="flex items-center gap-3">
-    <i class="pi pi-play text-emerald-500"></i>
-    <span>Perfect starting point for building your own AI assistant</span>
-  </li>
-</ul>
-
+        <li class="flex items-center gap-3">
+          <i class="pi pi-cog text-blue-500"></i>
+          <span>Flexible AI provider selection (OpenAI & Anthropic)</span>
+        </li>
+        <li class="flex items-center gap-3">
+          <i class="pi pi-search text-orange-500"></i>
+          <span>Seamless web search integration for current information</span>
+        </li>
+        <li class="flex items-center gap-3">
+          <i class="pi pi-lightbulb text-yellow-500"></i>
+          <span>AI-powered brainstorming and creative thinking</span>
+        </li>
+        <li class="flex items-center gap-3">
+          <i class="pi pi-comments text-emerald-500"></i>
+          <span>Natural conversation flow with context retention</span>
+        </li>
+        <li class="flex items-center gap-3">
+          <i class="pi pi-sparkles text-purple-600"></i>
+          <span>Modern Angular 20 and Spring AI architecture</span>
+        </li>
+      </ul>
     </span>
   </section>
 
@@ -159,41 +210,60 @@
     id="get-started"
     class="flex flex-col items-center justify-center py-20 gap-10"
   >
-    
-      <span class="flex items-center justify-center gap-2">
-        <app-brand-logo /> 
-        <span class="text-4xl font-extrabold dark:text-stone-50">Try Cobu Today</span>
-      </span>
-    <a
+    <span class="flex items-center justify-center gap-2">
+      <app-brand-logo />
+      <span class="text-4xl font-extrabold dark:text-stone-50"
+        >Try Cobu Today</span
+      >
+    </span>
+    <!-- <a
       routerLink="/signup"
       class="bg-stone-200 px-8 py-3 rounded-xl font-bold shadow hover:bg-gray-200 max-w-fit mx-auto"
-      style="color: green">Get Started</a>
-    
-      <span class="text-2xl mx-auto md:max-w-full max-w-sm text-center gradient-text2"
-        >Experience how simple and powerful AI-driven interactions can be.</span>
-    
-    
+      style="color: green">Join for free</a> -->
+
+    <a
+      routerLink="/signup"
+      class="bg-stone-100 text-indigo-600 px-6 py-3 rounded-xl font-semibold shadow-lg hover:bg-gray-200 border-2 border-orange-200"
+      style="color: green"
+      >Join for free 🎉</a
+    >
+
+    <span
+      class="text-2xl mx-auto md:max-w-full max-w-sm text-center gradient-text2"
+      >Experience how simple and powerful AI-driven interactions can be.</span
+    >
   </section>
 
   <!-- Footer -->
-  <footer class="dark:text-stone-400 text-center py-6 bg-stone-900 text-stone-200">
+  <footer
+    class="dark:text-stone-400 text-center py-6 bg-stone-900 text-stone-200"
+  >
     <div class="max-w-6xl mx-auto flex justify-center items-center py-2">
       <div class="md:space-x-4 space-x-2">
-        <a href="#features" class="hover:text-amber-600 a-footer-links">Features</a>
-        <a href="#tech" class="hover:text-amber-600 a-footer-links">Technology</a>
-        <a routerLink="/signin" class="hover:text-amber-600 a-footer-links">Sign In</a>
-        <a routerLink="/signup" class="hover:text-amber-600 a-footer-links">Sign Up</a>
+        <a href="#features" class="hover:text-amber-600 a-footer-links"
+          >Features</a
+        >
+        <a href="#tech" class="hover:text-amber-600 a-footer-links"
+          >Technology</a
+        >
+        <a routerLink="/signin" class="hover:text-amber-600 a-footer-links"
+          >Sign In</a
+        >
+        <a routerLink="/signup" class="hover:text-amber-600 a-footer-links"
+          >Sign Up</a
+        >
       </div>
     </div>
     <div class="flex flex-col items-center justify-center gap-2 a-footer">
       &copy; {{ currentYear }} Coding Buro.
       <span class="flex items-center gap-2"
         >Built with Angular, Spring AI, and LLMs
-        <i
-          class="pi pi-sparkles text-amber-300"
-        ></i></span
+        <i class="pi pi-sparkles text-amber-300"></i></span
       ><span
-        ><a href="https://www.syedbaqirali.com" target="_blank" class="p-ripple a-footer"
+        ><a
+          href="https://www.syedbaqirali.com"
+          target="_blank"
+          class="p-ripple a-footer"
           >www.syedbaqirali.com</a
         ></span
       >

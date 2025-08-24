@@ -1,7 +1,7 @@
 <p-menubar [model]="items">
   <ng-template #start>
     <app-sidebar />
-    <app-brand class="ml-3" />
+    <app-brand class="ml-2" />
   </ng-template>
 
   <ng-template #item let-item let-root="root">
@@ -13,7 +13,7 @@
         [value]="item.badge"
       />} @if (item.shortcut) {
       <span
-        class="ml-auto border border-surface rounded bg-emphasis text-muted-color text-xs p-1"
+        class="ml-auto border border-surface bg-emphasis text-muted-color text-xs p-1"
         >{{ item.shortcut }}</span
       >} @if (item.items) {
       <i
@@ -25,9 +25,6 @@
   <ng-template #end>
     <div class="flex flex-row items-center gap-2">
       <app-links-component />
-      
-    
-
     </div>
   </ng-template>
 </p-menubar>

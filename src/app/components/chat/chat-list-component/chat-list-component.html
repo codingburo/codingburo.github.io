@@ -1,7 +1,7 @@
 <div class="px-4 text-stone-400 dark:text-stone-500 font-semibold">Chats</div>
 @for (chat of chatService.chatSignal(); track $index) {
 <div class="flex px-2 gap-2 items-start">
-  <a [routerLink]="['/chats', chat.sessionId]" class="p-2 hover:bg-stone-200 dark:hover:bg-stone-800 
+  <a [routerLink]="['/chat', chat.sessionId]" class="p-2 hover:bg-stone-200 dark:hover:bg-stone-800 
   rounded-xl truncate" title={{chat.prompt}}><span class="text-stone-900 dark:text-stone-200">{{ chat.prompt }}</span></a>
   <!-- <a [routerLink]="['/chats', chat.sessionId]" title={{chat.prompt}}>{{ chat.prompt }}</a> -->
   

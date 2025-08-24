@@ -3,19 +3,26 @@ import {
   EventEmitter,
   inject,
   Injector,
+  Input,
+  OnInit,
   Output,
   runInInjectionContext,
 } from '@angular/core';
 import { Textarea } from 'primeng/textarea';
 import { FormsModule } from '@angular/forms';
 import { Button } from 'primeng/button';
+import { SelectModule } from 'primeng/select';
 import { SelectButton } from 'primeng/selectbutton';
-import { Fluid } from 'primeng/fluid';
 import { Weather } from '../../../services/weather';
 import { LoadingComponent } from '../../loading-component/loading-component';
 import { ChatdbService } from '../../../services/chatdb-service';
 import { AuthService } from '../../../services/auth-service';
 import { MessageService } from 'primeng/api';
+import {
+  DEFAULT_PROVIDER,
+  Provider,
+  PROVIDER_OPTIONS,
+} from '../../../constants/app.constants';
 
 @Component({
   selector: 'app-prompt-composer',
@@ -24,13 +31,14 @@ import { MessageService } from 'primeng/api';
     FormsModule,
     Button,
     SelectButton,
-    Fluid,
+    SelectModule,
+
     LoadingComponent,
   ],
   templateUrl: './prompt-composer.html',
   styleUrl: './prompt-composer.css',
 })
-export class PromptComposer {
+export class PromptComposer implements OnInit {
   chatdbService = inject(ChatdbService);
   authService = inject(AuthService);
   messageService = inject(MessageService);
@@ -39,8 +47,8 @@ export class PromptComposer {
   prompt!: string;
   isLoading: boolean = false;
   prompts: string[] = [];
-  @Output() responseData = new EventEmitter<PromptResponses[]>();
-  responses: PromptResponses[] = [];
+  @Output() responseData = new EventEmitter<Chat[]>();
+  responses: Chat[] = [];
   selectedAction: string = 'chat';
   promptOptions: any[] = [
     { name: 'Chat', value: 'chat', enabled: true },
@@ -48,23 +56,28 @@ export class PromptComposer {
     { name: 'Books', value: 'book', enabled: false },
   ];
   private currentSessionId: number | undefined = undefined;
+  @Input() sessionId: number | undefined;
+  selectedProvider: Provider = DEFAULT_PROVIDER;
+  providerOptions = PROVIDER_OPTIONS;
+
+  ngOnInit() {
+    // Set currentSessionId from input
+    this.currentSessionId = this.sessionId;
+  }
 
   getPrompt() {
     if (!this.prompt || !this.selectedAction) {
       return;
     }
     switch (this.selectedAction) {
-      case 'weather':
-        this.getWeather();
+      case 'chat':
+        this.getChat();
         break;
-      case 'maths':
+      case 'weather':
         this.getWeather();
         break;
       case 'book':
         this.getWeather();
-        break;
-      case 'chat':
-        this.getChat();
         break;
       default:
         this.getWeather();
@@ -77,49 +90,62 @@ export class PromptComposer {
     }
     this.isLoading = true;
 
-    this.weatherService.getWeather(this.prompt).subscribe({
-      next: (response: string) => {
-        this.responses.push({ prompt: this.prompt, response: response });
-        const currentUser = this.authService.currentUserSignal();
-        if (currentUser?.uid) {
-          runInInjectionContext(this.injector, () => {
-            this.chatdbService
-              .createChat(
-                currentUser.uid,
-                this.prompt,
-                response,
-                this.currentSessionId
-              )
-              .then(({ docId, sessionId }) => {
-                this.currentSessionId = sessionId;
-              });
+    this.weatherService
+      .getWeather(this.prompt, this.selectedProvider)
+      .subscribe({
+        next: (response: string) => {
+          // this.responses.push({ prompt: this.prompt, response: response,  });
+          const currentUser = this.authService.currentUserSignal();
+          if (currentUser?.uid) {
+            runInInjectionContext(this.injector, () => {
+              this.chatdbService
+                .createChat(
+                  currentUser.uid,
+                  this.prompt,
+                  response,
+                  this.selectedProvider,
+                  this.currentSessionId
+                )
+                .then(({ docId, sessionId }) => {
+                  this.currentSessionId = sessionId;
+                  const newChat: Chat = {
+                    id: docId,
+                    sessionId: sessionId,
+                    email: currentUser.uid,
+                    prompt: this.prompt,
+                    response: response,
+                    provider: this.selectedProvider || DEFAULT_PROVIDER,
+                    create_at: new Date(),
+                  };
+                  this.responseData.emit([newChat]);
+                  this.prompt = '';
+                });
+            });
+          }
+          this.isLoading = false;
+          // this.responseData.emit(this.responses);
+        },
+        error: (error) => {
+          this.isLoading = false;
+          let displayMessage = error.message;
+
+          // Parse JSON error message if it's a string
+          try {
+            const errorObj = JSON.parse(error.message);
+            displayMessage = errorObj.error || error.message;
+          } catch (e) {
+            // If parsing fails, use the original message
+            displayMessage = error.message;
+          }
+
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Error',
+            detail: displayMessage,
+            life: 10000,
           });
-        }
-        this.isLoading = false;
-        this.prompt = '';
-        this.responseData.emit(this.responses);
-      },
-      error: (error) => {
-        this.isLoading = false;
-        let displayMessage = error.message;
-
-        // Parse JSON error message if it's a string
-        try {
-          const errorObj = JSON.parse(error.message);
-          displayMessage = errorObj.error || error.message;
-        } catch (e) {
-          // If parsing fails, use the original message
-          displayMessage = error.message;
-        }
-
-        this.messageService.add({
-          severity: 'error',
-          summary: 'Error',
-          detail: displayMessage,
-          life: 10000,
-        });
-      },
-    });
+        },
+      });
   }
 
   // Add method to start new chat
@@ -154,47 +180,60 @@ export class PromptComposer {
         );
 
     sessionIdPromise.then((sessionId) => {
-      this.weatherService.getChat(this.prompt, sessionId).subscribe({
-        next: (response: string) => {
-          this.responses.push({ prompt: this.prompt, response: response });
+      this.weatherService
+        .getChat(this.prompt, sessionId, this.selectedProvider)
+        .subscribe({
+          next: (response: string) => {
+            // this.responses.push({ prompt: this.prompt, response: response });
 
-          // Save to database
-          const currentUser = this.authService.currentUserSignal();
-          if (currentUser?.uid) {
-            runInInjectionContext(this.injector, () => {
-              this.chatdbService
-                .createChat(
-                  currentUser.uid,
-                  this.prompt,
-                  response,
-                  sessionId // Use the sessionId we got/generated
-                )
-                .then(({ docId, sessionId: returnedSessionId }) => {
-                  this.currentSessionId = returnedSessionId;
-                });
+            // Save to database
+            const currentUser = this.authService.currentUserSignal();
+            if (currentUser?.uid) {
+              runInInjectionContext(this.injector, () => {
+                this.chatdbService
+                  .createChat(
+                    currentUser.uid,
+                    this.prompt,
+                    response,
+                    this.selectedProvider,
+                    sessionId // Use the sessionId we got/generated
+                  )
+                  .then(({ docId, sessionId: returnedSessionId }) => {
+                    this.currentSessionId = returnedSessionId;
+                    const newChat: Chat = {
+                      id: docId,
+                      sessionId: returnedSessionId,
+                      email: currentUser.uid,
+                      prompt: this.prompt,
+                      response: response,
+                      provider: this.selectedProvider || DEFAULT_PROVIDER,
+                      create_at: new Date(),
+                    };
+                    this.responseData.emit([newChat]);
+                    this.prompt = '';
+                  });
+              });
+            }
+
+            this.isLoading = false;
+            // this.responseData.emit(this.responses);
+          },
+          error: (error) => {
+            this.isLoading = false;
+            let displayMessage = error.message;
+            try {
+              const errorObj = JSON.parse(error.message);
+              displayMessage = errorObj.error || error.message;
+            } catch (e) {
+              displayMessage = error.message;
+            }
+            this.messageService.add({
+              severity: 'error',
+              summary: 'Error',
+              detail: displayMessage,
             });
-          }
-
-          this.isLoading = false;
-          this.prompt = '';
-          this.responseData.emit(this.responses);
-        },
-        error: (error) => {
-          this.isLoading = false;
-          let displayMessage = error.message;
-          try {
-            const errorObj = JSON.parse(error.message);
-            displayMessage = errorObj.error || error.message;
-          } catch (e) {
-            displayMessage = error.message;
-          }
-          this.messageService.add({
-            severity: 'error',
-            summary: 'Error',
-            detail: displayMessage,
-          });
-        },
-      });
+          },
+        });
     });
   }
 }

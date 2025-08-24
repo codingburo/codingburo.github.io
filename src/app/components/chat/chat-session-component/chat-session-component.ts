@@ -1,4 +1,4 @@
-import { Component, inject, OnDestroy, OnInit } from '@angular/core';
+import { Component, inject, Input, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { switchMap, of, from, Subject, takeUntil } from 'rxjs';
 import { AuthService } from '../../../services/auth-service';
@@ -6,10 +6,16 @@ import { ChatdbService } from '../../../services/chatdb-service';
 import { ChatService } from '../../../services/chat-service';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { Button } from 'primeng/button';
+import { Fluid } from 'primeng/fluid';
+
+import {
+  getProviderIcon,
+  DEFAULT_PROVIDER,
+} from '../../../constants/app.constants';
 
 @Component({
   selector: 'app-chat-session-component',
-  imports: [Button],
+  imports: [Button, Fluid],
   templateUrl: './chat-session-component.html',
   styleUrl: './chat-session-component.css',
 })
@@ -21,31 +27,40 @@ export class ChatSessionComponent implements OnInit, OnDestroy {
   messageService = inject(MessageService);
   confirmationService = inject(ConfirmationService); // Add this
   private destroy$ = new Subject<void>();
-
+  @Input() responses: Chat[] = [];
   router = inject(Router);
-  chats: Chat[] | null = null;
+
+  getProviderIcon(provider: string | null | undefined): string {
+    return getProviderIcon(provider);
+  }
 
   ngOnInit() {
-    this.route.paramMap
-      .pipe(
-        switchMap((params) => {
-          const chatId = params.get('id');
-          if (chatId) {
-            const currentUser = this.authService.currentUserSignal();
-            if (currentUser?.uid) {
-              return this.chatdbService.getChatsByUserSession(
-                currentUser?.uid,
-                Number(chatId)
-              );
+    // Only load from route if no responses passed as input
+    if (this.responses.length === 0) {
+      this.route.paramMap
+        .pipe(
+          switchMap((params) => {
+            const chatId = params.get('id');
+            if (chatId) {
+              const currentUser = this.authService.currentUserSignal();
+              if (currentUser?.uid) {
+                return this.chatdbService.getChatsByUserSession(
+                  currentUser?.uid,
+                  Number(chatId)
+                );
+              }
             }
-          }
-          return of(null);
-        }),
-        takeUntil(this.destroy$)
-      )
-      .subscribe((chats) => {
-        this.chats = chats;
-      });
+            return of(null);
+          }),
+          takeUntil(this.destroy$)
+        )
+        .subscribe((chats) => {
+          this.responses = chats || [];
+        });
+    }
+  }
+  stringify(obj: any) {
+    return JSON.stringify(obj);
   }
 
   confirmDeleteSession(sessionId: number) {
@@ -104,7 +119,7 @@ export class ChatSessionComponent implements OnInit, OnDestroy {
       return from(this.chatdbService.deleteChat(chatId))
         .pipe(
           switchMap(() => {
-            const sessionId = this.chats?.[0]?.sessionId;
+            const sessionId = this.responses?.[0]?.sessionId;
             if (sessionId) {
               return this.chatdbService.getChatsByUserSession(
                 currentUser.uid,
@@ -116,7 +131,7 @@ export class ChatSessionComponent implements OnInit, OnDestroy {
           takeUntil(this.destroy$)
         )
         .subscribe((chats) => {
-          this.chats = chats;
+          this.responses = chats || [];
           this.messageService.add({
             severity: 'success',
             summary: 'Success',
