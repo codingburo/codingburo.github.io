@@ -1,30 +1,32 @@
+<header class="text-stone-100 backdrop-blur-xs shadow-xl dark:shadow-stone-900">
 <p-menubar [model]="items">
   <ng-template #start>
     <app-sidebar />
     <app-brand class="ml-2" />
   </ng-template>
-
+  
   <ng-template #item let-item let-root="root">
     <a pRipple class="flex items-center p-menubar-item-link">
       <span>{{ item.label }}</span>
       @if(item.badge){
-      <p-badge
+        <p-badge
         [ngClass]="{ 'ml-auto': !root, 'ml-2': root }"
         [value]="item.badge"
-      />} @if (item.shortcut) {
-      <span
-        class="ml-auto border border-surface bg-emphasis text-muted-color text-xs p-1"
-        >{{ item.shortcut }}</span
-      >} @if (item.items) {
-      <i
-        [ngClass]="['ml-auto pi', root ? 'pi-angle-down' : 'pi-angle-right']"
-      ></i
-      >}
-    </a>
-  </ng-template>
-  <ng-template #end>
-    <div class="flex flex-row items-center gap-2">
-      <app-links-component />
-    </div>
-  </ng-template>
-</p-menubar>
+        />} @if (item.shortcut) {
+          <span
+          class="ml-auto border border-surface bg-emphasis text-muted-color text-xs p-1"
+          >{{ item.shortcut }}</span
+          >} @if (item.items) {
+            <i
+            [ngClass]="['ml-auto pi', root ? 'pi-angle-down' : 'pi-angle-right']"
+            ></i
+            >}
+          </a>
+        </ng-template>
+        <ng-template #end>
+          <div class="flex flex-row items-center gap-2">
+            <app-links-component />
+          </div>
+        </ng-template>
+      </p-menubar>
+    </header>

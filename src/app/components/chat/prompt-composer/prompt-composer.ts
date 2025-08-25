@@ -48,6 +48,7 @@ export class PromptComposer implements OnInit {
   isLoading: boolean = false;
   prompts: string[] = [];
   @Output() responseData = new EventEmitter<Chat[]>();
+  @Output() newChatStarted = new EventEmitter<void>();
   responses: Chat[] = [];
   selectedAction: string = 'chat';
   promptOptions: any[] = [
@@ -153,6 +154,7 @@ export class PromptComposer implements OnInit {
     this.currentSessionId = undefined;
     this.responses = [];
     this.responseData.emit(this.responses);
+    this.newChatStarted.emit();
   }
 
   getChat() {

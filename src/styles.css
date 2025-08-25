@@ -17,7 +17,7 @@
 
   body{
     
-    @apply h-dvh bg-stone-100 dark:bg-neutral-800;
+    @apply h-dvh bg-stone-100 dark:bg-zinc-800;
 }
 
 

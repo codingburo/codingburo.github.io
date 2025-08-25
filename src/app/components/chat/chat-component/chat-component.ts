@@ -32,6 +32,10 @@ export class ChatComponent implements OnInit {
       }
     });
   }
+  handleNewChat() {
+    this.responseData = []; // Clear the chat history
+    this.currentSessionId = undefined; // Reset session ID
+  }
 
   private loadSessionChats(sessionId: number) {
     const currentUser = this.authService.currentUserSignal();
