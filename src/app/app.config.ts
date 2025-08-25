@@ -7,6 +7,7 @@ import { provideRouter } from '@angular/router';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { providePrimeNG } from 'primeng/config';
 import Aura from '@primeuix/themes/aura';
+import { provideMarkdown } from 'ngx-markdown';
 
 import { routes } from './app.routes';
 import {
@@ -34,6 +35,7 @@ export const appConfig: ApplicationConfig = {
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),
+    provideMarkdown(),
     MessageService,
     ConfirmationService,
     providePrimeNG({

@@ -12,10 +12,11 @@ import {
   getProviderIcon,
   DEFAULT_PROVIDER,
 } from '../../../constants/app.constants';
+import { MarkdownComponent } from 'ngx-markdown';
 
 @Component({
   selector: 'app-chat-session-component',
-  imports: [Button, Fluid],
+  imports: [Button, Fluid, MarkdownComponent],
   templateUrl: './chat-session-component.html',
   styleUrl: './chat-session-component.css',
 })
