@@ -1,0 +1,5 @@
+@reference "tailwindcss";
+
+::ng-deep .p-button{
+    @apply text-blue-600 dark:text-emerald-200 hover:bg-amber-300;
+}

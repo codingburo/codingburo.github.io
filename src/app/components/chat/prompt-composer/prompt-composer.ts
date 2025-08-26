@@ -178,7 +178,7 @@ export class PromptComposer implements OnInit {
     const sessionIdPromise = this.currentSessionId
       ? Promise.resolve(this.currentSessionId)
       : runInInjectionContext(this.injector, () =>
-          this.chatdbService.createSession(currentUser.uid, '')
+          this.chatdbService.createSession(currentUser.uid, this.prompt)
         );
 
     sessionIdPromise.then((sessionId) => {
@@ -213,6 +213,14 @@ export class PromptComposer implements OnInit {
                     };
                     this.responseData.emit([newChat]);
                     this.prompt = '';
+                  })
+                  .catch((error) => {
+                    console.error('Error saving chat:', error);
+                    this.messageService.add({
+                      severity: 'error',
+                      summary: 'Error',
+                      detail: 'Failed to save chat',
+                    });
                   });
               });
             }

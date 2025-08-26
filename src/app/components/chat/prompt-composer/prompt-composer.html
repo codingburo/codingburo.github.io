@@ -3,7 +3,7 @@
   }
   
 <div
-  class="rounded-2xl bg-stone-100 border border-stone-200 dark:border-gray-900 shadow shadow-amber-200 dark:shadow-amber-800 dark:bg-gray-950 p-4"
+  class="rounded-2xl bg-stone-100 border border-stone-200 dark:border-gray-900 shadow shadow-amber-200 dark:shadow-gray-700 dark:bg-gray-950 p-4"
 >
     <div class="flex items-center gap-2 w-full"><textarea
       class="shadow w-full"
@@ -37,7 +37,7 @@
         aria-label="New Chat"
         [rounded]="true"
         [text]="true"
-        severity="primary"
+        [rounded]="true"
         [outlined]="false" title="Start New Chat"
         (onClick)="startNewChat()"
       />
@@ -60,7 +60,7 @@
         aria-label="Prompt Coding Buro"
         icon="pi pi-arrow-circle-up"
         text="true"
-        
+        [rounded]="true"
         [disabled]="prompt === '' || isLoading"
         (onClick)="getPrompt()"
         [loading]="isLoading"

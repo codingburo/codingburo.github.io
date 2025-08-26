@@ -1,0 +1,20 @@
+<p-dialog
+  header="Edit Title"
+  [(visible)]="visible"
+  [modal]="true"
+  [style]="{ width: '400px' }"
+  (onHide)="onCancel()"
+>
+  <div class="flex flex-col gap-3">
+    <input
+      pInputText
+      [(ngModel)]="editTitle"
+      placeholder="Enter session title"
+      class="w-full"
+    />
+  </div>
+<div class="flex flex-row items-center py-3 gap-2 justify-end">
+    <p-button label="Cancel" severity="contrast" (onClick)="onCancel()" title="Edit "/>
+    <p-button label="Save" (onClick)="onSave()" />
+    </div>
+</p-dialog>

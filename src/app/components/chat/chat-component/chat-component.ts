@@ -18,6 +18,7 @@ export class ChatComponent implements OnInit {
   private chatdbService = inject(ChatdbService);
   private authService = inject(AuthService);
   responseData: Chat[] = [];
+  sessionData: Session | undefined;
   currentSessionId: string | undefined;
 
   ngOnInit() {
@@ -33,8 +34,9 @@ export class ChatComponent implements OnInit {
     });
   }
   handleNewChat() {
-    this.responseData = []; // Clear the chat history
+    this.responseData = [];
     this.currentSessionId = undefined; // Reset session ID
+    this.sessionData = undefined;
   }
 
   private loadSessionChats(sessionId: string) {
@@ -42,13 +44,18 @@ export class ChatComponent implements OnInit {
     if (currentUser?.uid) {
       this.chatdbService
         .getChatsByUserSession(currentUser.uid, sessionId)
-        .subscribe((chats) => (this.responseData = chats));
+        .subscribe((result) => {
+          if (result) {
+            this.responseData = result.chats;
+            this.sessionData = result.session;
+          } else {
+            // Session was deleted, clear data and redirect
+            this.responseData = [];
+            this.sessionData = undefined;
+          }
+        });
     }
   }
-
-  // handleResponsesData(data: Chat[]) {
-  //   this.responseData = data;
-  // }
 
   handleResponsesData(data: Chat[]) {
     this.responseData = [...this.responseData, ...data];

@@ -1,4 +1,9 @@
-import { inject, Injectable, Injector, runInInjectionContext } from '@angular/core';
+import {
+  inject,
+  Injectable,
+  Injector,
+  runInInjectionContext,
+} from '@angular/core';
 import {
   Firestore,
   collection,
@@ -17,8 +22,9 @@ import {
   writeBatch,
   getFirestore,
   setDoc,
+  updateDoc,
 } from '@angular/fire/firestore';
-import { map, Observable } from 'rxjs';
+import { from, map, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -58,38 +64,26 @@ export class ChatdbService {
     });
   }
 
-  getUserSessionsList(uid: string): Observable<Chat[]> {
+  getUserSessionsList(uid: string): Observable<Session[]> {
     return runInInjectionContext(this.injector, () => {
-      const chatCollection = collection(this.firestore, 'chat');
-      const userChatsQuery = query(
-        chatCollection,
+      const sessionsCollection = collection(this.firestore, 'sessions');
+      const userSessionsQuery = query(
+        sessionsCollection,
         where('uid', '==', uid),
-        orderBy('create_at', 'asc')
+        orderBy('updatedAt', 'desc'),
+        orderBy('createdAt', 'desc'),
+        orderBy('title', 'asc')
       );
 
-      return collectionData(userChatsQuery, { idField: 'id' }).pipe(
-        map((chats: any[]) => {
-          const processedChats = chats.map((chat) => ({
-            ...chat,
-            create_at: chat.create_at
-              ? (chat.create_at as Timestamp).toDate()
-              : new Date(),
-          }));
-
-          // Group by sessionId and keep only the first chat from each session
-          const sessionMap = new Map<number, Chat>();
-          processedChats.forEach((chat) => {
-            if (!sessionMap.has(chat.sessionId)) {
-              sessionMap.set(chat.sessionId, chat);
-            }
-          });
-
-          // Return sessions sorted by create_at desc (newest first)
-          return Array.from(sessionMap.values()).sort(
-            (a, b) => b.create_at.getTime() - a.create_at.getTime()
-          );
-        })
-      ) as Observable<Chat[]>;
+      return collectionData(userSessionsQuery, { idField: 'id' }).pipe(
+        map((sessions: any[]) =>
+          sessions.map((session) => ({
+            ...session,
+            createdAt: (session.createdAt as Timestamp).toDate(),
+            updatedAt: (session.updatedAt as Timestamp).toDate(),
+          }))
+        )
+      );
     });
   }
 
@@ -122,21 +116,6 @@ export class ChatdbService {
     });
   }
 
-  // async createSession(uid: string, title: string): Promise<string> {
-  //   const sessionData = {
-  //     uid,
-  //     title,
-  //     createdAt: serverTimestamp(),
-  //     updatedAt: serverTimestamp(),
-  //   };
-
-  //   const docRef = await addDoc(
-  //     collection(this.firestore, 'sessions'),
-  //     sessionData
-  //   );
-  //   return docRef.id; // This becomes the sessionId
-  // }
-
   async createSession(uid: string, title: string): Promise<string> {
     const docRef = doc(collection(this.firestore, 'sessions')); // Generate doc reference first
     const sessionId = docRef.id; // Get the auto-generated ID
@@ -153,43 +132,54 @@ export class ChatdbService {
     return sessionId;
   }
 
-  // async getNextSessionId(uid: string): Promise<number> {
-  //   const chatCollection = collection(this.firestore, 'chat');
-  //   const q = query(
-  //     chatCollection,
-  //     where('uid', '==', uid),
-  //     orderBy('sessionId', 'desc'),
-  //     limit(1)
-  //   );
-
-  //   const snapshot = await getDocs(q);
-
-  //   if (snapshot.empty) {
-  //     return 1; // First session for this email
-  //   }
-
-  //   const lastChat = snapshot.docs[0].data();
-  //   return (lastChat['sessionId'] || 0) + 1;
-  // }
-
-  getChatsByUserSession(uid: string, sessionId: string): Observable<Chat[]> {
+  getChatsByUserSession(
+    uid: string,
+    sessionId: string
+  ): Observable<{ chats: Chat[]; session: Session } | null> {
     return runInInjectionContext(this.injector, () => {
       const chatCollection = collection(this.firestore, 'chat');
+      const sessionCollection = collection(this.firestore, 'sessions');
+
       const sessionChatsQuery = query(
         chatCollection,
         where('uid', '==', uid),
         where('sessionId', '==', sessionId),
-        orderBy('create_at', 'asc') // Ascending order by creation time
+        orderBy('create_at', 'asc')
       );
 
-      return collectionData(sessionChatsQuery, { idField: 'id' }).pipe(
-        map((chats: any[]) =>
-          chats.map((chat) => ({
-            ...chat,
-            create_at: (chat.create_at as Timestamp).toDate(), // Convert timestamp
-          }))
-        )
-      ) as Observable<Chat[]>;
+      const sessionQuery = query(
+        sessionCollection,
+        where('uid', '==', uid),
+        where('id', '==', sessionId)
+      );
+
+      return from(
+        Promise.all([getDocs(sessionChatsQuery), getDocs(sessionQuery)])
+      ).pipe(
+        map(([chatsSnapshot, sessionSnapshot]) => {
+          const chats = chatsSnapshot.docs.map((doc) => ({
+            id: doc.id,
+            ...doc.data(),
+            create_at: (doc.data()['create_at'] as Timestamp).toDate(),
+          })) as Chat[];
+          if (sessionSnapshot.empty) {
+            return null; // Session was deleted
+          }
+
+          const session = {
+            id: sessionSnapshot.docs[0].id,
+            ...sessionSnapshot.docs[0].data(),
+            createdAt: (
+              sessionSnapshot.docs[0].data()['createdAt'] as Timestamp
+            ).toDate(),
+            updatedAt: (
+              sessionSnapshot.docs[0].data()['updatedAt'] as Timestamp
+            ).toDate(),
+          } as Session;
+
+          return { chats, session };
+        })
+      );
     });
   }
 
@@ -213,10 +203,40 @@ export class ChatdbService {
     });
   }
 
+  //
+
   async deleteChat(chatId: string): Promise<void> {
     return runInInjectionContext(this.injector, async () => {
+      // First, get the chat to find its sessionId
       const chatDoc = doc(this.firestore, 'chat', chatId);
+      const chatSnapshot = await getDocs(
+        query(
+          collection(this.firestore, 'chat'),
+          where('__name__', '==', chatId)
+        )
+      );
+
+      if (chatSnapshot.empty) return;
+
+      const chatData = chatSnapshot.docs[0].data();
+      const sessionId = chatData['sessionId'];
+
+      // Delete the chat
       await deleteDoc(chatDoc);
+
+      // Check if there are any remaining chats in this session
+      const remainingChatsQuery = query(
+        collection(this.firestore, 'chat'),
+        where('sessionId', '==', sessionId)
+      );
+
+      const remainingChats = await getDocs(remainingChatsQuery);
+
+      // If no chats remain, delete the session
+      if (remainingChats.empty) {
+        const sessionDoc = doc(this.firestore, 'sessions', sessionId);
+        await deleteDoc(sessionDoc);
+      }
     });
   }
 
@@ -237,7 +257,15 @@ export class ChatdbService {
     });
   }
 
-  async migrateSessionIds() {
+  async deleteSessionDocument(sessionId: string): Promise<void> {
+    return runInInjectionContext(this.injector, async () => {
+      const sessionDoc = doc(this.firestore, 'sessions', sessionId);
+      await deleteDoc(sessionDoc);
+    });
+  }
+
+  async migrateSessionIdsx() {
+    return;
     const firestore = getFirestore();
     const chatsRef = collection(firestore, 'chat');
 
@@ -286,5 +314,96 @@ export class ChatdbService {
         `Migrated ${uid}:${numericSessionId} -> ${newSessionId} (${sessionChats.size} chats)`
       );
     }
+  }
+
+  async migrateSessionIds() {
+    console.log('New Migration Started');
+    const firestore = getFirestore();
+    const chatsRef = collection(firestore, 'chat');
+    const sessionsRef = collection(firestore, 'sessions');
+
+    console.log('Starting migration...');
+
+    // Step 1: Clear existing sessions table
+    console.log('Clearing existing sessions...');
+    const existingSessions = await getDocs(sessionsRef);
+    const clearBatch = writeBatch(firestore);
+    existingSessions.docs.forEach((doc) => {
+      clearBatch.delete(doc.ref);
+    });
+    await clearBatch.commit();
+    console.log(`Cleared ${existingSessions.size} existing sessions`);
+
+    // Step 2: Get all chats and group by (uid, sessionId)
+    const allChats = await getDocs(chatsRef);
+    const sessionGroups = new Map<string, any[]>();
+
+    allChats.docs.forEach((doc) => {
+      const data = doc.data();
+      const sessionKey = `${data['uid']}:${data['sessionId']}`;
+
+      if (!sessionGroups.has(sessionKey)) {
+        sessionGroups.set(sessionKey, []);
+      }
+      sessionGroups.get(sessionKey)!.push({
+        id: doc.id,
+        ...data,
+        create_at: data['create_at'],
+      });
+    });
+
+    console.log(`Found ${sessionGroups.size} unique (uid, sessionId) pairs`);
+
+    // Step 3: Process each session group
+    for (const [sessionKey, chats] of sessionGroups) {
+      const [uid, oldSessionId] = sessionKey.split(':');
+
+      // Sort chats by create_at to get the first one
+      chats.sort((a, b) => {
+        const aTime = a.create_at?.toDate?.() || new Date(0);
+        const bTime = b.create_at?.toDate?.() || new Date(0);
+        return aTime.getTime() - bTime.getTime();
+      });
+
+      const firstChat = chats[0];
+      const title = firstChat.prompt || `Session ${oldSessionId}`;
+
+      // Create new session document
+      const newSessionRef = doc(sessionsRef);
+      const newSessionId = newSessionRef.id;
+
+      await setDoc(newSessionRef, {
+        id: newSessionId, // Store document ID as field per Session model
+        uid,
+        title,
+        createdAt: serverTimestamp(),
+        updatedAt: serverTimestamp(),
+      });
+
+      // Update all chats in this session
+      const updateBatch = writeBatch(firestore);
+      chats.forEach((chat) => {
+        const chatRef = doc(chatsRef, chat.id);
+        updateBatch.update(chatRef, { sessionId: newSessionId });
+      });
+
+      await updateBatch.commit();
+
+      console.log(
+        `Migrated ${uid}:${oldSessionId} -> ${newSessionId} (${chats.length} chats, title: "${title}")`
+      );
+    }
+
+    console.log('Migration completed successfully!');
+  }
+
+  async updateSessionTitle(sessionId: string, title: string): Promise<void> {
+    return runInInjectionContext(this.injector, async () => {
+      const sessionDoc = doc(this.firestore, 'sessions', sessionId);
+      await updateDoc(sessionDoc, {
+        title: title,
+        updatedAt: serverTimestamp(),
+      });
+    });
   }
 }

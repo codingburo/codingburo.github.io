@@ -8,7 +8,8 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 import { Button } from 'primeng/button';
 import { Fluid } from 'primeng/fluid';
 import { DatePipe } from '@angular/common';
-
+import { TitleCasePipe } from '@angular/common';
+import { SessionEditorComponent } from '../../session-editor-component/session-editor-component';
 import {
   getProviderIcon,
   DEFAULT_PROVIDER,
@@ -17,7 +18,14 @@ import { MarkdownComponent } from 'ngx-markdown';
 
 @Component({
   selector: 'app-chat-session-component',
-  imports: [Button, Fluid, MarkdownComponent, DatePipe],
+  imports: [
+    Button,
+    Fluid,
+    MarkdownComponent,
+    DatePipe,
+    TitleCasePipe,
+    SessionEditorComponent,
+  ],
   templateUrl: './chat-session-component.html',
   styleUrl: './chat-session-component.css',
 })
@@ -30,36 +38,46 @@ export class ChatSessionComponent implements OnInit, OnDestroy {
   confirmationService = inject(ConfirmationService);
   private destroy$ = new Subject<void>();
   @Input() responses: Chat[] = [];
+  @Input() sessionData: Session | undefined;
+
   router = inject(Router);
+  showEditDialog = false;
 
   getProviderIcon(provider: string | null | undefined): string {
     return getProviderIcon(provider);
   }
 
   ngOnInit() {
-    // Only load from route if no responses passed as input
-    if (this.responses.length === 0) {
-      this.route.paramMap
-        .pipe(
-          switchMap((params) => {
-            const chatId = params.get('id');
-            if (chatId) {
-              const currentUser = this.authService.currentUserSignal();
-              if (currentUser?.uid) {
-                return this.chatdbService.getChatsByUserSession(
-                  currentUser?.uid,
-                  chatId
-                );
-              }
-            }
-            return of(null);
-          }),
-          takeUntil(this.destroy$)
-        )
-        .subscribe((chats) => {
-          this.responses = chats || [];
-        });
-    }
+    // console.log('Here');
+    // if (this.responses.length === 0) {
+    //   console.log('Here 1');
+    //   this.route.paramMap
+    //     .pipe(
+    //       switchMap((params) => {
+    //         const sessionId = params.get('sessionId');
+    //         if (sessionId) {
+    //           const currentUser = this.authService.currentUserSignal();
+    //           if (currentUser?.uid) {
+    //             console.log(
+    //               'User id: ',
+    //               currentUser.uid,
+    //               'sessionId id: ',
+    //               sessionId
+    //             );
+    //             return this.chatdbService.getChatsByUserSession(
+    //               currentUser?.uid,
+    //               sessionId
+    //             );
+    //           }
+    //         }
+    //         return of(null);
+    //       }),
+    //       takeUntil(this.destroy$)
+    //     )
+    //     .subscribe((chats) => {
+    //       this.responses = chats || [];
+    //     });
+    // }
   }
   stringify(obj: any) {
     return JSON.stringify(obj);
@@ -116,8 +134,8 @@ export class ChatSessionComponent implements OnInit, OnDestroy {
           ),
           takeUntil(this.destroy$)
         )
-        .subscribe((chat: Chat[]) => {
-          this.chatService.chatSignal.set(chat);
+        .subscribe((session: Session[]) => {
+          this.chatService.sessionSignal.set(session);
           this.messageService.add({
             severity: 'success',
             summary: 'Success',
@@ -146,20 +164,33 @@ export class ChatSessionComponent implements OnInit, OnDestroy {
           }),
           takeUntil(this.destroy$)
         )
-        .subscribe((chats) => {
-          this.responses = chats || [];
+        .subscribe((result) => {
+          if (result && result.chats.length > 0) {
+            this.responses = result.chats;
+            this.sessionData = result.session;
+          } else {
+            // Session was deleted, redirect to /chat
+            this.router.navigate(['/chat']);
+          }
+
           this.messageService.add({
             severity: 'success',
             summary: 'Success',
             detail: 'Chat successfully deleted',
           });
-          // If no chats left in session, redirect to /chat
-          if (!chats || chats.length === 0) {
-            this.router.navigate(['/chat']);
-          }
         });
     }
     return null;
+  }
+
+  openEditDialog() {
+    this.showEditDialog = true;
+  }
+
+  onTitleUpdated(newTitle: string) {
+    if (this.sessionData) {
+      this.sessionData.title = newTitle;
+    }
   }
 
   ngOnDestroy() {

@@ -1,40 +1,82 @@
-<p-fluid  class="w-full h-full justify-center flex flex-col my-2">
-  @if (responses.length > 0) {
-  <div class="flex w-full items-center justify-end gap-5 text-sm text-stone-500 px-5">
-    <span><span class="text-muted-color">Started:</span> {{ minCreatedAt | date:'short' }}</span>
-    <span><span class="text-muted-color">Last:</span> {{ maxCreatedAt | date:'short' }}</span>
+<p-fluid class="w-full h-full justify-center flex flex-col my-2">
+  @if (sessionData) {
+  <div class="flex w-full items-center gap-5 text-2xl dark:text-stone-300 text-stone-800 px-5">
+    {{ sessionData.title | titlecase }}
+    <p-button
+      icon="pi pi-pencil"
+      title="Edit Title"
+      [text]="true"
+      size="small"
+      (onClick)="openEditDialog()"
+    />
   </div>
 
-  }<div
-class="flex flex-col gap-2 p-2 my-1 w-full rounded-2xl text-lg ">
-  <div class="flex flex-col gap-0 rounded-2xl h-full ">
-    
-    @for (chat of responses; track $index) {
-      <div class="flex flex-col w-full h-full">
-        <div class="flex gap-2 justify-between items-center p-3 bg-stone-200 dark:bg-gray-900 py-5 rounded-2xl">
-          <p-button
-          severity="contrast"
-          icon="pi pi-trash"
-          [text]="false"
-          (onClick)="confirmDeleteChat(chat.id)"
-          />
-          <div class="text-gray-950 dark:text-stone-100 text-right break-words min-w-0 flex-1">{{ chat?.prompt }}</div>
-        </div>
-      
-      <div class="flex items-baseline gap-2 p-5">
-        <i [class]="getProviderIcon(chat?.provider)" class="text-lg text-amber-400"></i>
-        <markdown [data]="chat?.response"></markdown>
-      </div>
-    </div>
-  }
-  <div class="bg-stone-100 dark:bg-gray-900 flex justify-end rounded-2xl p-3">
-  <p-button
-    label="Delete All"
-    severity="contrast"
-    icon="pi pi-trash" class="m-3"
-    (onClick)="confirmDeleteSession(responses && responses[0] ? responses[0].sessionId : '')"
+  <app-session-editor-component
+    [(visible)]="showEditDialog"
+    [sessionId]="sessionData.id"
+    [currentTitle]="sessionData.title"
+    (titleUpdated)="onTitleUpdated($event)"
   />
+
+  } @if (responses.length > 0) {
+  <div
+    class="flex w-full items-center justify-start gap-5 text-sm text-stone-500 px-5"
+  >
+    <span
+      ><span class="text-muted-color">Started:</span>
+      {{ minCreatedAt | date : "short" }}</span
+    >
+    <span
+      ><span class="text-muted-color">Last:</span>
+      {{ maxCreatedAt | date : "short" }}</span
+    >
   </div>
-</div>
-</div>
+  }
+
+  <div class="flex flex-col gap-2 p-2 my-1 w-full rounded-2xl text-lg h-full justify-between overflow-y-scroll">
+    <div class="flex flex-col gap-0 rounded-2xl h-full">
+      @for (chat of responses; track $index) {
+      <div class="flex flex-col w-full h-full">
+        <div
+          class="flex gap-2 w-full justify-between items-baseline p-3 bg-stone-200 dark:bg-gray-950 dark:border-gray-900 border-stone-100 border  shadow py-5 rounded-2xl"
+        >
+          <p-button
+            severity="contrast"
+            icon="pi pi-trash"
+            [text]="false"
+            (onClick)="confirmDeleteChat(chat.id)"
+          />
+          <div
+            class="text-gray-950 dark:text-stone-300 text-right break-words min-w-0 flex-1"
+          >
+            {{ chat?.prompt }}
+          </div>
+        </div>
+
+        <div class="flex items-baseline gap-2 p-5">
+          <i
+            [class]="getProviderIcon(chat?.provider)"
+            class="text-lg text-amber-400"
+          ></i>
+          <markdown [data]="chat?.response"></markdown>
+        </div>
+      </div>
+      }
+    </div>
+    <div
+      class="bg-stone-100 dark:bg-gray-900 flex justify-end rounded-2xl p-3"
+    >
+      <p-button
+        label="Delete All"
+        severity="contrast"
+        icon="pi pi-trash"
+        class="m-3"
+        (onClick)="
+          confirmDeleteSession(
+            responses && responses[0] ? responses[0].sessionId : ''
+          )
+        "
+      />
+    </div>
+  </div>
 </p-fluid>

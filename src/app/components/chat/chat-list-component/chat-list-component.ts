@@ -21,8 +21,8 @@ export class ChatListComponent implements OnInit {
       if (user?.uid) {
         this.chatdbService
           .getUserSessionsList(user.uid)
-          .subscribe((chat: Chat[]) => {
-            this.chatService.chatSignal.set(chat);
+          .subscribe((session: Session[]) => {
+            this.chatService.sessionSignal.set(session);
           });
       }
     });
