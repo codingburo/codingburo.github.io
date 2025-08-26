@@ -51,7 +51,7 @@ export class Weather {
 
   getChat(
     prompt: string,
-    sessionId: number,
+    sessionId: string,
     provider: Provider = DEFAULT_PROVIDER
   ): Observable<string> {
     return this.http

@@ -56,8 +56,8 @@ export class PromptComposer implements OnInit {
     { name: 'Weather', value: 'weather', enabled: true },
     { name: 'Books', value: 'book', enabled: false },
   ];
-  private currentSessionId: number | undefined = undefined;
-  @Input() sessionId: number | undefined;
+  private currentSessionId: string | undefined = undefined;
+  @Input() sessionId: string | undefined;
   selectedProvider: Provider = DEFAULT_PROVIDER;
   providerOptions = PROVIDER_OPTIONS;
 
@@ -178,7 +178,7 @@ export class PromptComposer implements OnInit {
     const sessionIdPromise = this.currentSessionId
       ? Promise.resolve(this.currentSessionId)
       : runInInjectionContext(this.injector, () =>
-          this.chatdbService.getNextSessionId(currentUser.uid)
+          this.chatdbService.createSession(currentUser.uid, '')
         );
 
     sessionIdPromise.then((sessionId) => {

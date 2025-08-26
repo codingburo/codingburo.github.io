@@ -8,6 +8,7 @@ import { LandingPage } from './components/landing-page/landing-page';
 import { ResetPassword } from './components/auth/reset-password/reset-password';
 import { EmailVerifyGuard } from './services/email-verify-guard';
 import { VerifyEmail } from './components/auth/verify-email/verify-email';
+import { AdminDashboard } from './components/admin/admin-dashboard/admin-dashboard';
 
 export const routes: Routes = [
   {
@@ -44,23 +45,14 @@ export const routes: Routes = [
       keywords: 'AI chat session, conversation, brainstorm',
     },
   },
-  // {
-  //   path: 'chat/:id', // ← Add route with ID parameter
-  //   component: ChatDetailComponent, // ← Your detail component
-  //   title: 'Chat Detail',
-  //   canActivate: [AuthGuardService],
-  // },
-  // {
-  //   path: 'chats/:id',
-  //   component: ChatSessionComponent,
-  //   title: 'User Chat',
-  //   canActivate: [AuthGuardService],
-  // },
+
   { path: 'signup', component: RegisterComponent, title: 'Sign Up' },
   { path: 'reset-password', component: ResetPassword, title: 'Reset Password' },
   { path: 'verify-email', component: VerifyEmail, title: 'Verify Email' },
-
   { path: 'signin', component: LoginComponent, title: 'Sign In' },
+
+  // { path: 'admin', component: AdminDashboard, title: 'Admin Dashboard' },
+
   { path: '**', component: Notfound, title: 'Not Found' },
 ];
-//EmailVerifyGuard
+

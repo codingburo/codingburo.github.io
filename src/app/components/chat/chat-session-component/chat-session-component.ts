@@ -7,6 +7,7 @@ import { ChatService } from '../../../services/chat-service';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { Button } from 'primeng/button';
 import { Fluid } from 'primeng/fluid';
+import { DatePipe } from '@angular/common';
 
 import {
   getProviderIcon,
@@ -16,7 +17,7 @@ import { MarkdownComponent } from 'ngx-markdown';
 
 @Component({
   selector: 'app-chat-session-component',
-  imports: [Button, Fluid, MarkdownComponent],
+  imports: [Button, Fluid, MarkdownComponent, DatePipe],
   templateUrl: './chat-session-component.html',
   styleUrl: './chat-session-component.css',
 })
@@ -26,7 +27,7 @@ export class ChatSessionComponent implements OnInit, OnDestroy {
   chatService = inject(ChatService);
   authService = inject(AuthService);
   messageService = inject(MessageService);
-  confirmationService = inject(ConfirmationService); // Add this
+  confirmationService = inject(ConfirmationService);
   private destroy$ = new Subject<void>();
   @Input() responses: Chat[] = [];
   router = inject(Router);
@@ -47,7 +48,7 @@ export class ChatSessionComponent implements OnInit, OnDestroy {
               if (currentUser?.uid) {
                 return this.chatdbService.getChatsByUserSession(
                   currentUser?.uid,
-                  Number(chatId)
+                  chatId
                 );
               }
             }
@@ -64,7 +65,21 @@ export class ChatSessionComponent implements OnInit, OnDestroy {
     return JSON.stringify(obj);
   }
 
-  confirmDeleteSession(sessionId: number) {
+  get minCreatedAt(): Date | null {
+    if (this.responses.length === 0) return null;
+    return new Date(
+      Math.min(...this.responses.map((r) => new Date(r.create_at).getTime()))
+    );
+  }
+
+  get maxCreatedAt(): Date | null {
+    if (this.responses.length === 0) return null;
+    return new Date(
+      Math.max(...this.responses.map((r) => new Date(r.create_at).getTime()))
+    );
+  }
+
+  confirmDeleteSession(sessionId: string) {
     this.confirmationService.confirm({
       message: 'Are you sure you want to delete this entire chat session?',
       header: 'Delete Session',
@@ -88,8 +103,8 @@ export class ChatSessionComponent implements OnInit, OnDestroy {
     });
   }
 
-  deleteSession(sessionId: number) {
-    if (sessionId === 0) {
+  deleteSession(sessionId: string) {
+    if (sessionId === '') {
       return null;
     }
     const currentUser = this.authService.currentUserSignal();

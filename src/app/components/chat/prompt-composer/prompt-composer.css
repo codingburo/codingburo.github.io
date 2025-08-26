@@ -1,6 +1,9 @@
 @reference "tailwindcss";
 
 .p-textarea {
-    @apply focus:border focus:dark:border-emerald-900
+    @apply focus:border focus:dark:border-emerald-900 dark:bg-gray-950 bg-stone-100 dark:border-gray-900 border-stone-200 shadow;
 }
 
+ .p-button {
+    @apply hover:text-amber-300;
+}

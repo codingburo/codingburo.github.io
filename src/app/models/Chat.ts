@@ -1,6 +1,6 @@
 interface Chat {
   id: string;
-  sessionId: number;
+  sessionId: string;
   email: string;
   prompt: string;
   response: string;

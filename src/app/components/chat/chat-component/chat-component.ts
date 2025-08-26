@@ -18,14 +18,14 @@ export class ChatComponent implements OnInit {
   private chatdbService = inject(ChatdbService);
   private authService = inject(AuthService);
   responseData: Chat[] = [];
-  currentSessionId: number | undefined;
+  currentSessionId: string | undefined;
 
   ngOnInit() {
     this.route.paramMap.subscribe((params) => {
       const sessionId = params.get('sessionId');
       if (sessionId) {
-        this.currentSessionId = +sessionId;
-        this.loadSessionChats(+sessionId);
+        this.currentSessionId = sessionId;
+        this.loadSessionChats(sessionId);
       } else {
         this.currentSessionId = undefined;
         this.responseData = []; // Clear for new chat
@@ -37,7 +37,7 @@ export class ChatComponent implements OnInit {
     this.currentSessionId = undefined; // Reset session ID
   }
 
-  private loadSessionChats(sessionId: number) {
+  private loadSessionChats(sessionId: string) {
     const currentUser = this.authService.currentUserSignal();
     if (currentUser?.uid) {
       this.chatdbService
