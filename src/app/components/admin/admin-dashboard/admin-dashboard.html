@@ -1,8 +1,47 @@
-<div class="flex flex-col items-center justify-center w-full h-full">
+<!-- <div class="flex flex-col items-center justify-center w-full h-full">
     <div><p-button
     label="Migrate Session Ids"
     severity="danger"
     icon="pi pi-trash" class="m-3"
     (onClick)="migrateSessionIds()"
   /></div>
-</div>>
+</div> -->
+
+<div class="p-4">
+  <h2>Admin Dashboard</h2>
+  
+  <!-- <div class="mb-4">
+    <p-button 
+      label="Migrate Session IDs" 
+      severity="danger"
+      (onClick)="migrateSessionIds()" />
+  </div> -->
+
+  <div class="mb-4 dark:text-stone-200 text-gray-950">
+    <h3>Orphaned Sessions ({{ orphanedSessions.length }})</h3>
+    
+    @if (orphanedSessions.length === 0) {
+      <p>No orphaned sessions found.</p>
+    } @else {
+      <div class="grid gap-2 text-stone-200">
+        @for (session of orphanedSessions; track session.id) {
+          <div class="flex justify-between items-center p-3 border rounded">
+            <div>
+              <strong>{{ session.title }}</strong>
+              <br>
+              <small>ID: {{ session.id }}</small>
+              <br>
+              <small>Created: {{ session.createdAt | date:'short' }}</small>
+            </div>
+            <p-button 
+              icon="pi pi-trash" 
+              severity="danger"
+              size="small"
+              (onClick)="deleteOrphanedSession(session.id)" />
+          </div>
+        }
+      </div>
+    }
+  </div>
+</div>
+

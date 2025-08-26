@@ -406,4 +406,36 @@ export class ChatdbService {
       });
     });
   }
+
+  async findSessionsWithNoChats(): Promise<Session[]> {
+    return runInInjectionContext(this.injector, async () => {
+      const sessionsRef = collection(this.firestore, 'sessions');
+      const chatsRef = collection(this.firestore, 'chat');
+
+      // Get all sessions
+      const allSessions = await getDocs(sessionsRef);
+      const orphanedSessions: Session[] = [];
+
+      // Check each session for chats
+      for (const sessionDoc of allSessions.docs) {
+        const sessionId = sessionDoc.id;
+
+        // Query for chats with this sessionId
+        const chatsQuery = query(chatsRef, where('sessionId', '==', sessionId));
+        const chatsSnapshot = await getDocs(chatsQuery);
+
+        // If no chats found, add to orphaned list
+        if (chatsSnapshot.empty) {
+          orphanedSessions.push({
+            id: sessionDoc.id,
+            ...sessionDoc.data(),
+            createdAt: (sessionDoc.data()['createdAt'] as Timestamp).toDate(),
+            updatedAt: (sessionDoc.data()['updatedAt'] as Timestamp).toDate(),
+          } as Session);
+        }
+      }
+
+      return orphanedSessions;
+    });
+  }
 }

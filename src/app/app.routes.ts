@@ -51,7 +51,7 @@ export const routes: Routes = [
   { path: 'verify-email', component: VerifyEmail, title: 'Verify Email' },
   { path: 'signin', component: LoginComponent, title: 'Sign In' },
 
-  // { path: 'admin', component: AdminDashboard, title: 'Admin Dashboard' },
+  { path: 'admin', component: AdminDashboard, title: 'Admin Dashboard' },
 
   { path: '**', component: Notfound, title: 'Not Found' },
 ];
