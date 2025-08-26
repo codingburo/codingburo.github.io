@@ -1,7 +1,7 @@
-<div class="font-sans">
+<div class="bg-[url('/images/waves-orange.png')] bg-no-repeat bg-center bg-cover">
   <!-- Header -->
   <header
-    class="text-stone-100 md:p-6 p-3 backdrop-blur-xs shadow-xl dark:shadow-stone-900"
+    class="text-stone-100 md:p-6 p-3 shadow-lg dark:shadow-gray-900"
   >
     <div class="max-w-6xl mx-auto flex justify-between items-center">
       <app-brand />
@@ -20,7 +20,7 @@
     class="text-center py-10 flex flex-col items-center justify-center gap-10 dark:text-stone-100"
   >
     <div
-      class="bg-green-500 text-white px-4 py-2 rounded-full font-bold text-lg shadow-2xl border-b-8 border-amber-400"
+      class="bg-emerald-600 text-white px-4 py-2 rounded-full font-bold text-lg shadow-2xl border-b-12 border-yellow-500"
     >
       🎉 FREE to Join - No Credit Card Required
     </div>
@@ -59,43 +59,53 @@
   </section>
 
   <!-- Why Cobu -->
-  <section id="features" class="max-w-6xl mx-auto py-16 px-6">
+  <section id="features" class="max-w-6xl mx-auto py-16 px-6 w-full">
     <span class="flex flex-row gap-2 items-center justify-center">
       <app-brand-logo />
-      <h3
-        class="text-3xl font-bold text-center dark:text-amber-300 gradient-text"
+      <div
+        class="text-6xl font-bold text-center gradient-text p-5"
       >
         Why Cobu?
-      </h3></span
+    </div></span
     >
     <div class="grid md:grid-cols-3 gap-10 text-center">
       <div
-        class="bg-white dark:bg-stone-200 p-6 rounded-2xl shadow hover:shadow-2xl"
+        class="feature-card"
       >
-        <h4 class="text-xl font-semibold mb-3">Choose Your AI Provider</h4>
-        <p>
-          Switch between OpenAI and Anthropic models. Pick the AI that works
-          best for your specific needs and preferences.
-        </p>
+      <div class="flex justify-center mb-4">
+        <i class="pi pi-lightbulb text-yellow-500" style="font-size: 2.0rem"></i>
       </div>
-      <div
-        class="bg-white dark:bg-stone-200 p-6 rounded-2xl shadow hover:shadow-2xl"
-      >
-        <h4 class="text-xl font-semibold mb-3">Web Search Integration</h4>
-        <p>
-          Get real-time information from the web. Ask about current events,
-          latest news, or any topic requiring up-to-date data.
-        </p>
-      </div>
-      <div
-        class="bg-white dark:bg-stone-200 p-6 rounded-2xl shadow hover:shadow-2xl"
-      >
         <h4 class="text-xl font-semibold mb-3">Brainstorming Partner</h4>
         <p>
           Generate ideas, explore concepts, and think through problems. Perfect
           for creative sessions and strategic planning.
         </p>
       </div>
+      <div
+      class="feature-card"
+    >
+      <div class="flex justify-center mb-4">
+        <i class="pi pi-cog text-sky-600" style="font-size: 2.0rem"></i>
+      </div>
+      <h4 class="text-xl font-semibold mb-3">Choose Your AI Provider</h4>
+      <p>
+        Switch between OpenAI and Anthropic models. Pick the AI that works
+        best for your specific needs and preferences.
+      </p>
+    </div>
+      <div
+        class="feature-card"
+      >
+      <div class="flex justify-center mb-4">
+        <i class="pi pi-search text-fuchsia-500" style="font-size: 2.0rem"></i>
+      </div>
+        <h4 class="text-xl font-semibold mb-3">Web Search Integration</h4>
+        <p>
+          Get real-time information from the web. Ask about current events,
+          latest news, or any topic requiring up-to-date data.
+        </p>
+      </div>
+      
     </div>
   </section>
 
@@ -236,7 +246,7 @@
 
   <!-- Footer -->
   <footer
-    class="dark:text-stone-400 text-center py-6 bg-stone-900 text-stone-200"
+    class="dark:text-stone-400 text-center py-6 bg-gray-950 text-stone-200 shadow-emerald-200 shadow"
   >
     <div class="max-w-6xl mx-auto flex justify-center items-center py-2">
       <div class="md:space-x-4 space-x-2">

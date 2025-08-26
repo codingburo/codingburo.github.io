@@ -7,7 +7,7 @@
 }
 
 .a-footer-links{
-@apply text-amber-300;
+@apply  dark:text-sky-300 hover:dark:text-amber-300;
 }
 
 
@@ -17,4 +17,8 @@
 
 .p-button-outline{
     @apply bg-transparent border border-emerald-700 dark:border-emerald-400 rounded-full p-3 px-5 hover:border-yellow-500;
+}
+
+.feature-card{
+    @apply bg-white dark:bg-gray-950 dark:text-stone-100 p-6 rounded-2xl border border-emerald-100 dark:border-emerald-950 shadow hover:shadow-lg dark:shadow-emerald-800 transition-all duration-300;
 }

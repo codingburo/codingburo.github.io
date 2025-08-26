@@ -17,7 +17,7 @@
 
   body{
     
-    @apply h-dvh bg-stone-100 dark:bg-zinc-800;
+    @apply h-dvh bg-stone-50 dark:bg-gray-950 dark:border-gray-700 border-stone-200;
 }
 
 
@@ -45,11 +45,9 @@
 }
 
 .gradient-text{
-  @apply bg-gradient-to-r dark:from-stone-400 from-emerald-800 via-sky-600 to-emerald-600 inline-block text-transparent bg-clip-text;
+  @apply bg-gradient-to-r dark:from-stone-100 from-emerald-800 via-emerald-600 to-emerald-800 inline-block text-transparent bg-clip-text;
 }
-.gradient-text3{
-  @apply bg-gradient-to-r dark:from-stone-300 from-stone-500 via-sky-500 to-emerald-800 dark:to-emerald-500 inline-block text-transparent bg-clip-text;
-}
+
 .gradient-text2{
   @apply bg-gradient-to-r dark:from-stone-300 from-stone-500 via-stone-700 to-stone-500 dark:to-stone-300 inline-block text-transparent bg-clip-text;
 }
@@ -62,18 +60,38 @@
   @apply text-stone-900 dark:text-stone-200 hover:text-stone-700 dark:hover:text-amber-200;
 }
 
+markdown {
+@apply text-gray-950 dark:text-stone-100;
+}
 
 markdown h3 {
-  @apply text-2xl mt-3 text-zinc-950 dark:text-sky-300;
+  @apply text-xl mt-3 
 }
 markdown h2 {
-  @apply text-3xl mt-5 text-zinc-950 dark:text-sky-300;
+  @apply text-2xl mt-5;
 }
 
 markdown strong {
-  @apply  font-bold text-xl text-zinc-900 dark:text-sky-200 mb-1;
+  @apply  font-semibold;
 }
 
 markdown p {
-  @apply  font-normal mt-2;
+  @apply mt-2;
 }
+markdown a{
+  @apply text-sky-600 dark:text-sky-300 hover:text-amber-500 hover:dark:text-amber-300
+}
+markdown pre {
+  @apply bg-stone-100 dark:bg-gray-900 border border-stone-200 dark:border-gray-800 shadow-md dark:shadow-gray-700 p-5 rounded-xl text-gray-800 dark:text-stone-100;
+}
+
+.p-button-contrast {
+    color: #007ad9 !important;
+    background:transparent !important;
+    border:0px !important;
+  }
+
+  .p-button-contrast:hover {
+    color: #cd3232 !important;
+    
+  }
