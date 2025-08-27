@@ -1,6 +1,6 @@
-<p-fluid class="w-full justify-center flex flex-col md:my-10 my-0 md:py-10 py-2 rounded-xl shadow-xl">
+<p-fluid class="w-full justify-center flex flex-col md:my-10 my-3 md:py-10 py-3 rounded-xl shadow-xl">
   @if (sessionData) {
-  <div class="flex w-full items-center justify-center gap-2 text-4xl md:px-0 px-5 text-shadow-xs">
+  <div class="flex w-full items-center justify-center gap-2 text-3xl text-shadow-xs">
     {{ sessionData.title | titlecase }}
     <p-button
       icon="pi pi-pencil"
@@ -26,13 +26,13 @@
       @for (chat of responses; track $index) {
       <div class="flex flex-col w-full h-fit md:my-10 my-5">
         <div
-          class="flex gap-5 w-full self-end max-w-4/5 items-baseline p-3 text-xl py-2 rounded-xl"
+          class="flex gap-5 w-full self-end max-w-4/5 items-baseline p-3 py-2 rounded-xl"
         >
           <div
             class=" text-right break-words min-w-0 flex-1"
           >
           <span class="text-muted-color-emphasis text-xs">{{chat?.create_at | date:'short'}}</span><br/>
-            {{ chat?.prompt }}
+            <span class="text-xl">{{ chat?.prompt }}</span>
           </div>
           <p-button
             severity="contrast"
@@ -45,7 +45,7 @@
         <div class="flex items-baseline gap-2 p-5">
           <i
             [class]="getProviderIcon(chat?.provider)"
-            class="text-lg text-amber-400"
+            class="text-lg text-primary-900 bg-primary-200 p-1 rounded-full"
           ></i>
           <markdown [data]="chat?.response"></markdown>
         </div>
