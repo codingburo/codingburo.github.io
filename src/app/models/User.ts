@@ -1,6 +1,6 @@
 import { UserInfo } from '@angular/fire/auth';
 
-interface MyUser {
+export interface MyUser {
   uid: string;
   username: string;
   email: string;
