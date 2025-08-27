@@ -3,7 +3,7 @@
     <div class="flex flex-col justify-between h-full space-y-2 md:p-0 p-2 w-full">
       @if (responseData.length > 0) {
       <!-- <app-prompt-response [responses]="responseData" /> -->
-       <app-chat-session-component [responses]="responseData" [sessionData]="sessionData" class="h-full mb-48 border border-primary-contrast"/>
+       <app-chat-session-component [responses]="responseData" [sessionData]="sessionData" class="h-full mb-52 border border-primary-contrast"/>
       } @if (responseData.length < 1) {
       <app-home-card
         [isVisible]="responseData.length < 1"
@@ -16,6 +16,6 @@
         (responseData)="handleResponsesData($event)"
         (newChatStarted)="handleNewChat()"
         [sessionId]="currentSessionId"
-        class="self-center w-full py-2 md:max-w-5/6 max-w-full bg-primary-contrast fixed bottom-0 border border-primary-contrast md:p-0 p-2"
+        class="self-center w-full py-1 md:max-w-5/6 max-w-full bg-primary-contrast fixed bottom-0 border border-primary-contrast md:mx-0 mx-2"
       />
 </div>
