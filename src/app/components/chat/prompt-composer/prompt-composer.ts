@@ -4,9 +4,11 @@ import {
   inject,
   Injector,
   Input,
+  OnChanges,
   OnInit,
   Output,
   runInInjectionContext,
+  SimpleChanges,
 } from '@angular/core';
 import { Textarea } from 'primeng/textarea';
 import { FormsModule } from '@angular/forms';
@@ -29,7 +31,7 @@ import {
   templateUrl: './prompt-composer.html',
   styleUrl: './prompt-composer.css',
 })
-export class PromptComposer implements OnInit {
+export class PromptComposer implements OnInit, OnChanges {
   chatdbService = inject(ChatdbService);
   authService = inject(AuthService);
   messageService = inject(MessageService);
@@ -55,6 +57,12 @@ export class PromptComposer implements OnInit {
   ngOnInit() {
     // Set currentSessionId from input
     this.currentSessionId = this.sessionId;
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['sessionId']) {
+      this.currentSessionId = this.sessionId;
+    }
   }
 
   getPrompt() {
@@ -177,8 +185,6 @@ export class PromptComposer implements OnInit {
         .getChat(this.prompt, sessionId, this.selectedProvider)
         .subscribe({
           next: (response: string) => {
-            // this.responses.push({ prompt: this.prompt, response: response });
-
             // Save to database
             const currentUser = this.authService.currentUserSignal();
             if (currentUser?.uid) {
