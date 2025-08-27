@@ -1,13 +1,26 @@
 @if (authService.currentUserSignal() == null) {
 <div class="flex text-center gap-2 items-center">
   <a routerLink="/signin" class="font-semibold">Sign In</a>
-  <a routerLink="/signup" class="p-button hi-button" style="text-decoration-line: none;">Create an account</a>
+  <a
+    routerLink="/signup"
+    class="p-button hi-button"
+    style="text-decoration-line: none"
+    >Create an account</a
+  >
 </div>
 } @if (authService.currentUserSignal()) {
-<div class="flex gap-3 items-center">
-  <a routerLink="/chat" class="font-semibold "><span class="a_span">Chat</span></a>
-  <span class="highlight text-ellipsis text-nowrap">{{ authService.currentUserSignal()?.username }}</span
-    >
-    <a (click)="logout()" href="javascript:void(0);"><i class="pi pi-sign-out text-amber-700 dark:text-amber-300"></i></a>
+<div class="flex gap-3 items-center w-fit">
+  <a routerLink="/chat" class="font-semibold"
+    ><span class="a_span">Chat</span></a
+  >
+  
+  
+  <div class="card flex justify-center">
+    <p-menu #menu [model]="items()" [popup]="true" />
+    <p-avatar (click)="menu.toggle($event)" class="hover:cursor-pointer border"
+    [image]="userImage()"
+    shape="circle" [title]="userTitle()"
+  />
+</div>
 </div>
 }

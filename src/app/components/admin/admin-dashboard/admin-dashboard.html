@@ -1,11 +1,4 @@
-<!-- <div class="flex flex-col items-center justify-center w-full h-full">
-    <div><p-button
-    label="Migrate Session Ids"
-    severity="danger"
-    icon="pi pi-trash" class="m-3"
-    (onClick)="migrateSessionIds()"
-  /></div>
-</div> -->
+
 
 <div class="p-4">
   <h2>Admin Dashboard</h2>
@@ -17,13 +10,13 @@
       (onClick)="migrateSessionIds()" />
   </div> -->
 
-  <div class="mb-4 dark:text-stone-200 text-gray-950">
+  <div class="mb-4">
     <h3>Orphaned Sessions ({{ orphanedSessions.length }})</h3>
     
     @if (orphanedSessions.length === 0) {
       <p>No orphaned sessions found.</p>
     } @else {
-      <div class="grid gap-2 text-stone-200">
+      <div class="grid gap-2">
         @for (session of orphanedSessions; track session.id) {
           <div class="flex justify-between items-center p-3 border rounded">
             <div>

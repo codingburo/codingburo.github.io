@@ -47,38 +47,7 @@ export class ChatSessionComponent implements OnInit, OnDestroy {
     return getProviderIcon(provider);
   }
 
-  ngOnInit() {
-    // console.log('Here');
-    // if (this.responses.length === 0) {
-    //   console.log('Here 1');
-    //   this.route.paramMap
-    //     .pipe(
-    //       switchMap((params) => {
-    //         const sessionId = params.get('sessionId');
-    //         if (sessionId) {
-    //           const currentUser = this.authService.currentUserSignal();
-    //           if (currentUser?.uid) {
-    //             console.log(
-    //               'User id: ',
-    //               currentUser.uid,
-    //               'sessionId id: ',
-    //               sessionId
-    //             );
-    //             return this.chatdbService.getChatsByUserSession(
-    //               currentUser?.uid,
-    //               sessionId
-    //             );
-    //           }
-    //         }
-    //         return of(null);
-    //       }),
-    //       takeUntil(this.destroy$)
-    //     )
-    //     .subscribe((chats) => {
-    //       this.responses = chats || [];
-    //     });
-    // }
-  }
+  ngOnInit() {}
   stringify(obj: any) {
     return JSON.stringify(obj);
   }

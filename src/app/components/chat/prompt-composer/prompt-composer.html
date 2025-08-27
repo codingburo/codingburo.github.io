@@ -3,7 +3,7 @@
   }
   
 <div
-  class="rounded-2xl bg-stone-100 border border-stone-200 dark:border-gray-900 shadow shadow-amber-200 dark:shadow-gray-700 dark:bg-gray-950 p-4"
+  class="rounded-2xl p-4"
 >
     <div class="flex items-center gap-2 w-full"><textarea
       class="shadow w-full"
@@ -16,23 +16,37 @@
       autofocus="true"
       (keydown.enter)="prompt !== '' ? getPrompt() : null"
     ></textarea>
-    <p-select [options]="providerOptions" [(ngModel)]="selectedProvider" optionLabel="label" optionValue="value" placeholder="Select Provider" class="w-fit" /></div>
+    <p-button
+        aria-label="Prompt Coding Buro"
+        icon="pi pi-arrow-circle-up"
+        text="true"
+        [rounded]="true"
+        [disabled]="prompt === '' || isLoading"
+        (onClick)="getPrompt()"
+        [loading]="isLoading"
+        severity="contrast"
+      />
+    </div>
   
 
-  <div class="flex flex-row justify-between items-center my-5 md:items-baseline">
+  <div class="flex flex-row justify-center items-center my-5 md:items-baseline">
     <div class="py-2 max-w-sm">
-      <p-selectbutton
+      <!-- <p-selectbutton
         class="text-nowrap w-fit min-w-fit text-ellipsis items-start"
         [options]="promptOptions"
         [(ngModel)]="selectedAction"
         [multiple]="false"
         optionLabel="name"
         optionValue="value"
-      />
+      /> -->
     </div>
     
-    <div class="flex flex-row items-center rounded-full">
-      <p-button
+    <div class="flex flex-row items-center rounded-full gap-2">
+      <label class="text-muted-color-emphasis">
+        Choose your AI assistant
+      </label>
+      <p-select [options]="providerOptions" [(ngModel)]="selectedProvider" optionLabel="label" optionValue="value" placeholder="Select Provider" class="w-fit" />
+      <!-- <p-button
         icon="pi pi-pen-to-square"
         aria-label="New Chat"
         [rounded]="true"
@@ -56,7 +70,8 @@
         [text]="true"
         severity="secondary"
         [outlined]="false"
-      /><p-button
+      /> -->
+      <!-- <p-button
         aria-label="Prompt Coding Buro"
         icon="pi pi-arrow-circle-up"
         text="true"
@@ -64,7 +79,8 @@
         [disabled]="prompt === '' || isLoading"
         (onClick)="getPrompt()"
         [loading]="isLoading"
-      />
+        severity="contrast"
+      /> -->
     </div>
   </div>
   <p class="text-muted-color w-full text-center">

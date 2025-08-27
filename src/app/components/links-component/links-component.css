@@ -1,3 +1,5 @@
-
+:host ::ng-deep .menu-item{
+    font-size: small;
+}
 
 

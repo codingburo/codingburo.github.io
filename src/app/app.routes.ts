@@ -9,11 +9,24 @@ import { ResetPassword } from './components/auth/reset-password/reset-password';
 import { EmailVerifyGuard } from './services/email-verify-guard';
 import { VerifyEmail } from './components/auth/verify-email/verify-email';
 import { AdminDashboard } from './components/admin/admin-dashboard/admin-dashboard';
+import { NewLandingComponent } from './components/new-landing-component/new-landing-component';
+import { adminGuard } from './services/admin-guard';
 
 export const routes: Routes = [
   {
     path: '',
     component: LandingPage,
+    title: 'Cobu - Your AI Brainstorm Buddy | Smart AI Chat Assistant',
+    data: {
+      description:
+        'Start brainstorming with Cobu, your intelligent AI assistant for creative ideas and productive conversations.',
+      keywords:
+        'AI chat, brainstorm, creative assistant, artificial intelligence',
+    },
+  },
+  {
+    path: 'landing',
+    component: NewLandingComponent,
     title: 'Cobu - Your AI Brainstorm Buddy | Smart AI Chat Assistant',
     data: {
       description:
@@ -51,7 +64,12 @@ export const routes: Routes = [
   { path: 'verify-email', component: VerifyEmail, title: 'Verify Email' },
   { path: 'signin', component: LoginComponent, title: 'Sign In' },
 
-  { path: 'admin', component: AdminDashboard, title: 'Admin Dashboard' },
+  {
+    path: 'admin',
+    component: AdminDashboard,
+    title: 'Admin Dashboard',
+    canActivate: [adminGuard],
+  },
 
   { path: '**', component: Notfound, title: 'Not Found' },
 ];

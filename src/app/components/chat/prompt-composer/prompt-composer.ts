@@ -12,7 +12,6 @@ import { Textarea } from 'primeng/textarea';
 import { FormsModule } from '@angular/forms';
 import { Button } from 'primeng/button';
 import { SelectModule } from 'primeng/select';
-import { SelectButton } from 'primeng/selectbutton';
 import { Weather } from '../../../services/weather';
 import { LoadingComponent } from '../../loading-component/loading-component';
 import { ChatdbService } from '../../../services/chatdb-service';
@@ -26,15 +25,7 @@ import {
 
 @Component({
   selector: 'app-prompt-composer',
-  imports: [
-    Textarea,
-    FormsModule,
-    Button,
-    SelectButton,
-    SelectModule,
-
-    LoadingComponent,
-  ],
+  imports: [Textarea, FormsModule, Button, SelectModule, LoadingComponent],
   templateUrl: './prompt-composer.html',
   styleUrl: './prompt-composer.css',
 })

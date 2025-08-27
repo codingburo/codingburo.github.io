@@ -1,6 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HomeCard } from '../home-card/home-card';
+import { HomeCard } from '../../home-card/home-card';
 import { PromptComposer } from '../prompt-composer/prompt-composer';
 import { ChatSessionComponent } from '../chat-session-component/chat-session-component';
 import { ActivatedRoute } from '@angular/router';

@@ -7,14 +7,14 @@
       } @if (responseData.length < 1) {
       <app-home-card
         [isVisible]="responseData.length < 1"
-        class="flex flex-col justify-center self-center h-full w-full max-w-4xl"
+        class="flex flex-col justify-center self-center h-full w-full max-w-5/6"
       />
       }
       <app-prompt-composer
         (responseData)="handleResponsesData($event)"
         (newChatStarted)="handleNewChat()"
         [sessionId]="currentSessionId"
-        class="self-center w-full py-2 max-w-4/5"
+        class="self-center w-full py-2 max-w-full"
       />
     </div>
   </div>
