@@ -30,57 +30,14 @@
   
 
   <div class="flex flex-row justify-center items-center my-5 md:items-baseline">
-    <div class="py-2 max-w-sm">
-      <!-- <p-selectbutton
-        class="text-nowrap w-fit min-w-fit text-ellipsis items-start"
-        [options]="promptOptions"
-        [(ngModel)]="selectedAction"
-        [multiple]="false"
-        optionLabel="name"
-        optionValue="value"
-      /> -->
-    </div>
+    
     
     <div class="flex flex-row items-center rounded-full gap-2">
       <label class="text-muted-color-emphasis">
         Choose your AI assistant
       </label>
       <p-select [options]="providerOptions" [(ngModel)]="selectedProvider" optionLabel="label" optionValue="value" placeholder="Select Provider" class="w-fit" />
-      <!-- <p-button
-        icon="pi pi-pen-to-square"
-        aria-label="New Chat"
-        [rounded]="true"
-        [text]="true"
-        [rounded]="true"
-        [outlined]="false" title="Start New Chat"
-        (onClick)="startNewChat()"
-      />
-      <p-button
-        icon="pi pi-paperclip"
-        aria-label="Attach file"
-        [rounded]="true"
-        [text]="true"
-        severity="secondary"
-        [outlined]="false"
-      />
-      <p-button
-        icon="pi pi-microphone"
-        aria-label="Prompt Coding Buro"
-        [rounded]="true"
-        [text]="true"
-        severity="secondary"
-        [outlined]="false"
-      /> -->
-      <!-- <p-button
-        aria-label="Prompt Coding Buro"
-        icon="pi pi-arrow-circle-up"
-        text="true"
-        [rounded]="true"
-        [disabled]="prompt === '' || isLoading"
-        (onClick)="getPrompt()"
-        [loading]="isLoading"
-        severity="contrast"
-      /> -->
+      
     </div>
   </div>
   <p class="text-muted-color w-full text-center">
