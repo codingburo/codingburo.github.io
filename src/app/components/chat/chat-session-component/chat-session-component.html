@@ -42,15 +42,15 @@
           />
         </div>
 
-        <div class="flex items-baseline gap-2 p-5">
+        <div class="flex items-baseline gap-2 p-5 pb-0">
           <i
             [class]="getProviderIcon(chat?.provider)"
-            class="text-lg text-primary-900 bg-primary-200 p-1 rounded-full"
+            class="text-lg dark:bg-gray-600 text-gray-900 dark:text-primary-200 bg-primary-200 p-1 rounded-full"
           ></i>
           <markdown [data]="chat?.response"></markdown>
         </div>
-        <app-chat-share-status [chat]="chat" />
-        <app-chat-actions [chat]="chat" (interactionUpdated)="onInteractionUpdated($event)"/>
+        <app-chat-actions [chat]="chat" (interactionUpdated)="onInteractionUpdated($event)" class="my-3"/>
+        <app-chat-share-status [chat]="chat" class="my-3"/>
       </div>
       }
       <div

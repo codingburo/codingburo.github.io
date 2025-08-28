@@ -66,13 +66,13 @@ export class ChatActionsComponent {
   getLikeClass() {
     return this.userReaction === 'like'
       ? 'text-blue-400 font-semibold'
-      : 'text-stone-200';
+      : 'text-stone-500';
   }
 
   getDislikeClass() {
     return this.userReaction === 'dislike'
       ? 'text-red-400 font-semibold'
-      : 'text-stone-200';
+      : 'text-stone-500';
   }
 
   onCopy() {
