@@ -1,32 +1,10 @@
-<header class="shadow-md inset-shadow-primary-contrast">
-<p-menubar [model]="items">
-  <ng-template #start>
+<div class="flex items-center justify-between w-full mt-2 px-2">
+  <div class="flex items-center">
     <app-sidebar />
-    <app-brand class="ml-0" />
-  </ng-template>
-  
-  <ng-template #item let-item let-root="root">
-    <a class="flex items-center p-menubar-item-link">
-      <span>{{ item.label }}</span>
-      @if(item.badge){
-        <p-badge
-        [ngClass]="{ 'ml-auto': !root, 'ml-2': root }"
-        [value]="item.badge"
-        />} @if (item.shortcut) {
-          <span
-          class="ml-auto border border-surface bg-emphasis text-muted-color text-xs p-1"
-          >{{ item.shortcut }}</span
-          >} @if (item.items) {
-            <i
-            [ngClass]="['ml-auto pi', root ? 'pi-angle-down' : 'pi-angle-right']"
-            ></i
-            >}
-          </a>
-        </ng-template>
-        <ng-template #end>
-          <div class="flex flex-row  gap-2 w-full items-end px-3">
-            <app-links-component />
-          </div>
-        </ng-template>
-      </p-menubar>
-    </header>
+    <app-brand />
+    <app-tab-menu-component class="ml-5"/>
+  </div>
+  <div class="flex flex-row gap-2 items-end px-3">
+    <app-links-component />
+  </div>
+</div>

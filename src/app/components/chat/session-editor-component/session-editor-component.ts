@@ -4,7 +4,7 @@ import { InputText } from 'primeng/inputtext';
 import { Button } from 'primeng/button';
 import { FormsModule } from '@angular/forms';
 import { MessageService } from 'primeng/api';
-import { ChatdbService } from '../../services/chatdb-service';
+import { ChatdbService } from '../../../services/chatdb-service';
 
 @Component({
   selector: 'app-session-editor-component',

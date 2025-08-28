@@ -3,6 +3,9 @@ module.exports = {
   content: ["./src/**/*.{html,ts,css}"],
   theme: {
     extend: {
+      fontFamily: {
+        Roboto: ["Roboto"],
+      },
       keyframes: {
         bounceDot: {
           "0%, 100%": { transform: "translateY(0)" },

@@ -9,13 +9,14 @@ import { Button } from 'primeng/button';
 import { Fluid } from 'primeng/fluid';
 import { DatePipe } from '@angular/common';
 import { TitleCasePipe } from '@angular/common';
-import { SessionEditorComponent } from '../../session-editor-component/session-editor-component';
 import {
   getProviderIcon,
   DEFAULT_PROVIDER,
 } from '../../../constants/app.constants';
 import { MarkdownComponent } from 'ngx-markdown';
-import { ChatActionsComponent } from '../../chat-actions/chat-actions';
+import { ChatActionsComponent } from '../chat-actions/chat-actions';
+import { ChatShareStatusComponent } from '../../chat-share-status/chat-share-status';
+import { SessionEditorComponent } from '../session-editor-component/session-editor-component';
 
 @Component({
   selector: 'app-chat-session-component',
@@ -27,6 +28,7 @@ import { ChatActionsComponent } from '../../chat-actions/chat-actions';
     TitleCasePipe,
     SessionEditorComponent,
     ChatActionsComponent,
+    ChatShareStatusComponent,
   ],
   templateUrl: './chat-session-component.html',
   styleUrl: './chat-session-component.css',

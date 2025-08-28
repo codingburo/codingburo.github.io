@@ -1,0 +1,4 @@
+@reference "tailwindcss";
+.p-tab{
+   @apply text-gray-900 dark:text-stone-50 text-xl p-4 focus:text-gray-900 focus:dark:text-stone-100 focus:font-semibold; 
+}

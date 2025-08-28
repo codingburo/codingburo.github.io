@@ -11,6 +11,7 @@ import { VerifyEmail } from './components/auth/verify-email/verify-email';
 import { AdminDashboard } from './components/admin/admin-dashboard/admin-dashboard';
 import { NewLandingComponent } from './components/new-landing-component/new-landing-component';
 import { adminGuard } from './services/admin-guard';
+import { SharedChatComponent } from './components/share/shared-chat/shared-chat';
 
 export const routes: Routes = [
   {
@@ -57,6 +58,11 @@ export const routes: Routes = [
         'Continue your AI conversation with Cobu in this chat session.',
       keywords: 'AI chat session, conversation, brainstorm',
     },
+  },
+  {
+    path: 'shared/:token',
+    component: SharedChatComponent,
+    title: 'Shared Chat',
   },
 
   { path: 'signup', component: RegisterComponent, title: 'Sign Up' },

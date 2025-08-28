@@ -2,48 +2,42 @@
 <app-loading-component class="w-full" />
 }
 
-<div class="p-4 m-2 w-full rounded-4xl">
-  <div class="flex items-center gap-2 w-full">
-    <textarea
-      class="w-full"
-      placeholder="Ask Cobu"
-      [(ngModel)]="prompt"
-      variant="filled"
-      rows="1"
-      pTextarea
-      autoResize="true"
-      autofocus="true"
-      (keydown.enter)="prompt !== '' ? getPrompt() : null"
-    ></textarea>
+<div class="p-2 w-full rounded-2xl">
+  <div class="flex md:flex-row flex-col items-center gap-3 w-full">
+    <div class="flex flex-row items-center gap-2 w-full">
+      <textarea
+        class="w-full"
+        placeholder="Ask Cobu"
+        [(ngModel)]="prompt"
+        variant="filled"
+        rows="1"
+        pTextarea
+        autoResize="true"
+        autofocus="true"
+        (keydown.enter)="prompt !== '' ? getPrompt() : null"
+      ></textarea>
 
-    <div
-      class="flex flex-row items-center justify-end rounded-full gap-2"
-    >
-      <p-select
-        [options]="providerOptions"
-        [(ngModel)]="selectedProvider"
-        optionLabel="label"
-        optionValue="value"
-        placeholder="Select Provider"
-        class="w-fit"
-      />
-      <!-- <p-button
-        aria-label="Prompt Coding Buro"
-        icon="pi pi-arrow-circle-up"
-        text="true"
-        [rounded]="true"
-        [disabled]="prompt === '' || isLoading"
-        (onClick)="getPrompt()"
-        [loading]="isLoading"
-        severity="contrast"
-      /> -->
       <button
         (click)="getPrompt()"
         [disabled]="prompt === '' || isLoading"
-        class="aspect-square px-3 py-2 dark:bg-gray-800 bg-black text-white rounded-full  disabled:cursor-not-allowed hover:cursor-pointer"
+        class="aspect-square px-3 py-2 dark:bg-gray-800 bg-black text-white rounded-full disabled:cursor-not-allowed hover:cursor-pointer"
       >
-        <i [class]="isLoading ? 'pi pi-spin pi-spinner text-xl cursor-progress' : 'pi pi-arrow-up text-xl cursor-pointer'"></i>
+        <i
+          [class]="
+            isLoading
+              ? 'pi pi-spin pi-spinner text-xl cursor-progress'
+              : 'pi pi-arrow-up text-xl cursor-pointer'
+          "
+        ></i>
       </button>
     </div>
+    <p-select
+      [options]="providerOptions"
+      [(ngModel)]="selectedProvider"
+      optionLabel="label"
+      optionValue="value"
+      placeholder="Select Provider"
+      class="w-fit md:self-auto self-start"
+    />
   </div>
 </div>

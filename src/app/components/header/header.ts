@@ -23,7 +23,10 @@ export class Header implements OnInit {
             .join('/') || '';
 
         this.showMenuBar =
-          path !== '' && path !== 'signup' && path !== 'signin';
+          path !== '' &&
+          path !== 'signup' &&
+          path !== 'signin' &&
+          path !== 'shared';
       });
   }
 }

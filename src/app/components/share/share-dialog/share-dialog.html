@@ -1,0 +1,96 @@
+<p-dialog
+  [(visible)]="visible"
+  header="Share Chat"
+  [modal]="true"
+  [closable]="true"
+  [style]="{ width: '400px' }"
+>
+  @if (!shareUrl) {
+    <!-- Step 1: Choose visibility -->
+    <div class="flex flex-col gap-4">
+      <div class="flex flex-col gap-2">
+        <label class="font-semibold">Who can access this chat?</label>
+
+        <div class="flex items-center gap-2">
+          <p-radioButton
+            name="visibility"
+            value="public"
+            [(ngModel)]="selectedVisibility"
+            inputId="public"
+          />
+          <label for="public">Anyone with the link</label>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <p-radioButton
+            name="visibility"
+            value="group"
+            [(ngModel)]="selectedVisibility"
+            inputId="group"
+          />
+          <label for="group">Specific people (requires sign-in)</label>
+        </div>
+      </div>
+
+      <!-- Buttons in body instead of footer -->
+      <div class="flex justify-between w-full pt-4 border-t">
+        <p-button label="Cancel" severity="secondary" (onClick)="onCancel()" />
+        <p-button
+          label="Create Share Link"
+          (onClick)="onShare()"
+          [loading]="isLoading"
+        />
+      </div>
+    </div>
+  } @else {
+    <!-- Step 2: Share link created -->
+    <div class="flex flex-col gap-4">
+      <div class="flex items-center gap-2 text-green-600">
+        <i class="pi pi-check-circle"></i>
+        <span class="font-semibold">Share link created!</span>
+      </div>
+
+      <div class="flex flex-col gap-2">
+        <label class="font-semibold">Share Link</label>
+        <div class="flex gap-2">
+          <input
+            type="text"
+            [value]="shareUrl"
+            readonly
+            class="flex-1 p-2 border rounded text-sm"
+          />
+          <p-button
+            [icon]="copySuccess ? 'pi pi-check' : 'pi pi-copy'"
+            [label]="copySuccess ? 'Copied!' : ''"
+            (onClick)="copyLink()"
+            [severity]="copySuccess ? 'success' : 'secondary'"
+            [text]="true"
+            title="Copy link"
+          />
+        </div>
+      </div>
+
+      <div class="text-sm text-gray-600">
+        <p>
+          ✓ Chat is now
+          {{
+            selectedVisibility === "public"
+              ? "publicly accessible"
+              : "accessible to specific people"
+          }}
+        </p>
+        <p>✓ Viewers will have read-only access</p>
+      </div>
+
+      <!-- Buttons in body instead of footer -->
+      <div class="flex justify-between w-full pt-4 border-t">
+        <p-button
+          label="Create Another"
+          severity="secondary"
+          (onClick)="reset()"
+        />
+        <p-button label="Done" (onClick)="onDone()" />
+      </div>
+    </div>
+  }
+</p-dialog>

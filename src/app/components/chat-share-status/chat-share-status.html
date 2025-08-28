@@ -1,0 +1,24 @@
+@if (shareTokens.length > 0) {
+      <div class="bg-blue-50 border border-blue-200 rounded-lg p-3 mt-2">
+        <div class="flex items-center gap-2 text-blue-700">
+          <i class="pi pi-share-alt text-sm"></i>
+          <span class="text-sm font-medium">
+            Shared publicly • {{ chat.interactions?.views || 0 }} views
+          </span>
+        </div>
+        
+        <div class="flex items-center gap-2 mt-2">
+          <button 
+            (click)="copyShareLink()" 
+            class="text-xs text-blue-600 hover:text-blue-800 hover:cursor-pointer">
+            Copy link
+          </button>
+          <button 
+            (click)="stopSharing()" 
+            class="text-xs text-red-600 hover:text-red-800  hover:cursor-pointer">
+            Stop sharing
+          </button>
+        </div>
+        <a href={{sharedUrl}} class="text-muted-color text-sm">{{sharedUrl}}</a>
+      </div>
+    }

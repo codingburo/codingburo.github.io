@@ -12,6 +12,7 @@ interface Chat {
     shares: number;
     copies: number;
     retries: number;
+    views: number;
   };
   visibility: 'private' | 'public' | 'shared';
 }

@@ -1,0 +1,78 @@
+@if (chat) {
+      <div class="max-w-4xl mx-auto p-6">
+        <!-- Shared banner -->
+        <div class="bg-blue-50 text-muted-color dark:bg-gray-900 border border-blue-200 dark:border-gray-800 rounded-lg p-4 mb-6">
+          <div class="flex items-center gap-2">
+            <i class="pi pi-share-alt"></i>
+            <span class=" font-medium">This is an <span class="font-bold">AI Generated</span> shared chat</span>
+          </div>
+          <p class=" text-sm mt-1">
+             Read-only access
+          </p>
+        </div>
+
+        <!-- Chat content -->
+        <div class="flex flex-col gap-6">
+          <!-- User prompt -->
+          <div class="flex justify-end">
+            <div class="bg-gray-100 dark:bg-gray-800 rounded-lg p-4 max-w-3xl">
+              <div class="text-xs text-gray-500 mb-2">
+                {{ chat.create_at | date:'short' }}
+              </div>
+              <div class="text-lg">{{ chat.prompt }}</div>
+            </div>
+          </div>
+
+          <!-- AI response -->
+          <div class="flex items-baseline gap-3">
+            <i class="pi pi-comments text-2xl bg-primary p-2 rounded-full"></i>
+            <div class="flex-1">
+              <markdown [data]="chat.response"></markdown>
+            </div>
+          </div>
+
+          <!-- Actions - only show if authenticated -->
+          @if (isAuthenticated) {
+            <app-chat-actions 
+              [chat]="chat" 
+              [readonly]="false"
+              (interactionUpdated)="onInteractionUpdated($event)" />
+          } @else {
+            <!-- Read-only interaction display -->
+            <div class="flex items-center justify-end gap-3 text-sm text-stone-200 px-5">
+              <span class="flex items-center gap-1">
+                <i class="pi pi-thumbs-up"></i> {{ chat.interactions?.likes || 0 }}
+              </span>
+              <span class="flex items-center gap-1">
+                <i class="pi pi-thumbs-down"></i> {{ chat.interactions?.dislikes || 0 }}
+              </span>
+            </div>
+          }
+        </div>
+
+        <!-- Sign in prompt for interactions -->
+        @if (!isAuthenticated) {
+          <div class="mt-6 text-center">
+            <div class=" bg-primary-contrast rounded-lg p-4">
+              <p class="text-muted-color mb-3">
+                Sign in to like, dislike, or interact with this chat
+              </p>
+              <button 
+                (click)="signIn()" 
+                class=" px-4 py-2 rounded-lg bg-primary text-primary-contrast">
+                Sign In
+              </button>
+            </div>
+          </div>
+        }
+      </div>
+    } @else if (loading) {
+      <div class="flex justify-center items-center h-64">
+        <i class="pi pi-spinner pi-spin text-2xl"></i>
+      </div>
+    } @else {
+      <div class="text-center p-8">
+        <h2 class="text-2xl font-bold text-gray-800 mb-4">Chat Not Found</h2>
+        <p class="text-gray-600">This shared chat may have been removed or the link is invalid.</p>
+      </div>
+    }

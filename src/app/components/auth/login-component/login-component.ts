@@ -11,7 +11,7 @@ import {
 } from '@angular/forms';
 
 import { AuthService } from '../../../services/auth-service';
-import { Router, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { Brand } from '../../brand/brand';
 import { Message } from 'primeng/message';
 
@@ -32,6 +32,7 @@ import { Message } from 'primeng/message';
 export class LoginComponent implements OnInit {
   messageService = inject(MessageService);
   authService = inject(AuthService);
+  private route = inject(ActivatedRoute);
   router = inject(Router);
   exampleForm: FormGroup;
   formSubmitted = false;
@@ -85,7 +86,16 @@ export class LoginComponent implements OnInit {
             });
             this.exampleForm.reset();
             this.formSubmitted = false;
-            this.router.navigateByUrl('/chat');
+            // this.router.navigateByUrl('/chat');
+            const returnUrl = this.route.snapshot.queryParams['returnUrl'];
+
+            if (returnUrl) {
+              // Redirect back to the original URL
+              this.router.navigateByUrl(returnUrl);
+            } else {
+              // Default redirect to chat
+              this.router.navigate(['/chat']);
+            }
           },
           error: (err) => {
             this.errorMessage = err.message;

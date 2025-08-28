@@ -1,22 +1,24 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api';
-import { Menubar } from 'primeng/menubar';
-import { Badge } from 'primeng/badge';
+// import { Menubar } from 'primeng/menubar';
+// import { Badge } from 'primeng/badge';
 import { CommonModule } from '@angular/common';
 import { SidebarComponent } from '../sidebar/sidebar';
 
 
 import { Brand } from '../brand/brand';
 import { LinksComponent } from '../links-component/links-component';
+import { TabMenuComponent } from '../tab-menu-component/tab-menu-component';
 @Component({
   selector: 'app-menubar',
   imports: [
-    Menubar,
-    Badge,
+    // Menubar,
+    // Badge,
     CommonModule,
     SidebarComponent,
     Brand,
     LinksComponent,
+    TabMenuComponent,
   ],
   templateUrl: './menubar.html',
   styleUrl: './menubar.css',
