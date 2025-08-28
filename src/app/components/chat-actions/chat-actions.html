@@ -1,0 +1,21 @@
+<div class="flex items-center justify-end gap-3 text-sm text-stone-200 px-5">
+      <button
+        (click)="onLike()"
+        [class]="getLikeClass()"
+        class="flex items-center gap-1  hover:cursor-pointer  hover:text-amber-400"
+        [title]="userReaction === 'like' ? 'Remove like' : 'Like this response'"
+      >
+        <i class="pi pi-thumbs-up"></i> {{ chat.interactions?.likes }}
+      </button>
+      <button
+        (click)="onDislike()"
+        [class]="getDislikeClass()"
+        class="flex items-center gap-1 hover:cursor-pointer  hover:text-amber-400"
+        [title]="userReaction === 'dislike' ? 'Remove dislike' : 'Dislike this response'"
+      >
+        <i class="pi pi-thumbs-down"></i> {{ chat.interactions?.dislikes }}
+      </button>
+      <button (click)="onCopy()" class=" hover:cursor-pointer  hover:text-amber-400" title="Copy to Clipboard"><i class="pi pi-clipboard"></i></button>
+      <button (click)="onShare()" class=" hover:cursor-pointer  hover:text-amber-400" title="Share"><i class="pi pi-arrow-up"></i></button>
+      <button (click)="onRetry()" class=" hover:cursor-pointer  hover:text-amber-400" title="Retry"><i class="pi pi-refresh"></i></button>
+    </div>

@@ -49,6 +49,7 @@
           ></i>
           <markdown [data]="chat?.response"></markdown>
         </div>
+        <app-chat-actions [chat]="chat" (interactionUpdated)="onInteractionUpdated($event)"/>
       </div>
       }
       <div

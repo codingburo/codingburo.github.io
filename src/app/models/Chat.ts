@@ -6,4 +6,12 @@ interface Chat {
   response: string;
   provider: string;
   create_at: Date;
+  interactions?: {
+    likes: number;
+    dislikes: number;
+    shares: number;
+    copies: number;
+    retries: number;
+  };
+  visibility: 'private' | 'public' | 'shared';
 }

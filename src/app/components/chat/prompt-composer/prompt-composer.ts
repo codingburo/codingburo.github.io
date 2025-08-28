@@ -103,6 +103,15 @@ export class PromptComposer implements OnInit, OnChanges {
                   this.prompt,
                   response,
                   this.selectedProvider,
+                  {
+                    interactions: {
+                      likes: 0,
+                      dislikes: 0,
+                      shares: 0,
+                      copies: 0,
+                      retries: 0,
+                    },
+                  },
                   this.currentSessionId
                 )
                 .then(({ docId, sessionId }) => {
@@ -115,6 +124,7 @@ export class PromptComposer implements OnInit, OnChanges {
                     response: response,
                     provider: this.selectedProvider || DEFAULT_PROVIDER,
                     create_at: new Date(),
+                    visibility: 'private',
                   };
                   this.responseData.emit([newChat]);
                   this.prompt = '';
@@ -194,6 +204,15 @@ export class PromptComposer implements OnInit, OnChanges {
                     this.prompt,
                     response,
                     this.selectedProvider,
+                    {
+                      interactions: {
+                        likes: 0,
+                        dislikes: 0,
+                        shares: 0,
+                        copies: 0,
+                        retries: 0,
+                      },
+                    },
                     sessionId // Use the sessionId we got/generated
                   )
                   .then(({ docId, sessionId: returnedSessionId }) => {
@@ -206,6 +225,7 @@ export class PromptComposer implements OnInit, OnChanges {
                       response: response,
                       provider: this.selectedProvider || DEFAULT_PROVIDER,
                       create_at: new Date(),
+                      visibility: 'private',
                     };
                     this.responseData.emit([newChat]);
                     this.prompt = '';

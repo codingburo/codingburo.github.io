@@ -23,6 +23,7 @@ import {
   getFirestore,
   setDoc,
   updateDoc,
+  getDoc,
 } from '@angular/fire/firestore';
 import { from, map, Observable } from 'rxjs';
 
@@ -92,6 +93,7 @@ export class ChatdbService {
     prompt: string,
     response: string,
     provider: string,
+    interactions: object,
     sessionId?: string
   ): Promise<{ docId: string; sessionId: string }> {
     return runInInjectionContext(this.injector, async () => {
@@ -109,6 +111,7 @@ export class ChatdbService {
         response: response,
         create_at: serverTimestamp(), // Server-side timestamp
         provider: provider,
+        interactions: interactions,
       };
 
       const docRef = await addDoc(collection(this.firestore, 'chat'), chatData);
@@ -203,59 +206,83 @@ export class ChatdbService {
     });
   }
 
-  //
-
   async deleteChat(chatId: string): Promise<void> {
     return runInInjectionContext(this.injector, async () => {
-      // First, get the chat to find its sessionId
+      // Get sessionId from chat document BEFORE deleting it
       const chatDoc = doc(this.firestore, 'chat', chatId);
-      const chatSnapshot = await getDocs(
-        query(
+      const chatSnap = await getDoc(chatDoc);
+      const sessionId = chatSnap.exists() ? chatSnap.data()['sessionId'] : null;
+
+      const batch = writeBatch(this.firestore);
+
+      // Delete the chat document
+      batch.delete(chatDoc);
+
+      // Delete all interactions for this chat
+      const interactionsQuery = query(
+        collection(this.firestore, 'chat_interactions'),
+        where('chatId', '==', chatId)
+      );
+      const interactionsSnapshot = await getDocs(interactionsQuery);
+
+      interactionsSnapshot.docs.forEach((doc) => {
+        batch.delete(doc.ref);
+      });
+
+      await batch.commit();
+
+      // Check if session should be deleted using sessionId from chat
+      if (sessionId) {
+        const remainingChatsQuery = query(
           collection(this.firestore, 'chat'),
-          where('__name__', '==', chatId)
-        )
-      );
+          where('sessionId', '==', sessionId)
+        );
+        const remainingChats = await getDocs(remainingChatsQuery);
 
-      if (chatSnapshot.empty) return;
-
-      const chatData = chatSnapshot.docs[0].data();
-      const sessionId = chatData['sessionId'];
-
-      // Delete the chat
-      await deleteDoc(chatDoc);
-
-      // Check if there are any remaining chats in this session
-      const remainingChatsQuery = query(
-        collection(this.firestore, 'chat'),
-        where('sessionId', '==', sessionId)
-      );
-
-      const remainingChats = await getDocs(remainingChatsQuery);
-
-      // If no chats remain, delete the session
-      if (remainingChats.empty) {
-        const sessionDoc = doc(this.firestore, 'sessions', sessionId);
-        await deleteDoc(sessionDoc);
+        if (remainingChats.empty) {
+          const sessionDoc = doc(this.firestore, 'sessions', sessionId);
+          await deleteDoc(sessionDoc);
+        }
       }
     });
   }
 
   async deleteSession(uid: string, sessionId: string): Promise<void> {
     return runInInjectionContext(this.injector, async () => {
-      const chatCollection = collection(this.firestore, 'chat');
-      const sessionQuery = query(
-        chatCollection,
+      const batch = writeBatch(this.firestore);
+
+      // Get all chats in this session
+      const chatsQuery = query(
+        collection(this.firestore, 'chat'),
         where('uid', '==', uid),
         where('sessionId', '==', sessionId)
       );
+      const chatsSnapshot = await getDocs(chatsQuery);
 
-      const snapshot = await getDocs(sessionQuery);
-      const deletePromises = snapshot.docs.map((docSnapshot) =>
-        deleteDoc(docSnapshot.ref)
-      );
-      await Promise.all(deletePromises).then(() => {
-        return this.deleteSessionDocument(sessionId);
+      // Delete all chats
+      chatsSnapshot.docs.forEach((doc) => {
+        batch.delete(doc.ref);
       });
+
+      // Delete all interactions for these chats
+      const chatIds = chatsSnapshot.docs.map((doc) => doc.id);
+      for (const chatId of chatIds) {
+        const interactionsQuery = query(
+          collection(this.firestore, 'chat_interactions'),
+          where('chatId', '==', chatId)
+        );
+        const interactionsSnapshot = await getDocs(interactionsQuery);
+
+        interactionsSnapshot.docs.forEach((doc) => {
+          batch.delete(doc.ref);
+        });
+      }
+
+      // Delete session
+      const sessionDoc = doc(this.firestore, 'sessions', sessionId);
+      batch.delete(sessionDoc);
+
+      await batch.commit();
     });
   }
 

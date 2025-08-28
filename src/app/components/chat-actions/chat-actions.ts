@@ -1,0 +1,86 @@
+// components/chat/chat-actions/chat-actions.ts
+import { Component, Input, Output, EventEmitter, inject } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { ChatInteractionsService } from '../../services/chat-interactions-service';
+import { AuthService } from '../../services/auth-service';
+import { MessageService } from 'primeng/api';
+
+@Component({
+  selector: 'app-chat-actions',
+  imports: [CommonModule],
+  templateUrl: './chat-actions.html',
+})
+export class ChatActionsComponent {
+  @Input() chat!: Chat;
+  @Output() retry = new EventEmitter<string>();
+  userReaction: 'like' | 'dislike' | null = null;
+  private interactionsService = inject(ChatInteractionsService);
+  private auth = inject(AuthService);
+  @Output() interactionUpdated = new EventEmitter<Chat>();
+  messageService = inject(MessageService);
+
+  async ngOnInit() {
+    await this.loadUserReaction();
+  }
+
+  private async loadUserReaction() {
+    const userId = this.auth.currentUserSignal()?.uid;
+    if (!userId) return;
+
+    this.userReaction = await this.interactionsService.getUserReaction(
+      this.chat.id,
+      userId
+    );
+  }
+
+  async onLike() {
+    await this.interactionsService.toggleLike(this.chat.id).then(() => {
+      this.loadUserReaction().then(() => {
+        this.interactionUpdated.emit(this.chat);
+      });
+    });
+  }
+
+  async onDislike() {
+    await this.interactionsService.toggleDislike(this.chat.id).then(() => {
+      // Refresh user reaction after toggle
+      this.loadUserReaction().then(() => {
+        this.interactionUpdated.emit(this.chat);
+      });
+    });
+  }
+
+  getLikeClass() {
+    return this.userReaction === 'like'
+      ? 'text-blue-400 font-semibold'
+      : 'text-stone-200';
+  }
+
+  getDislikeClass() {
+    return this.userReaction === 'dislike'
+      ? 'text-red-400 font-semibold'
+      : 'text-stone-200';
+  }
+
+  onCopy() {
+    this.interactionsService.copyToClipboard(this.chat.id, this.chat.response);
+    this.messageService.add({
+      severity: 'success',
+      summary: 'Success',
+      detail: 'Copied to Clipboard',
+    });
+  }
+
+  onShare() {
+    this.messageService.add({
+      severity: 'info',
+      summary: 'Success',
+      detail: 'Sharing is not yet available',
+    });
+    // this.interactionsService.shareChat(this.chat.id);
+  }
+
+  onRetry() {
+    this.retry.emit(this.chat.prompt);
+  }
+}

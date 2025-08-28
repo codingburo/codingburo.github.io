@@ -15,6 +15,7 @@ import {
   DEFAULT_PROVIDER,
 } from '../../../constants/app.constants';
 import { MarkdownComponent } from 'ngx-markdown';
+import { ChatActionsComponent } from '../../chat-actions/chat-actions';
 
 @Component({
   selector: 'app-chat-session-component',
@@ -25,6 +26,7 @@ import { MarkdownComponent } from 'ngx-markdown';
     DatePipe,
     TitleCasePipe,
     SessionEditorComponent,
+    ChatActionsComponent,
   ],
   templateUrl: './chat-session-component.html',
   styleUrl: './chat-session-component.css',
@@ -160,6 +162,28 @@ export class ChatSessionComponent implements OnInit, OnDestroy {
     if (this.sessionData) {
       this.sessionData.title = newTitle;
     }
+  }
+
+  async onInteractionUpdated(chat: Chat) {
+    await this.refreshChatCounts(chat.id);
+  }
+
+  private async refreshChatCounts(chatId: string) {
+    const currentUser = this.authService.currentUserSignal();
+    if (!currentUser?.uid) return;
+
+    // Get updated chat from database
+    const updatedChat$ = this.chatdbService.getChatById(chatId);
+
+    updatedChat$.subscribe((updatedChat) => {
+      if (updatedChat && updatedChat.interactions) {
+        // Find and update the specific chat in responses array
+        const chatIndex = this.responses.findIndex((c) => c.id === chatId);
+        if (chatIndex >= 0) {
+          this.responses[chatIndex].interactions = updatedChat.interactions;
+        }
+      }
+    });
   }
 
   ngOnDestroy() {
