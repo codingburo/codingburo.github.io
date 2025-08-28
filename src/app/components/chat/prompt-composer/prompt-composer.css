@@ -1,7 +1,13 @@
 @reference "tailwindcss";
 
 .p-textarea {
-    @apply focus:border focus:dark:border-emerald-900 dark:bg-gray-950 bg-stone-100 dark:border-gray-900 border-stone-200 shadow;
+    @apply border-0 focus:border-0 bg-transparent 
+    shadow-none focus:shadow-none hover:cursor-text text-lg
+    focus:bg-transparent;
+}
+
+.p-select{
+    @apply border-0
 }
 
  

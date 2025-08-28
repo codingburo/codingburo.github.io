@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { HomeCard } from '../../home-card/home-card';
 import { PromptComposer } from '../prompt-composer/prompt-composer';
 import { ChatSessionComponent } from '../chat-session-component/chat-session-component';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ChatdbService } from '../../../services/chatdb-service';
 import { AuthService } from '../../../services/auth-service';
 
@@ -15,6 +15,7 @@ import { AuthService } from '../../../services/auth-service';
 })
 export class ChatComponent implements OnInit {
   private route = inject(ActivatedRoute);
+  private router = inject(Router);
   private chatdbService = inject(ChatdbService);
   private authService = inject(AuthService);
   responseData: Chat[] = [];
@@ -59,5 +60,9 @@ export class ChatComponent implements OnInit {
 
   handleResponsesData(data: Chat[]) {
     this.responseData = [...this.responseData, ...data];
+    if (!this.currentSessionId && data.length > 0) {
+      this.currentSessionId = data[0].sessionId;
+      this.router.navigate(['/chat', this.currentSessionId]);
+    }
   }
 }
