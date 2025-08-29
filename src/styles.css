@@ -58,7 +58,7 @@
 }
 
 markdown {
-@apply text-gray-950 dark:text-stone-100;
+@apply text-gray-950 dark:text-stone-200;
 }
 
 markdown h3 {
@@ -81,7 +81,7 @@ markdown a{
 }
 
 markdown pre {
-  @apply bg-stone-100 dark:bg-gray-900 border border-stone-200 dark:border-gray-800 shadow-md dark:shadow-gray-700 p-3 rounded-xl text-gray-800 dark:text-stone-100;
+  @apply bg-stone-100 dark:bg-gray-900 border border-stone-200 dark:border-gray-700 dark:shadow-gray-700 p-3 rounded-xl text-gray-800 dark:text-stone-100 md:max-w-full max-w-sm text-wrap overflow-x-auto;
 }
 
 .p-button-contrast {

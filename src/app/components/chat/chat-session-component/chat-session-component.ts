@@ -6,7 +6,6 @@ import { ChatdbService } from '../../../services/chatdb-service';
 import { ChatService } from '../../../services/chat-service';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { Button } from 'primeng/button';
-import { Fluid } from 'primeng/fluid';
 import { DatePipe } from '@angular/common';
 import { TitleCasePipe } from '@angular/common';
 import {
@@ -17,18 +16,19 @@ import { MarkdownComponent } from 'ngx-markdown';
 import { ChatActionsComponent } from '../chat-actions/chat-actions';
 import { ChatShareStatusComponent } from '../../chat-share-status/chat-share-status';
 import { SessionEditorComponent } from '../session-editor-component/session-editor-component';
-
+import { ScrollPanelModule } from 'primeng/scrollpanel';
 @Component({
   selector: 'app-chat-session-component',
   imports: [
     Button,
-    Fluid,
+
     MarkdownComponent,
     DatePipe,
     TitleCasePipe,
     SessionEditorComponent,
     ChatActionsComponent,
     ChatShareStatusComponent,
+    ScrollPanelModule,
   ],
   templateUrl: './chat-session-component.html',
   styleUrl: './chat-session-component.css',

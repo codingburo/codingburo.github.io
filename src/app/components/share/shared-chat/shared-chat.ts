@@ -3,7 +3,6 @@ import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { MarkdownComponent } from 'ngx-markdown';
-import { DatePipe } from '@angular/common';
 import { ChatActionsComponent } from '../../chat/chat-actions/chat-actions';
 import { ShareService } from '../../../services/share-service';
 import { AuthService } from '../../../services/auth-service';
@@ -11,7 +10,7 @@ import { AuthService } from '../../../services/auth-service';
 
 @Component({
   selector: 'app-shared-chat',
-  imports: [CommonModule, MarkdownComponent, DatePipe, ChatActionsComponent],
+  imports: [CommonModule, MarkdownComponent, ChatActionsComponent],
   templateUrl: './shared-chat.html',
   styleUrl: './shared-chat.css',
 })
@@ -35,11 +34,11 @@ export class SharedChatComponent implements OnInit {
     }
 
     try {
-      this.shareService.getSharedChat(token).then((result)=>{
+      this.shareService.getSharedChat(token).then((result) => {
         this.chat = result.chat;
         this.ownerEmail = result.ownerEmail;
-      })
-      
+      });
+
       // Track view
       await this.shareService.trackView(token);
     } catch (error) {
