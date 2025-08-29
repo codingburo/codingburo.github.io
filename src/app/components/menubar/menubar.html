@@ -1,10 +1,11 @@
 <div class="flex items-center justify-between w-full mt-2 px-2">
-  <div class="flex items-center">
-    <app-sidebar class="z-50"/>
-    <app-brand />
-    <app-tab-menu-component class="ml-5"/>
-  </div>
-  <div class="flex flex-row gap-2 items-end px-3">
-    <app-links-component />
+  <div class="flex items-center justify-between w-full">
+    <div class="flex items-center">
+      <app-sidebar class="z-50" /> <app-brand />
+    </div>
+    <div class="flex w-full md:max-w-6xl mx-5">
+      <app-tab-menu-component />
+    </div>
+    <app-links-component class="px-3" />
   </div>
 </div>
