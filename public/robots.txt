@@ -5,4 +5,4 @@ Disallow: /chat/
 Disallow: /verify-email
 Disallow: /reset-password
 
-Sitemap: https://sba-ai.web.app/sitemap.xml
+Sitemap: https://ai.syedbaqirali.com/sitemap.xml
