@@ -87,7 +87,7 @@
         "deploy": {
           "builder": "angular-cli-ghpages:deploy",
           "options": {
-            "baseHref": "https://sba-ai.web.app/"
+            "baseHref": "https://ai.syedbaqirali.com/"
           }
         }
       }
