@@ -1,6 +1,10 @@
 <p-toast />
 <p-confirmDialog />
-<div class="flex flex-col h-full max-h-dvh w-full items-center max-w-screen">
+<div
+  class="flex flex-col h-full max-h-dvh w-full items-center max-w-screen"
+>
   <app-header class="relative top-0 w-full" />
-  <router-outlet />
+  <div class="flex-1 flex-col p-1 h-full w-full">
+    <router-outlet />
+  </div>
 </div>

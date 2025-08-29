@@ -1,7 +1,7 @@
-<div class="flex flex-col w-full max-w-full h-full max-h-full min-h-fit justify-center relative md:px-0 px-1 text-lg pb-36 overflow-y-clip ">
+<div class="flex flex-col max-h-dvh w-full h-dvh relative">
   @if (sessionData) {
-  <div class="flex w-full min-h-fit py-10 md:px-5 px-3 items-baseline justify-between text-start
-   dark:text-blue-300 text-sky-900 gap-1 md:text-5xl text-4xl text-shadow-xl font-normal">
+  <div class="flex flex-row w-full md:px-5 h-full px-3 py-10 items-baseline justify-between text-start
+   dark:text-blue-300 text-sky-900 gap-1 md:text-5xl text-2xl text-shadow-xl font-normal">
     {{ sessionData.title | titlecase }}
     <p-button
       icon="pi pi-pencil"
@@ -21,7 +21,7 @@
 
   } 
   
-<p-scrollpanel class="flex flex-col w-full h-full max-h-dvh">
+<p-scrollpanel class="flex flex-col w-full h-full">
   <!-- <div class="flex flex-col gap-2 md:p-5 p-2 my-1 w-full rounded-2xl h-full justify-between overflow-y-scroll"> -->
     <!-- <div class="flex flex-col gap-0 rounded-2xl h-full"> -->
       @for (chat of responses; track $index) {
@@ -60,7 +60,7 @@
   <!-- </div> -->
   </p-scrollpanel>
   <div
-      class="flex justify-end p-3"
+      class="flex justify-end p-3 pb-32"
     >
       <p-button
         label="Delete All"
