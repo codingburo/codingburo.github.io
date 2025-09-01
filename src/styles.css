@@ -14,7 +14,7 @@
 
   body{
     
-    @apply font-['Roboto'] h-dvh max-w-screen bg-white dark:bg-black text-gray-900 dark:text-gray-50;
+    @apply font-['Roboto'] h-dvh max-w-screen bg-white dark:bg-black text-gray-950 dark:text-gray-50;
 }
 
 
@@ -39,6 +39,10 @@
 
 .hi-button {
   @apply bg-transparent text-slate-900 border border-emerald-300 dark:border-emerald-800 dark:text-stone-300;  
+}
+
+.bg_gradient{
+  @apply bg-gradient-to-b from-emerald-950 to-emerald-800;
 }
 
 .gradient-text{
