@@ -14,7 +14,7 @@
 
   body{
     
-    @apply font-['Roboto'] h-dvh max-w-screen bg-white dark:bg-black text-gray-950 dark:text-gray-50;
+    @apply font-['Roboto'] antialiased h-dvh max-w-screen bg-white dark:bg-black text-gray-950 dark:text-gray-50;
 }
 
 
