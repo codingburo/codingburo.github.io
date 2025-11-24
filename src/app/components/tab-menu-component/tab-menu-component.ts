@@ -8,10 +8,6 @@ import { MenuItem } from 'primeng/api';
   templateUrl: './tab-menu-component.html',
   styleUrl: './tab-menu-component.css',
 })
-export class TabMenuComponent{
-  tabs = [
-    { route: 'chat', label: 'New Session', icon: 'pi pi-plus' },
-  ];
-
-  
+export class TabMenuComponent {
+  tabs = [{ route: 'cobu', label: 'New Session', icon: 'pi pi-plus' }];
 }

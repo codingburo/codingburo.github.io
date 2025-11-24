@@ -27,6 +27,6 @@ export class Notfound implements OnInit {
   }
 
   startChat() {
-    this.router.navigate(['/chat']);
+    this.router.navigate(['/cobu']);
   }
 }

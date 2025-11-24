@@ -16,11 +16,13 @@ export const ERROR_MESSAGES = {
 export enum Provider {
   OPENAI = 'openai',
   ANTHROPIC = 'anthropic',
+  GEMINI = 'gemini',
 }
 
 export const PROVIDER_CONFIG = {
   [Provider.OPENAI]: { label: 'OpenAI', value: Provider.OPENAI },
   [Provider.ANTHROPIC]: { label: 'Anthropic', value: Provider.ANTHROPIC },
+  [Provider.GEMINI]: { label: 'Gemini', value: Provider.GEMINI },
 };
 
 export const PROVIDER_OPTIONS = Object.values(PROVIDER_CONFIG);
@@ -38,6 +40,7 @@ export const getProviderLabel = (
 export const PROVIDER_ICONS = {
   [Provider.OPENAI]: 'pi pi-bolt',
   [Provider.ANTHROPIC]: 'pi pi-sparkles',
+  [Provider.GEMINI]: 'pi pi-sparkles',
 };
 
 export const getProviderIcon = (

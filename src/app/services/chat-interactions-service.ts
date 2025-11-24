@@ -24,7 +24,7 @@ export class ChatInteractionsService {
       const existingSnap = await getDocs(existingQuery);
       const batch = writeBatch(this.firestore);
       await this.ensureInteractionsField(chatId, batch);
-      const chatRef = doc(this.firestore, `chat/${chatId}`);
+      const chatRef = doc(this.firestore, `cobu/${chatId}`);
 
       try {
         if (!existingSnap.empty) {
@@ -94,7 +94,7 @@ export class ChatInteractionsService {
       const existingSnap = await getDocs(existingQuery);
       const batch = writeBatch(this.firestore);
       await this.ensureInteractionsField(chatId, batch);
-      const chatRef = doc(this.firestore, `chat/${chatId}`);
+      const chatRef = doc(this.firestore, `cobu/${chatId}`);
 
       try {
         if (!existingSnap.empty) {
@@ -151,7 +151,7 @@ export class ChatInteractionsService {
 
   private async ensureInteractionsField(chatId: string, batch: WriteBatch) {
     return runInInjectionContext(this.injector, async () => {
-    const chatRef = doc(this.firestore, `chat/${chatId}`);
+    const chatRef = doc(this.firestore, `cobu/${chatId}`);
     const chatSnap = await getDoc(chatRef);
 
     if (!chatSnap.exists() || !chatSnap.data()?.['interactions']) {
@@ -210,7 +210,7 @@ export class ChatInteractionsService {
       if (reaction === 'dislike') counts.dislikes++;
     });
 
-    await updateDoc(doc(this.firestore, `chat/${chatId}`), {
+    await updateDoc(doc(this.firestore, `cobu/${chatId}`), {
       interactions: counts,
     });
   }
@@ -243,7 +243,7 @@ export class ChatInteractionsService {
     chatId: string,
     action: 'copy' | 'share' | 'retry'
   ) {
-    const chatRef = doc(this.firestore, `chat/${chatId}`);
+    const chatRef = doc(this.firestore, `cobu/${chatId}`);
     try {
       await updateDoc(chatRef, { [`interactions.${action}s`]: increment(1) });
     } catch (error) {

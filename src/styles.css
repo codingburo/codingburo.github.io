@@ -1,14 +1,22 @@
 /* You can add global styles to this file, and also import other style files */
-@import "tailwindcss";
-@plugin "tailwindcss-primeui";
-@import "primeicons/primeicons.css";
 
+@import url('https://fonts.googleapis.com/css2?family=Doto:wght@100..900&display=swap');
+
+@import "tailwindcss";
+@import "primeicons/primeicons.css";
+@plugin "tailwindcss-primeui";
 
 :host {
     
     box-sizing: border-box;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+  }
+
+  @theme{
+    --font-doto:Doto, "sans-serif";
+    --color-primary:#222222;
+    --color-heavy:#EFEFEF
   }
 
 

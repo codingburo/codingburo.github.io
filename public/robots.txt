@@ -1,7 +1,7 @@
 # public/robots.txt
 User-agent: *
 Allow: /
-Disallow: /chat/
+Disallow: /cobu/
 Disallow: /verify-email
 Disallow: /reset-password
 

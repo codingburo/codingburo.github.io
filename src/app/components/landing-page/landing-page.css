@@ -12,11 +12,11 @@
 
 
 .p-button_landing{
-    @apply border bg-emerald-300 dark:bg-emerald-700 text-stone-50 hover:border-yellow-500  dark:border-emerald-400 rounded-full p-3 px-5; 
+    @apply border bg-emerald-200 border-emerald-700 dark:bg-emerald-700 text-stone-50 hover:border-yellow-500  dark:border-emerald-400 rounded-lg p-3 px-5; 
 }
 
 .p-button-outline{
-    @apply bg-transparent border border-emerald-700 dark:border-emerald-400 rounded-full p-3 px-5 hover:border-yellow-500;
+    @apply bg-transparent border border-emerald-700 dark:border-emerald-400 rounded-lg p-3 px-5 hover:border-yellow-500;
 }
 
 .feature-card{

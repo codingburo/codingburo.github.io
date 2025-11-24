@@ -3,7 +3,7 @@ import { Button } from 'primeng/button';
 import { Brand } from '../brand/brand';
 import { Socials } from '../socials/socials';
 import { Drawer } from 'primeng/drawer';
-import { ChatListComponent } from '../chat/chat-list-component/chat-list-component';
+import { ChatListComponent } from '../cobu/chat-list-component/chat-list-component';
 
 @Component({
   selector: 'app-sidebar',

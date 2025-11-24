@@ -3,7 +3,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { MarkdownComponent } from 'ngx-markdown';
-import { ChatActionsComponent } from '../../chat/chat-actions/chat-actions';
+import { ChatActionsComponent } from '../../cobu/chat-actions/chat-actions';
 import { ShareService } from '../../../services/share-service';
 import { AuthService } from '../../../services/auth-service';
 

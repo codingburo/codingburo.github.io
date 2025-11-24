@@ -89,7 +89,7 @@ export class RegisterComponent {
           detail: message,
           life: 3000,
         });
-        this.router.navigate(['/chat']);
+        this.router.navigate(['/cobu']);
       },
       error: (error) => {
         this.errorMessage = 'Google sign-up failed';
@@ -110,7 +110,7 @@ export class RegisterComponent {
           detail: message,
           life: 3000,
         });
-        this.router.navigate(['/chat']);
+        this.router.navigate(['/cobu']);
       },
       error: (error) => {
         this.errorMessage = 'GitHub sign-up failed';
@@ -131,7 +131,7 @@ export class RegisterComponent {
           detail: message,
           life: 3000,
         });
-        this.router.navigate(['/chat']);
+        this.router.navigate(['/cobu']);
       },
       error: (error) => {
         this.errorMessage = 'X sign-up failed';

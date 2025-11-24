@@ -49,7 +49,7 @@ export class LoginComponent implements OnInit {
     const user = this.authService.currentUserSignal();
     const isAuth = !!user;
     if (isAuth) {
-      this.router.navigateByUrl('/chat');
+      this.router.navigateByUrl('/cobu');
     }
   }
 
@@ -94,7 +94,7 @@ export class LoginComponent implements OnInit {
               this.router.navigateByUrl(returnUrl);
             } else {
               // Default redirect to chat
-              this.router.navigate(['/chat']);
+              this.router.navigate(['/cobu']);
             }
           },
           error: (err) => {
@@ -118,7 +118,7 @@ export class LoginComponent implements OnInit {
           detail: 'Successfully signed in with Google',
           life: 3000,
         });
-        this.router.navigate(['/chat']);
+        this.router.navigate(['/cobu']);
       },
       error: (error) => {
         this.errorMessage = 'Google sign-in failed';
@@ -135,7 +135,7 @@ export class LoginComponent implements OnInit {
           detail: 'Successfully signed in with GitHub',
           life: 3000,
         });
-        this.router.navigate(['/chat']);
+        this.router.navigate(['/cobu']);
       },
       error: (error) => {
         this.errorMessage = 'GitHub sign-in failed';
@@ -152,7 +152,7 @@ export class LoginComponent implements OnInit {
           detail: 'Successfully signed in with X',
           life: 3000,
         });
-        this.router.navigate(['/chat']);
+        this.router.navigate(['/cobu']);
       },
       error: (error) => {
         this.errorMessage = 'X sign-in failed';

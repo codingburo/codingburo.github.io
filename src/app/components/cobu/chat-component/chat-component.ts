@@ -62,7 +62,7 @@ export class ChatComponent implements OnInit {
     this.responseData = [...this.responseData, ...data];
     if (!this.currentSessionId && data.length > 0) {
       this.currentSessionId = data[0].sessionId;
-      this.router.navigate(['/chat', this.currentSessionId]);
+      this.router.navigate(['/cobu', this.currentSessionId]);
     }
   }
 }

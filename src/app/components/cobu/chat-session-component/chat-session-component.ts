@@ -114,7 +114,7 @@ export class ChatSessionComponent implements OnInit, OnDestroy {
             summary: 'Success',
             detail: 'Chat successfully deleted',
           });
-          this.router.navigate(['/chat']);
+          this.router.navigate(['/cobu']);
         });
     }
     return null;
@@ -143,7 +143,7 @@ export class ChatSessionComponent implements OnInit, OnDestroy {
             this.sessionData = result.session;
           } else {
             // Session was deleted, redirect to /chat
-            this.router.navigate(['/chat']);
+            this.router.navigate(['/cobu']);
           }
 
           this.messageService.add({

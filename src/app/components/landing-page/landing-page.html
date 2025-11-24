@@ -1,44 +1,43 @@
 <div class="bg-[url('/images/waves-orange.png')] bg-no-repeat bg-center bg-cover">
   <!-- Header -->
   <header
-    class="text-stone-100 md:p-6 p-3 shadow-lg dark:shadow-gray-900"
+    class="text-stone-100 md:p-6 p-3 shadow-4xl border border-b-red-900 dark:shadow-gray-900 "
   >
+  
     <div class="max-w-6xl mx-auto flex justify-between items-center">
       <app-brand />
-      <div class="md:space-x-4 space-x-2">
-        <a routerLink="/signin" class="p-button-outline"
-          ><span class="a_span_buttons">Sign In</span></a
+      <div class="flex md:flex-row flex-row md:space-x-4 space-x-2 items-center">
+        <a routerLink="/signin" class="p-button-outline text-center"
+          ><span class="a_span_buttons">Sign In to Cobu</span></a
         >
         <a routerLink="/signup" class="p-button_landing"
           ><span class="a_span_buttons  ">Sign up for free</span></a
-        >
-      </div>
+        ></div>
     </div>
   </header>
   <!-- Hero Section -->
   <section
-    class="text-center py-10 flex flex-col items-center justify-center gap-10 dark:text-stone-100"
+    class="text-center py-10 flex flex-col items-center justify-center gap-10 text-heavy text-xl dark:text-stone-100 bg-gradient-to-b from-orange-700 to-orange-300  bg-blend-color-dodge bg-cover shadow-2xl"
   >
     <div
-      class="bg-emerald-600 text-white px-4 py-2 rounded-full font-bold text-lg shadow-2xl border-b-12 border-yellow-500"
+      class="bg-orange-400 px-4 py-2 rounded-full text-gray-800 text-lg shadow-2xl border-b-12 border-yellow-400"
     >
       🎉 FREE to Join - No Credit Card Required
     </div>
-    <span class="gradient-text font-extrabold text-6xl h-fit min-h-24"
-      >Your Brainstorming Buddy</span
-    >
+    <span class="gradient-text-new font-extrabold text-6xl h-fit min-h-24 text-heavy font-doto "
+      >Cobu Your Brainstorming Buddy</span>
 
-    <ul class="flex flex-col text-3xl mx-auto max-w-md gap-5 list-none">
+    <ul class="flex flex-col text-3xl mx-auto max-w-md gap-5 list-none text-gray-950">
       <li class="flex items-center gap-3">
         <i class="pi pi-comments text-emerald-600"></i>
         <span>Chat, Discuss, or Brainstorm an Idea</span>
       </li>
       <li class="flex items-center gap-3">
-        <i class="pi pi-cog text-blue-500"></i>
+        <i class="pi pi-cog text-blue-700"></i>
         <span>Choose your AI: OpenAI or Anthropic</span>
       </li>
       <li class="flex items-center gap-3">
-        <i class="pi pi-search text-orange-500"></i>
+        <i class="pi pi-search text-orange-700"></i>
         <span>Include Web search in your queries</span>
       </li>
       
@@ -47,16 +46,17 @@
         <span>Get answers instantly</span>
       </li>
       <li class="flex items-center gap-3">
-        <i class="pi pi-upload text-yellow-500"></i>
+        <i class="pi pi-upload text-yellow-800"></i>
         <span>Share your ideas with others</span>
       </li>
     </ul>
     <a
       routerLink="/signup"
-      class="bg-stone-100 text-indigo-600 px-6 py-3 rounded-xl font-semibold shadow-lg hover:bg-gray-200 border border-stone-200"
-      style="color: green"
-      >Try Cobu for free 🎉</a
+      class="bg-stone-100 text-indigo-600 px-10 py-5 rounded-xl font-semibold shadow-lg hover:bg-gray-200 border border-stone-200"
+      style="color: rgb(0, 0, 0)"
+      ><i class="pi pi-comment mr-3 text-orange-600"></i>Try Cobu for free</a
     >
+    
   </section>
 
   <!-- Why Cobu -->
@@ -66,7 +66,7 @@
       <div
         class="text-6xl font-bold text-center gradient-text p-5"
       >
-        Why Cobu?
+        What is Cobu?
     </div></span
     >
     <div class="grid md:grid-cols-2 gap-10 text-center">
@@ -258,7 +258,7 @@
 
   <!-- Footer -->
   <footer
-    class="text-muted-color text-center py-6 dark:bg-gray-950 shadow-emerald-200 shadow"
+    class="text-muted-color text-center py-6 bg-gradient-to-b from-orange-400 to-orange-200 dark:bg-gray-950 shadow-emerald-200 shadow"
   >
     <div class="max-w-6xl mx-auto flex justify-center items-center py-2">
       <div class="md:space-x-4 space-x-2">
@@ -277,18 +277,19 @@
       </div>
     </div>
     <div class="flex flex-col items-center justify-center gap-2 a-footer">
-      &copy; {{ currentYear }} Coding Buro.
-      <span class="flex items-center gap-2"
-        >Built with Angular, Spring AI, and LLMs
-        <i class="pi pi-sparkles text-amber-300"></i></span
-      ><span
-        ><a
+      
+      <span class="flex flex-row gap-2 items-center"
+        ><i class="pi pi-microchip-ai"></i> <a
           href="https://www.syedbaqirali.com"
           target="_blank"
           class="a-footer"
-          >www.syedbaqirali.com</a
+          >Syed Baqir Ali</a
         ></span
+      ><span class="flex items-center gap-2 sm:hidden"
+        >Built with Angular, Spring AI, and LLMs
+        <i class="pi pi-sparkles text-amber-300"></i></span
       >
+      &copy; {{ currentYear }} Coding Buro.
     </div>
   </footer>
 </div>

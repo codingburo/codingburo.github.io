@@ -21,7 +21,7 @@ export const adminGuard: CanActivateFn = (route, state) => {
           return true;
         }
 
-        router.navigate(['/chat']);
+        router.navigate(['/cobu']);
         return false;
       })
     );

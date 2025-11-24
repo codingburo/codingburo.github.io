@@ -10,5 +10,5 @@ import { BrandLogo } from '../brand-logo/brand-logo';
 })
 export class Brand {
   @Input() showLogo: boolean = true;
-  protected readonly title = signal('Cobu');
+  protected readonly title = signal('Coding Buro');
 }

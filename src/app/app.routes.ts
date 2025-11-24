@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { ChatComponent } from './components/chat/chat-component/chat-component';
+import { ChatComponent } from './components/cobu/chat-component/chat-component';
 import { RegisterComponent } from './components/auth/register-component/register-component';
 import { LoginComponent } from './components/auth/login-component/login-component';
 import { Notfound } from './components/notfound/notfound';
@@ -37,7 +37,7 @@ export const routes: Routes = [
     },
   },
   {
-    path: 'chat',
+    path: 'cobu',
     component: ChatComponent,
     title: 'AI Driven Brainstorming Session | Cobu',
     canActivate: [AuthGuardService, EmailVerifyGuard],
@@ -49,7 +49,7 @@ export const routes: Routes = [
   },
 
   {
-    path: 'chat/:sessionId',
+    path: 'cobu/:sessionId',
     component: ChatComponent,
     title: 'Start Your AI Driven Brainstorming Session | Cobu',
     canActivate: [AuthGuardService, EmailVerifyGuard],

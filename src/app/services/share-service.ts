@@ -49,7 +49,7 @@ export class ShareService {
       });
 
       // Update chat visibility
-      const chatRef = doc(this.firestore, `chat/${chatId}`);
+      const chatRef = doc(this.firestore, `cobu/${chatId}`);
       await updateDoc(chatRef, {
         visibility,
         'interactions.shares': increment(1),
@@ -93,7 +93,7 @@ export class ShareService {
       // }
 
       // Get chat data
-      const chatRef = doc(this.firestore, `chat/${chatId}`);
+      const chatRef = doc(this.firestore, `cobu/${chatId}`);
       const chatSnap = await getDoc(chatRef);
 
       if (!chatSnap.exists()) {
@@ -125,7 +125,7 @@ export class ShareService {
         const chatId = tokenSnapshot.docs[0].data()['chatId'];
 
         // Increment view count
-        const chatRef = doc(this.firestore, `chat/${chatId}`);
+        const chatRef = doc(this.firestore, `cobu/${chatId}`);
         await updateDoc(chatRef, {
           'interactions.views': increment(1),
         });
