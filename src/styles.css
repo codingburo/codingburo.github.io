@@ -15,8 +15,9 @@
 
   @theme{
     --font-doto:Doto, "sans-serif";
-    --color-primary:#222222;
-    --color-heavy:#EFEFEF
+    --color-primary:oklch(12.9% 0.042 264.695);
+    --color-secondary:oklch(98.4% 0.003 247.858)
+    --color-heavy:oklch(98.5% 0.001 106.423)
   }
 
 
