@@ -1,7 +1,7 @@
 // src/app/constants/app.constants.ts
 export const APP_CONFIG = {
-  // API_BASE_URL: 'https://data.syedbaqirali.com',
-  API_BASE_URL: 'http://localhost:9191',
+  API_BASE_URL: 'https://api.codingburo.com',
+  // API_BASE_URL: 'http://localhost:9191',
   SBAWEB_LINK: 'https://www.syedbaqirali.com',
   MAX_RETRIES: 3,
   TIMEOUT_MS: 5000,
